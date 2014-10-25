@@ -1,24 +1,17 @@
 package nl.gleb.runmissions;
 
 import android.app.Activity;
-import android.app.FragmentTransaction;
-import android.os.Vibrator;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.Gravity;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -124,63 +117,6 @@ public class Main extends ActionBarActivity
         }
         return super.onOptionsItemSelected(item);
     }
-
-    static final long[] START_PATTERN = {0, 1000};
-    static final long[] LEFT_PATTERN = {0, 300, 150, 100};
-    static final long[] RIGHT_PATTERN = {0, 100, 150, 300};
-    static final long[] ACCELERATE_PATTERN = {0, 100, 100, 100, 100, 100};
-    static final long[] ERROR_PATTERN = {0, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300};
-    static final long[] FINISH_PATTERN = {0, 1000};
-
-    /*
-     * Haptic signal indicating to start running
-     */
-    public void testStartHapticSignal(View view) {
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(START_PATTERN, -1);
-    };
-
-    /*
-     * Haptic signal indicating to go left
-     */
-    public void testLeftHapticSignal(View view) {
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(LEFT_PATTERN, -1);
-    };
-
-    /*
-     * Haptic signal indicating to go right
-     */
-    public void testRightHapticSignal(View view) {
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(RIGHT_PATTERN, -1);
-    };
-
-    /*
-     * Haptic signal indicating to accelerate
-     */
-    public void testAccelerateHapticSignal(View view) {
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(ACCELERATE_PATTERN, -1);
-    };
-
-    /*
-     * Haptic signal indicating that there is an error (wrong direction)
-     */
-    public void testErrorHapticSignal(View view) {
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(ERROR_PATTERN, -1);
-    };
-
-    /*
-     * Haptic signal indicating that user has reached his goal
-     */
-    public void testFinishHapticSignal(View view) {
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(FINISH_PATTERN, -1);
-    };
-
-
 
 
     /**
