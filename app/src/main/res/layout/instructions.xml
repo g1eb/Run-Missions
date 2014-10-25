@@ -59,7 +59,7 @@
             android:id="@+id/hapticButtonStop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="testStopHapticSignal"
+            android:onClick="testFinishHapticSignal"
             android:text="@string/haptic_button_finish" />
 
 
