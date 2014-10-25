@@ -66,7 +66,7 @@ public class Main extends ActionBarActivity
                 ft.replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
                 break;
             case 2:
-                ft.replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
+                ft.replace(R.id.container, new Instructions()).commit();
                 break;
             case 3:
                 ft.replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
