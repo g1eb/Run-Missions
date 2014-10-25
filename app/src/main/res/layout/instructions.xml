@@ -45,7 +45,7 @@
             android:id="@+id/hapticButtonAccelerate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="testRightHapticSignal"
+            android:onClick="testAccelerateHapticSignal"
             android:text="@string/haptic_button_accelerate" />
 
         <Button
