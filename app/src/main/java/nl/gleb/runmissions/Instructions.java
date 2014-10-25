@@ -13,7 +13,7 @@ import android.widget.Button;
 /**
  * Created by Gleb on 25/10/14.
  */
-public class Instructions extends Fragment {
+public class Instructions extends Fragment implements View.OnClickListener {
 
     static final long[] START_PATTERN = {0, 1000};
     static final long[] LEFT_PATTERN = {0, 300, 150, 100};
@@ -33,75 +33,48 @@ public class Instructions extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        /*
-         * Haptic signal indicating to start running
-         */
         startBtn = (Button) getActivity().findViewById(R.id.hapticButtonStart);
-        startBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(START_PATTERN, -1);
-            }
-        });
+        startBtn.setOnClickListener(this);
 
-        /*
-         * Haptic signal indicating to go left
-         */
         leftBtn = (Button) getActivity().findViewById(R.id.hapticButtonLeft);
-        leftBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(LEFT_PATTERN, -1);
-            }
-        });
-        /*
-         * Haptic signal indicating to go right
-         */
+        leftBtn.setOnClickListener(this);
+
         rightBtn = (Button) getActivity().findViewById(R.id.hapticButtonRight);
-        rightBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(RIGHT_PATTERN, -1);
-            }
-        });
+        rightBtn.setOnClickListener(this);
 
-        /*
-         * Haptic signal indicating to accelerate
-         */
         accelerateBtn = (Button) getActivity().findViewById(R.id.hapticButtonAccelerate);
-        accelerateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(ACCELERATE_PATTERN, -1);
-            }
-        });
+        accelerateBtn.setOnClickListener(this);
 
-        /*
-         * Haptic signal indicating that there is an error (wrong direction)
-         */
         errorBtn = (Button) getActivity().findViewById(R.id.hapticButtonError);
-        errorBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(ERROR_PATTERN, -1);
-            }
-        });
+        errorBtn.setOnClickListener(this);
 
-        /*
-         * Haptic signal indicating that user has reached his goal
-         */
         finishBtn = (Button) getActivity().findViewById(R.id.hapticButtonFinish);
-        finishBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+        finishBtn.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+
+        switch (v.getId()) {
+            case R.id.hapticButtonStart:
+                vibrator.vibrate(START_PATTERN, -1);
+                break;
+            case R.id.hapticButtonLeft:
+                vibrator.vibrate(LEFT_PATTERN, -1);
+                break;
+            case R.id.hapticButtonRight:
+                vibrator.vibrate(RIGHT_PATTERN, -1);
+                break;
+            case R.id.hapticButtonAccelerate:
+                vibrator.vibrate(ACCELERATE_PATTERN, -1);
+                break;
+            case R.id.hapticButtonError:
+                vibrator.vibrate(ERROR_PATTERN, -1);
+                break;
+            case R.id.hapticButtonFinish:
                 vibrator.vibrate(FINISH_PATTERN, -1);
-            }
-        });
+                break;
+        }
     }
 }
