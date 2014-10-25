@@ -128,8 +128,8 @@ public class Main extends ActionBarActivity
     static final long[] START_PATTERN = {0, 1000};
     static final long[] LEFT_PATTERN = {0, 300, 150, 100};
     static final long[] RIGHT_PATTERN = {0, 100, 150, 300};
-    static final long[] ACCELERATE_PATTERN = {0, 100, 150, 300};
-    static final long[] ERROR_PATTERN = {0, 100, 150, 300};
+    static final long[] ACCELERATE_PATTERN = {0, 100, 100, 100, 100, 100};
+    static final long[] ERROR_PATTERN = {0, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300};
     static final long[] FINISH_PATTERN = {0, 1000};
 
     /*
