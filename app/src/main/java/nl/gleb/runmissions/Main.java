@@ -1,6 +1,7 @@
 package nl.gleb.runmissions;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class Main extends ActionBarActivity
@@ -51,9 +53,25 @@ public class Main extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+
+        Toast.makeText(getApplicationContext(), "Section " + position, Toast.LENGTH_SHORT).show();
+
+        android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+
+        switch (position) {
+            case 0:
+                ft.replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
+                break;
+            case 1:
+                ft.replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
+                break;
+            case 2:
+                ft.replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
+                break;
+            case 3:
+                ft.replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
+                break;
+        }
     }
 
     public void onSectionAttached(int number) {
@@ -66,6 +84,9 @@ public class Main extends ActionBarActivity
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                break;
+            case 4:
+                mTitle = getString(R.string.title_section4);
                 break;
         }
     }
@@ -130,7 +151,7 @@ public class Main extends ActionBarActivity
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }
