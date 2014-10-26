@@ -56,7 +56,8 @@ public class MissionList extends Fragment implements AdapterView.OnItemClickList
         missions_list = (ListView) getActivity().findViewById(R.id.missionList);
         missions_list.setAdapter(new ArrayAdapter<String>(
                 getActivity().getApplicationContext(),
-                android.R.layout.simple_list_item_1,
+                R.layout.mission_list_item,
+                R.id.missionListItem,
                 missions
         ));
         missions_list.setOnItemClickListener(this);
