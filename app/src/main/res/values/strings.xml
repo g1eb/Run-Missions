@@ -12,9 +12,11 @@
 
     <!--Missions -->
     <string name="title_mission_placeholder">Mission</string>
-    <string name="title_mission1">To the rescue!</string>
-    <string name="title_mission2">Catastrophy</string>
-    <string name="title_mission3">Heist</string>
+    <string-array name="mission_titles">
+        <item>To the rescue!</item>
+        <item>Catastrophy</item>
+        <item>Heist</item>
+    </string-array>
 
     <!-- Haptic test buttons -->
     <string name="haptic_test_title">Tap on the buttons below to familiarize with haptic signals</string>
