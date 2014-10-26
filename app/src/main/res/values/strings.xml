@@ -11,6 +11,7 @@
     <string name="action_settings">Settings</string>
 
     <!--Missions -->
+    <string name="title_mission_placeholder">Mission</string>
     <string name="title_mission1">To the rescue!</string>
     <string name="title_mission2">Catastrophy</string>
     <string name="title_mission3">Heist</string>
