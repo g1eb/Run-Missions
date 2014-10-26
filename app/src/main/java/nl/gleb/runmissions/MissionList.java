@@ -18,6 +18,9 @@ public class MissionList extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     ListView missions_list;
+    String[] missions = new String[]{getString(R.string.title_mission1),
+            getString(R.string.title_mission2),
+            getString(R.string.title_mission3)};
 
     public static MissionList newInstance(int sectionNumber) {
         MissionList fragment = new MissionList();
