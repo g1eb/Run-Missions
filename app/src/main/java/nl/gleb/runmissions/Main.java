@@ -1,6 +1,7 @@
 package nl.gleb.runmissions;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 
 public class Main extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, Comm {
+
+    public static Object SPLASH_LOCK = new Object();
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -42,6 +45,11 @@ public class Main extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        // Cancel splash screen
+        synchronized (SPLASH_LOCK) {
+            SPLASH_LOCK.notifyAll();
+        }
     }
 
     @Override
