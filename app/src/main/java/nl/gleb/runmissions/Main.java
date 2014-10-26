@@ -56,9 +56,6 @@ public class Main extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-
-        Toast.makeText(getApplicationContext(), "Section " + position, Toast.LENGTH_SHORT).show();
-
         android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
 
         switch (position) {
