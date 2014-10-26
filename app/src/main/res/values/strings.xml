@@ -17,6 +17,6 @@
     <string name="haptic_button_right">Right</string>
     <string name="haptic_button_accelerate">Accelerate</string>
     <string name="haptic_button_error">Wrong Direction</string>
-    <string name="haptic_button_finish">Finish</string>
+    <string name="haptic_button_closer">Getting Closer</string>
 
 </resources>

@@ -51,10 +51,10 @@
             android:text="@string/haptic_button_error" />
 
         <Button
-            android:id="@+id/hapticButtonFinish"
+            android:id="@+id/hapticButtonCloser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/haptic_button_finish" />
+            android:text="@string/haptic_button_closer" />
 
     </LinearLayout>
 

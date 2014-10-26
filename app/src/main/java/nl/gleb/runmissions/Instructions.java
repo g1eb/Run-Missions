@@ -23,11 +23,11 @@ public class Instructions extends Fragment implements View.OnClickListener {
     static final long[] RIGHT_PATTERN = {0, 100, 150, 300};
     static final long[] ACCELERATE_PATTERN = {0, 100, 100, 100, 100, 100};
     static final long[] ERROR_PATTERN = {0, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300};
-    static final long[] FINISH_PATTERN = {0, 1000};
+    static final long[] CLOSER_PATTERN = {0, 100, 1000, 100, 900, 150, 800, 150, 700, 200, 600, 200, 500, 250, 400, 250, 300, 300, 200, 300, 100, 3000};
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private Button startBtn, leftBtn, rightBtn, accelerateBtn, errorBtn, finishBtn;
+    private Button startBtn, leftBtn, rightBtn, accelerateBtn, errorBtn, closerBtn;
 
     public static Instructions newInstance(int sectionNumber) {
         Instructions fragment = new Instructions();
@@ -68,8 +68,8 @@ public class Instructions extends Fragment implements View.OnClickListener {
         errorBtn = (Button) getActivity().findViewById(R.id.hapticButtonError);
         errorBtn.setOnClickListener(this);
 
-        finishBtn = (Button) getActivity().findViewById(R.id.hapticButtonFinish);
-        finishBtn.setOnClickListener(this);
+        closerBtn = (Button) getActivity().findViewById(R.id.hapticButtonCloser);
+        closerBtn.setOnClickListener(this);
     }
 
     @Override
@@ -92,8 +92,8 @@ public class Instructions extends Fragment implements View.OnClickListener {
             case R.id.hapticButtonError:
                 vibrator.vibrate(ERROR_PATTERN, -1);
                 break;
-            case R.id.hapticButtonFinish:
-                vibrator.vibrate(FINISH_PATTERN, -1);
+            case R.id.hapticButtonCloser:
+                vibrator.vibrate(CLOSER_PATTERN, -1);
                 break;
         }
     }
