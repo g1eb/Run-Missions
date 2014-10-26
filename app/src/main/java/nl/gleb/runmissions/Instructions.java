@@ -22,7 +22,10 @@ public class Instructions extends Fragment implements View.OnClickListener {
     static final long[] ERROR_PATTERN = {0, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300};
     static final long[] FINISH_PATTERN = {0, 1000};
 
-    private Button startBtn, leftBtn, rightBtn, accelerateBtn, errorBtn, finishBtn;
+    private Button startBtn, leftBtn, rightBtn, accelerateBtn, errorBtn, finishBtn, xBtn;
+
+    Comm c;
+    private int counter = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,6 +53,16 @@ public class Instructions extends Fragment implements View.OnClickListener {
 
         finishBtn = (Button) getActivity().findViewById(R.id.hapticButtonFinish);
         finishBtn.setOnClickListener(this);
+
+        c = (Comm) getActivity();
+        xBtn = (Button) getActivity().findViewById(R.id.xButton);
+        xBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                counter++;
+                c.set(""+counter);
+            }
+        });
     }
 
     @Override
