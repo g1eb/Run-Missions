@@ -12,11 +12,9 @@ import android.widget.Button;
 /**
  * Created by Gleb on 26/10/14.
  */
-public class MissionList extends Fragment implements View.OnClickListener {
+public class MissionList extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
-
-    private Button startBtn, leftBtn, rightBtn, accelerateBtn, errorBtn, finishBtn, xBtn;
 
     public static MissionList newInstance(int sectionNumber) {
         MissionList fragment = new MissionList();
@@ -35,11 +33,6 @@ public class MissionList extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.instructions, container, false);
-    }
-
-    @Override
-    public void onClick(View v) {
-
+        return inflater.inflate(R.layout.mission_list, container, false);
     }
 }
