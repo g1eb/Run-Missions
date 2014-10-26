@@ -27,6 +27,7 @@ public class Splash extends Activity {
                         ignored.printStackTrace();
                     } finally {
                         startActivity(new Intent("nl.gleb.runmissions.MAIN"));
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                     }
                 }
                 finish();
