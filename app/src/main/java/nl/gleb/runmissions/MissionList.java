@@ -1,6 +1,8 @@
 package nl.gleb.runmissions;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -19,8 +22,8 @@ public class MissionList extends Fragment implements AdapterView.OnItemClickList
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    ListView missions_list;
-    String[] missions;
+    ListView mission_list;
+    String[] mission_titles, mission_descriptions;
 
     public static MissionList newInstance(int sectionNumber) {
         MissionList fragment = new MissionList();
@@ -47,34 +50,56 @@ public class MissionList extends Fragment implements AdapterView.OnItemClickList
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        missions = new String[]{
-                getString(R.string.title_mission1),
-                getString(R.string.title_mission2),
-                getString(R.string.title_mission3)
-        };
+        Resources res = getResources();
+        mission_titles = res.getStringArray(R.array.mission_titles);
+        mission_descriptions = res.getStringArray(R.array.mission_descriptions);
 
-        missions_list = (ListView) getActivity().findViewById(R.id.missionList);
-        missions_list.setAdapter(new ArrayAdapter<String>(
+        mission_list = (ListView) getActivity().findViewById(R.id.missionList);
+        mission_list.setAdapter(new MissionListAdapter(
                 getActivity().getApplicationContext(),
-                R.layout.mission_list_item,
-                R.id.missionListItem,
-                missions
+                mission_titles,
+                mission_descriptions
         ));
-        missions_list.setOnItemClickListener(this);
+        mission_list.setOnItemClickListener(this);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                Toast.makeText(getActivity().getApplicationContext(), "Mission selected: "+missions[position], Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getApplicationContext(), "Mission selected: " + mission_titles[position], Toast.LENGTH_SHORT).show();
                 break;
             case 1:
-                Toast.makeText(getActivity().getApplicationContext(), "Mission selected: "+missions[position], Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getApplicationContext(), "Mission selected: " + mission_titles[position], Toast.LENGTH_SHORT).show();
                 break;
             case 2:
-                Toast.makeText(getActivity().getApplicationContext(), "Mission selected: "+missions[position], Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getApplicationContext(), "Mission selected: " + mission_titles[position], Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+}
+
+class MissionListAdapter extends ArrayAdapter<String> {
+
+    private String[] titles, descriptions;
+
+    public MissionListAdapter(Context context, String[] titles, String[] descriptions) {
+        super(context, R.layout.mission_list_item, R.id.missionListItemTitle, titles);
+        this.titles = titles;
+        this.descriptions = descriptions;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View item = inflater.inflate(R.layout.mission_list_item, parent, false);
+
+        TextView title = (TextView) item.findViewById(R.id.missionListItemTitle);
+        title.setText(titles[position]);
+
+        TextView desc = (TextView) item.findViewById(R.id.missionListItemDesc);
+        desc.setText(descriptions[position]);
+
+        return item;
     }
 }
