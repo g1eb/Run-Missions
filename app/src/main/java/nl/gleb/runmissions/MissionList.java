@@ -91,8 +91,12 @@ class MissionListAdapter extends ArrayAdapter<String> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View item = inflater.inflate(R.layout.mission_list_item, parent, false);
+        View item = convertView;
+
+        if ( item == null ) {
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            item = inflater.inflate(R.layout.mission_list_item, parent, false);
+        }
 
         TextView title = (TextView) item.findViewById(R.id.missionListItemTitle);
         title.setText(titles[position]);
