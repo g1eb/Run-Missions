@@ -8,11 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * Created by Gleb on 27/10/14.
  */
-public class Mission extends Fragment {
+public class Mission extends Fragment implements View.OnClickListener {
 
     private static final String ARG_SECTION_TITLE = "section_title";
     Comm comm;
@@ -45,6 +46,11 @@ public class Mission extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         startBtn = (Button) getActivity().findViewById(R.id.startMissionButton);
+        startBtn.setOnClickListener(this);
     }
 
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(getActivity().getApplicationContext(), "Mission started, good luck!", Toast.LENGTH_SHORT).show();
+    }
 }
