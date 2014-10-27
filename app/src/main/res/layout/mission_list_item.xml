@@ -2,16 +2,35 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_height="100dp"
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/missionListItem"
+
+    <TextView
+        android:id="@+id/missionListItemTitle"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/background"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="15dp"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:paddingRight="25dp"
+        android:singleLine="true"
         android:text="@string/title_mission_placeholder"
-        android:textAlignment="center"
-        android:textColor="#333333"
-        android:textSize="35sp"></Button>
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#333333" />
+
+    <TextView
+        android:id="@+id/missionListItemDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="11dp"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:paddingRight="25dp"
+        android:singleLine="true"
+        android:text="@string/desc_mission_placeholder"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#555555" />
 </LinearLayout>
