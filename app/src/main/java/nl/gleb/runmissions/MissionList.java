@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +68,10 @@ public class MissionList extends Fragment implements AdapterView.OnItemClickList
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         TextView title = (TextView) view.findViewById(R.id.missionListItemTitle);
         Toast.makeText(getActivity().getApplicationContext(), "Mission selected: " + title.getText(), Toast.LENGTH_SHORT).show();
+
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.container, Mission.newInstance((String) title.getText())).commit();
     }
 }
 
