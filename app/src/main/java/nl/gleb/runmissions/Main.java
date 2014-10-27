@@ -18,6 +18,7 @@ public class Main extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, Comm {
 
     public static Object SPLASH_LOCK = new Object();
+    private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
