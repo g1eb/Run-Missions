@@ -14,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Created by Gleb on 26/10/14.
@@ -67,8 +66,6 @@ public class MissionList extends Fragment implements AdapterView.OnItemClickList
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         TextView title = (TextView) view.findViewById(R.id.missionListItemTitle);
-        Toast.makeText(getActivity().getApplicationContext(), "Mission selected: " + title.getText(), Toast.LENGTH_SHORT).show();
-
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.container, Mission.newInstance((String) title.getText())).commit();
@@ -90,7 +87,7 @@ class MissionListAdapter extends ArrayAdapter<String> {
         View item = convertView;
         MissionListViewHolder holder = null;
 
-        if ( item == null ) {
+        if (item == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             item = inflater.inflate(R.layout.mission_list_item, parent, false);
             holder = new MissionListViewHolder(item);
@@ -107,7 +104,8 @@ class MissionListAdapter extends ArrayAdapter<String> {
 
     class MissionListViewHolder {
         TextView title, desc;
-        MissionListViewHolder (View view) {
+
+        MissionListViewHolder(View view) {
             title = (TextView) view.findViewById(R.id.missionListItemTitle);
             desc = (TextView) view.findViewById(R.id.missionListItemDesc);
         }
