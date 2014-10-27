@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * Created by Gleb on 27/10/14.
@@ -15,6 +16,7 @@ public class Mission extends Fragment {
 
     private static final String ARG_SECTION_TITLE = "section_title";
     Comm comm;
+    Button startBtn;
     static String mission_title;
 
     public static Mission newInstance(String mission) {
@@ -41,6 +43,8 @@ public class Mission extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        startBtn = (Button) getActivity().findViewById(R.id.startMissionButton);
     }
 
 }
