@@ -83,18 +83,28 @@ class MissionListAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View item = convertView;
+        MissionListViewHolder holder = null;
 
         if ( item == null ) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             item = inflater.inflate(R.layout.mission_list_item, parent, false);
+            holder = new MissionListViewHolder(item);
+            item.setTag(holder);
+        } else {
+            holder = (MissionListViewHolder) item.getTag();
         }
 
-        TextView title = (TextView) item.findViewById(R.id.missionListItemTitle);
-        title.setText(titles[position]);
-
-        TextView desc = (TextView) item.findViewById(R.id.missionListItemDesc);
-        desc.setText(descriptions[position]);
+        holder.title.setText(titles[position]);
+        holder.desc.setText(descriptions[position]);
 
         return item;
+    }
+
+    class MissionListViewHolder {
+        TextView title, desc;
+        MissionListViewHolder (View view) {
+            title = (TextView) view.findViewById(R.id.missionListItemTitle);
+            desc = (TextView) view.findViewById(R.id.missionListItemDesc);
+        }
     }
 }
