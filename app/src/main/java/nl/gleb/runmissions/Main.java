@@ -101,7 +101,7 @@ public class Main extends ActionBarActivity
                 ft.replace(R.id.container, Instructions.newInstance(position + 1)).commit();
                 break;
             case 3:
-                ft.replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
+                ft.replace(R.id.container, Settings.newInstance(position + 1)).commit();
                 break;
         }
     }
