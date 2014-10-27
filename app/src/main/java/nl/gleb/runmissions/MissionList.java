@@ -65,17 +65,8 @@ public class MissionList extends Fragment implements AdapterView.OnItemClickList
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        switch (position) {
-            case 0:
-                Toast.makeText(getActivity().getApplicationContext(), "Mission selected: " + mission_titles[position], Toast.LENGTH_SHORT).show();
-                break;
-            case 1:
-                Toast.makeText(getActivity().getApplicationContext(), "Mission selected: " + mission_titles[position], Toast.LENGTH_SHORT).show();
-                break;
-            case 2:
-                Toast.makeText(getActivity().getApplicationContext(), "Mission selected: " + mission_titles[position], Toast.LENGTH_SHORT).show();
-                break;
-        }
+        TextView title = (TextView) view.findViewById(R.id.missionListItemTitle);
+        Toast.makeText(getActivity().getApplicationContext(), "Mission selected: " + title.getText(), Toast.LENGTH_SHORT).show();
     }
 }
 
