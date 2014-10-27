@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Settings -->
+    <integer name="max_distance">15</integer>
+    <integer name="max_events">30</integer>
+</resources>
