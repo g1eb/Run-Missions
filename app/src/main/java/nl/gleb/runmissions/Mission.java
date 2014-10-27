@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -31,6 +30,7 @@ public class Mission extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        comm = (Comm) activity;
         comm.setTitle(mission_title);
     }
 
