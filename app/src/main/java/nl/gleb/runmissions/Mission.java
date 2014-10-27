@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 /**
  * Created by Gleb on 27/10/14.
@@ -42,9 +41,6 @@ public class Mission extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        TextView test = (TextView) getActivity().findViewById(R.id.test);
-        test.setText(mission_title);
     }
 
 }
