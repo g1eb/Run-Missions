@@ -10,19 +10,22 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
 
-    <!--Missions -->
+    <!-- Missions List -->
     <string name="title_mission_placeholder">Mission</string>
-    <string name="desc_mission_placeholder">Short mission description...</string>
+    <string name="desc_mission_placeholder">Now, this is the story all about how my life got flipped-turned upside down, and I\'d like to take a minute, just sit right there I\'ll tell you how I became the prince of a town called Bel Air</string>
     <string-array name="mission_titles">
         <item>To the rescue!</item>
         <item>Catastrophy</item>
         <item>Heist</item>
     </string-array>
     <string-array name="mission_descriptions">
-        <item>There is a cat in the tree, can you find and rescue Mr. Whiskaers?!</item>
-        <item>There is a cat in the tree, can you find and rescue Mr. Whiskaers?!</item>
-        <item>There is a cat in the tree, can you find and rescue Mr. Whiskaers?!</item>
+        <item>Now, this is the story all about how my life got flipped-turned upside down, and I\'d like to take a minute, just sit right there I\'ll tell you how I became the prince of a town called Bel Air</item>
+        <item>Now, this is the story all about how my life got flipped-turned upside down, and I\'d like to take a minute, just sit right there I\'ll tell you how I became the prince of a town called Bel Air</item>
+        <item>Now, this is the story all about how my life got flipped-turned upside down, and I\'d like to take a minute, just sit right there I\'ll tell you how I became the prince of a town called Bel Air</item>
     </string-array>
+
+    <!-- Mission -->
+    <string name="start_mission_button">START!</string>
 
     <!-- Haptic test buttons -->
     <string name="haptic_test_title">Tap on the buttons below to familiarize with haptic signals</string>
