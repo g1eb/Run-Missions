@@ -222,15 +222,12 @@ public class Main extends ActionBarActivity
 
     @Override
     public void onConnected(Bundle bundle) {
-        Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
         mCurrentLocation = mLocationClient.getLastLocation();
-        Toast.makeText(getApplicationContext(), mCurrentLocation.toString(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onDisconnected() {
-        Toast.makeText(this, "Disconnected. Please re-connect.",
-                Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Disconnected. No location :(", Toast.LENGTH_SHORT).show();
     }
 
     @Override
