@@ -3,9 +3,10 @@
 
     <string name="app_name">Run Missions</string>
     <string name="title_section1">Profile</string>
-    <string name="title_section2">Missions</string>
-    <string name="title_section3">Instructions</string>
-    <string name="title_section4">Settings</string>
+    <string name="title_section2">Map</string>
+    <string name="title_section3">Missions</string>
+    <string name="title_section4">Instructions</string>
+    <string name="title_section5">Settings</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
