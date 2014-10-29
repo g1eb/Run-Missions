@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
-import android.location.LocationListener;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,10 +20,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.ErrorDialogFragment;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 
 
@@ -33,7 +32,7 @@ public class Main extends ActionBarActivity
         Comm,
         GooglePlayServicesClient.ConnectionCallbacks,
         GooglePlayServicesClient.OnConnectionFailedListener,
-        LocationListener {
+        LocationListener{
 
     public static Object SPLASH_LOCK = new Object();
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
@@ -193,10 +192,10 @@ public class Main extends ActionBarActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case CONNECTION_FAILURE_RESOLUTION_REQUEST :
+            case CONNECTION_FAILURE_RESOLUTION_REQUEST:
                 // If the result code is Activity.RESULT_OK
                 switch (resultCode) {
-                    case Activity.RESULT_OK :
+                    case Activity.RESULT_OK:
                         // Try the request again
                         break;
                 }
@@ -284,22 +283,6 @@ public class Main extends ActionBarActivity
     public void onLocationChanged(Location location) {
         mCurrentLocation = location;
     }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
-
 
     /**
      * A placeholder fragment containing a simple view.
