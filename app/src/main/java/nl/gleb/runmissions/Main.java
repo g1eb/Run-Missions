@@ -94,15 +94,18 @@ public class Main extends ActionBarActivity
 
         switch (position) {
             case 0:
-                ft.replace(R.id.container, Map.newInstance(position + 1)).commit();
+                ft.replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
                 break;
             case 1:
-                ft.replace(R.id.container, MissionList.newInstance(position + 1)).commit();
+                ft.replace(R.id.container, Map.newInstance(position + 1)).commit();
                 break;
             case 2:
-                ft.replace(R.id.container, Instructions.newInstance(position + 1)).commit();
+                ft.replace(R.id.container, MissionList.newInstance(position + 1)).commit();
                 break;
             case 3:
+                ft.replace(R.id.container, Instructions.newInstance(position + 1)).commit();
+                break;
+            case 4:
                 ft.replace(R.id.container, Settings.newInstance(position + 1)).commit();
                 break;
         }
