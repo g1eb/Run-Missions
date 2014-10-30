@@ -39,8 +39,6 @@ public class Main extends ActionBarActivity
     private static final long UPDATE_INTERVAL = 10000;
     private static final long FASTEST_INTERVAL = 5000;
 
-    LocationRequest mLocationRequest;
-
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -50,6 +48,8 @@ public class Main extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+
+    LocationRequest mLocationRequest;
     LocationClient mLocationClient;
     Location mCurrentLocation;
     boolean mUpdatesRequested;
