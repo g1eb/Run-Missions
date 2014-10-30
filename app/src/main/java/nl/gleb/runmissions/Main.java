@@ -32,7 +32,7 @@ public class Main extends ActionBarActivity
         Comm,
         GooglePlayServicesClient.ConnectionCallbacks,
         GooglePlayServicesClient.OnConnectionFailedListener,
-        LocationListener{
+        LocationListener {
 
     public static Object SPLASH_LOCK = new Object();
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
@@ -86,7 +86,7 @@ public class Main extends ActionBarActivity
     @Override
     protected void onStart() {
         super.onStart();
-        if ( servicesConnected() ) {
+        if (servicesConnected()) {
             mLocationClient.connect();
         }
     }
