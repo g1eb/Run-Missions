@@ -66,7 +66,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
 
 //        map.addMarker(new MarkerOptions().position(new LatLng(pos.getLatitude(), pos.getLongitude())).title("You are here."));
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 15);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, getResources().getInteger(R.integer.map_zoom_level));
         map.animateCamera(cameraUpdate);
 
     }

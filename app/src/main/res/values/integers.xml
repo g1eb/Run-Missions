@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--Map-->
+    <integer name="map_zoom_level">15</integer>
+
     <!-- Settings -->
     <integer name="max_distance">15</integer>
     <integer name="max_events">30</integer>
