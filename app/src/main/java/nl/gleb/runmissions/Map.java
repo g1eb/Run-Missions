@@ -8,6 +8,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -64,10 +65,13 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     public void onMapLoaded() {
         Location location = ((Main) getActivity()).mCurrentLocation;
 
-//        map.addMarker(new MarkerOptions().position(new LatLng(pos.getLatitude(), pos.getLongitude())).title("You are here."));
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, getResources().getInteger(R.integer.map_zoom_level));
-        map.animateCamera(cameraUpdate);
-
+        // Center the map on the current position of the user
+        LatLng center = new LatLng(location.getLatitude(), location.getLongitude());
+        CameraPosition cameraPosition = CameraPosition.builder()
+                .target(center)
+                .zoom(getResources().getInteger(R.integer.map_zoom_level))
+                .tilt(30)
+                .build();
+        map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 2000, null);
     }
 }
