@@ -3,6 +3,8 @@
 
     <!--Map-->
     <integer name="map_zoom_level">15</integer>
+    <integer name="map_tilt_level">30</integer>
+    <integer name="map_animation_duration">2000</integer>
 
     <!-- Settings -->
     <integer name="max_distance">15</integer>
