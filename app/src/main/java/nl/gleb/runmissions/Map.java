@@ -14,7 +14,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * Created by Gleb on 29/10/14.
  */
-public class Map extends SupportMapFragment {
+public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCallback {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static GoogleMap map;
@@ -52,18 +52,22 @@ public class Map extends SupportMapFragment {
             map = getMap();
             // Check if we were successful in obtaining the map.
             if (map != null) {
-                mapStuff();
                 map.setMyLocationEnabled(true);
+                map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                map.setIndoorEnabled(true);
+                map.setOnMapLoadedCallback(this);
             }
         }
     }
 
-    private void mapStuff() {
+    @Override
+    public void onMapLoaded() {
         Location location = ((Main) getActivity()).mCurrentLocation;
 
 //        map.addMarker(new MarkerOptions().position(new LatLng(pos.getLatitude(), pos.getLongitude())).title("You are here."));
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 15);
         map.animateCamera(cameraUpdate);
+
     }
 }
