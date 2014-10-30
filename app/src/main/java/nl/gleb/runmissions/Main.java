@@ -86,7 +86,9 @@ public class Main extends ActionBarActivity
     @Override
     protected void onStart() {
         super.onStart();
-        mLocationClient.connect();
+        if ( servicesConnected() ) {
+            mLocationClient.connect();
+        }
     }
 
     @Override
@@ -153,7 +155,6 @@ public class Main extends ActionBarActivity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
