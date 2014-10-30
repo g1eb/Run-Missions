@@ -1,6 +1,7 @@
 package nl.gleb.runmissions;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.location.Location;
 import android.os.Bundle;
 
@@ -71,16 +72,18 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     }
 
     private void setupMap() {
-        Location location = ((Main) getActivity()).mCurrentLocation;
+        Resources res = getResources();
 
         // Center the map on the current position of the user
+        Location location = ((Main) getActivity()).mCurrentLocation;
         LatLng center = new LatLng(location.getLatitude(), location.getLongitude());
         CameraPosition cameraPosition = CameraPosition.builder()
                 .target(center)
-                .zoom(getResources().getInteger(R.integer.map_zoom_level))
-                .tilt(30)
+                .zoom(res.getInteger(R.integer.map_zoom_level))
+                .tilt(res.getInteger(R.integer.map_tilt_level))
                 .build();
-        map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 2000, null);
+        map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition),
+                res.getInteger(R.integer.map_animation_duration), null);
     }
 
     @Override
