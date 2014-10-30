@@ -57,6 +57,9 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                 map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                 map.setIndoorEnabled(true);
                 map.setOnMapLoadedCallback(this);
+                map.getUiSettings().setZoomControlsEnabled(false);
+                map.getUiSettings().setCompassEnabled(false);
+                map.getUiSettings().setMyLocationButtonEnabled(false);
             }
         }
     }
