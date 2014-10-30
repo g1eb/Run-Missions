@@ -16,7 +16,6 @@ import android.widget.Button;
  */
 public class Instructions extends Fragment implements View.OnClickListener {
 
-    static final long[] START_PATTERN = {0, 1000};
     static final long[] LEFT_PATTERN = {0, 300, 150, 100};
     static final long[] RIGHT_PATTERN = {0, 100, 150, 300};
     static final long[] ACCELERATE_PATTERN = {0, 100, 100, 100, 100, 100};
@@ -25,7 +24,7 @@ public class Instructions extends Fragment implements View.OnClickListener {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private Button startBtn, leftBtn, rightBtn, accelerateBtn, errorBtn, closerBtn;
+    private Button leftBtn, rightBtn, accelerateBtn, errorBtn, closerBtn;
 
     public static Instructions newInstance(int sectionNumber) {
         Instructions fragment = new Instructions();
@@ -51,9 +50,6 @@ public class Instructions extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        startBtn = (Button) getActivity().findViewById(R.id.hapticButtonStart);
-        startBtn.setOnClickListener(this);
-
         leftBtn = (Button) getActivity().findViewById(R.id.hapticButtonLeft);
         leftBtn.setOnClickListener(this);
 
@@ -75,9 +71,6 @@ public class Instructions extends Fragment implements View.OnClickListener {
         Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         switch (v.getId()) {
-            case R.id.hapticButtonStart:
-                vibrator.vibrate(START_PATTERN, -1);
-                break;
             case R.id.hapticButtonLeft:
                 vibrator.vibrate(LEFT_PATTERN, -1);
                 break;
