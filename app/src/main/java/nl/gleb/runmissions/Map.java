@@ -2,20 +2,19 @@ package nl.gleb.runmissions;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
  * Created by Gleb on 29/10/14.
  */
-public class Map extends Fragment {
-    private static final String ARG_SECTION_NUMBER = "section_number";
+public class Map extends SupportMapFragment {
 
-    private Button startBtn, leftBtn, rightBtn, accelerateBtn, errorBtn, closerBtn;
+    private static final String ARG_SECTION_NUMBER = "section_number";
+    private static GoogleMap map;
 
     public static Map newInstance(int sectionNumber) {
         Map fragment = new Map();
@@ -28,17 +27,35 @@ public class Map extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((Main) activity).onSectionAttached(
-                getArguments().getInt(ARG_SECTION_NUMBER));
+        ((Main) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.map, container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initMap();
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onResume() {
+        super.onResume();
+        initMap();
+    }
+
+    private void initMap() {
+        // Do a null check to confirm that we have not already instantiated the map.
+        if (map == null) {
+            // Try to obtain the map from the SupportMapFragment.
+            map = getMap();
+            // Check if we were successful in obtaining the map.
+            if (map != null) {
+                mapStuff();
+            }
+        }
+    }
+
+    private void mapStuff() {
+        map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        map.setMyLocationEnabled(true);
     }
 }
