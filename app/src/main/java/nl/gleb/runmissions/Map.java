@@ -1,8 +1,11 @@
 package nl.gleb.runmissions;
 
 import android.app.Activity;
+import android.location.Location;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -50,12 +53,17 @@ public class Map extends SupportMapFragment {
             // Check if we were successful in obtaining the map.
             if (map != null) {
                 mapStuff();
+                map.setMyLocationEnabled(true);
             }
         }
     }
 
     private void mapStuff() {
-        map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
-        map.setMyLocationEnabled(true);
+        Location location = ((Main) getActivity()).mCurrentLocation;
+
+//        map.addMarker(new MarkerOptions().position(new LatLng(pos.getLatitude(), pos.getLongitude())).title("You are here."));
+        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
+        map.animateCamera(cameraUpdate);
     }
 }
