@@ -37,6 +37,6 @@
     <string name="haptic_button_closer">Getting Closer</string>
 
     <!--Settings-->
-    <string name="label_distance">Preferred Distance (km)</string>
-    <string name="label_events">Nr. Events</string>
+    <string name="label_distance">Preferred distance (km)</string>
+    <string name="label_events">Number of events</string>
 </resources>
