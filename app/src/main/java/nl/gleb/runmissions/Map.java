@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.location.Location;
 import android.os.Bundle;
 
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
  * Created by Gleb on 29/10/14.
@@ -46,6 +44,12 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         initMap();
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        map = null;
+    }
+
     private void initMap() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (map == null) {
@@ -66,8 +70,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         }
     }
 
-    @Override
-    public void onMapLoaded() {
+    private void setupMap() {
         Location location = ((Main) getActivity()).mCurrentLocation;
 
         // Center the map on the current position of the user
@@ -78,5 +81,10 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                 .tilt(30)
                 .build();
         map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 2000, null);
+    }
+
+    @Override
+    public void onMapLoaded() {
+        setupMap();
     }
 }
