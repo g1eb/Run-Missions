@@ -55,8 +55,10 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
             if (map != null) {
                 map.setMyLocationEnabled(true);
                 map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                map.setTrafficEnabled(false);
                 map.setIndoorEnabled(true);
                 map.setOnMapLoadedCallback(this);
+                map.setBuildingsEnabled(false);
                 map.getUiSettings().setZoomControlsEnabled(false);
                 map.getUiSettings().setCompassEnabled(false);
                 map.getUiSettings().setMyLocationButtonEnabled(false);
