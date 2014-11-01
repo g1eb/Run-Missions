@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Firebase ref -->
+    <string name="firebase_ref">"https://swrd.firebaseio.com/"</string>
+
     <string name="app_name">Run Missions</string>
     <string name="title_section1">Profile</string>
     <string name="title_section2">Map</string>
