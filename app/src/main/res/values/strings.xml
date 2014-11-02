@@ -19,6 +19,7 @@
     <string name="title_login">Login</string>
     <string name="title_profile">Profile</string>
     <string name="title_map">Map</string>
+    <string name="title_chat">Chat</string>
     <string name="title_missions">Missions</string>
     <string name="title_instructions">Instructions</string>
     <string name="title_settings">Settings</string>
