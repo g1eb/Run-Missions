@@ -212,12 +212,19 @@ public class Main extends ActionBarActivity
         int id = item.getItemId();
         switch (id) {
             case R.id.action_settings:
+                openSettings();
                 break;
             case R.id.action_logout:
                 logout();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openSettings() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.container, Settings.newInstance()).commit();
     }
 
     @Override
