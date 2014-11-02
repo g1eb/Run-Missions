@@ -150,36 +150,19 @@ public class Main extends ActionBarActivity
 
         switch (position) {
             case 0:
-                ft.replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
+                ft.replace(R.id.container, Profile.newInstance()).commit();
                 break;
             case 1:
                 ft.replace(R.id.container, Map.newInstance()).commit();
                 break;
             case 2:
+                ft.replace(R.id.container, Chat.newInstance()).commit();
+                break;
+            case 3:
                 ft.replace(R.id.container, MissionList.newInstance()).commit();
                 break;
-            case 3:
+            case 4:
                 ft.replace(R.id.container, Instructions.newInstance()).commit();
-                break;
-            case 4:
-                ft.replace(R.id.container, Settings.newInstance()).commit();
-                break;
-        }
-    }
-
-    public void onSectionAttached(int number) {
-        switch (number) {
-            case 1:
-                mTitle = getString(R.string.title_profile);
-                break;
-            case 2:
-                mTitle = getString(R.string.title_map);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_missions);
-                break;
-            case 4:
-                mTitle = getString(R.string.title_instructions);
                 break;
         }
     }
