@@ -5,4 +5,5 @@ package nl.gleb.runmissions;
  */
 public interface Comm {
     public void setTitle(String data);
+    public void handleLogin(String email, String password);
 }
