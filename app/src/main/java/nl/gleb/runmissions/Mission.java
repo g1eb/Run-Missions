@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class Mission extends Fragment implements View.OnClickListener {
 
     private static final String ARG_SECTION_TITLE = "section_title";
-    Comm comm;
+    MainComm comm;
     Button startBtn;
     static String mission_title;
 
@@ -32,7 +32,7 @@ public class Mission extends Fragment implements View.OnClickListener {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        comm = (Comm) activity;
+        comm = (MainComm) activity;
         comm.setTitle(mission_title);
     }
 

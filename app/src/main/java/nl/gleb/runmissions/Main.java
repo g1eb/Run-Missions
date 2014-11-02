@@ -29,8 +29,8 @@ import com.google.android.gms.location.LocationRequest;
 
 
 public class Main extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks,
-        Comm,
+        implements MainComm,
+        NavigationDrawerFragment.NavigationDrawerCallbacks,
         GooglePlayServicesClient.ConnectionCallbacks,
         GooglePlayServicesClient.OnConnectionFailedListener,
         LocationListener {
@@ -181,21 +181,13 @@ public class Main extends ActionBarActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        switch ( id ) {
+        switch (id) {
             case R.id.action_settings:
                 break;
             case R.id.action_logout:
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void setTitle(String data) {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(data);
     }
 
     @Override
@@ -292,6 +284,14 @@ public class Main extends ActionBarActivity
     @Override
     public void onLocationChanged(Location location) {
         mCurrentLocation = location;
+    }
+
+    @Override
+    public void setTitle(String data) {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setTitle(data);
     }
 
     /**
