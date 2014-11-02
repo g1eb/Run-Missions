@@ -331,7 +331,6 @@ public class Main extends ActionBarActivity
     @Override
     public void handleLogin(String email, String password) {
         mAuthProgressDialog.show();
-        mAuthProgressDialog.show();
         ref.authWithPassword(email, password, new AuthResultHandler(getString(R.string.login_type)));
     }
 
