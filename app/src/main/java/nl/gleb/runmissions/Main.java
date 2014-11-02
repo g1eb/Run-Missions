@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
@@ -20,8 +19,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
@@ -244,8 +241,7 @@ public class Main extends ActionBarActivity
         // If Google Play services is available
         if (ConnectionResult.SUCCESS == resultCode) {
             // In debug mode, log the status
-            Log.d("Location Updates",
-                    "Google Play services is available.");
+            Log.d("Location Updates", "Google Play services is available.");
             // Continue
             return true;
             // Google Play services was not available for some reason.
@@ -281,7 +277,7 @@ public class Main extends ActionBarActivity
 
     @Override
     public void onDisconnected() {
-        Toast.makeText(this, "Disconnected. No location :(", Toast.LENGTH_SHORT).show();
+        Log.d("Location Updates", "Disconnected. No location :(");
     }
 
     @Override
@@ -328,6 +324,7 @@ public class Main extends ActionBarActivity
 
     /**
      * Login the user, method invoked from the login fragment
+     *
      * @param email
      * @param password
      */
@@ -345,10 +342,10 @@ public class Main extends ActionBarActivity
         if (this.authData != null) {
             /* logout of Firebase */
             ref.unauth();
-            /* Update authenticated user and show login buttons */
             setAuthenticatedUser(null);
-            Log.d("MAIN", "logged out");
-            Toast.makeText(getApplicationContext(), "logged out", Toast.LENGTH_LONG).show();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.replace(R.id.container, Login.newInstance()).commit();
         }
     }
 
@@ -357,16 +354,9 @@ public class Main extends ActionBarActivity
      */
     private void setAuthenticatedUser(AuthData authData) {
         if (authData != null) {
-
-            // Open the map fragment if user is identified
             FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
             ft.replace(R.id.container, Map.newInstance()).commit();
-
-            String name = authData.getUid();
-            if (name != null) {
-                Toast.makeText(getApplicationContext(), "Logged in as " + name + " (" + authData.getProvider() + ")", Toast.LENGTH_LONG).show();
-            }
         }
         this.authData = authData;
     }
@@ -385,14 +375,14 @@ public class Main extends ActionBarActivity
         @Override
         public void onAuthenticated(AuthData authData) {
             mAuthProgressDialog.hide();
-            Log.i("MAIN", provider + " auth successful");
+            Log.d("MAIN", provider + " auth successful");
             setAuthenticatedUser(authData);
         }
 
         @Override
         public void onAuthenticationError(FirebaseError firebaseError) {
             mAuthProgressDialog.hide();
-            Log.i("MAIN", "on auth error");
+            Log.d("MAIN", "on auth error");
             showErrorDialog(firebaseError.toString());
         }
 
