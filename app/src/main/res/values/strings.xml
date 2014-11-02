@@ -4,6 +4,11 @@
     <!-- Firebase ref -->
     <string name="firebase_ref">"https://swrd.firebaseio.com/"</string>
 
+    <!-- Login -->
+    <string name="email_placeholder">Email</string>
+    <string name="password_placeholder">Password</string>
+    <string name="login_button">Login</string>
+
     <string name="app_name">Run Missions</string>
     <string name="title_section1">Profile</string>
     <string name="title_section2">Map</string>
