@@ -16,11 +16,12 @@
     <string name="progress_dialog_message">Authenticating with services...</string>
 
     <!-- Main menu -->
-    <string name="title_section1">Profile</string>
-    <string name="title_section2">Map</string>
-    <string name="title_section3">Missions</string>
-    <string name="title_section4">Instructions</string>
-    <string name="title_section5">Settings</string>
+    <string name="title_login">Login</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_map">Map</string>
+    <string name="title_missions">Missions</string>
+    <string name="title_instructions">Instructions</string>
+    <string name="title_settings">Settings</string>
 
     <!-- Sub menu -->
     <string name="action_settings">Settings</string>
