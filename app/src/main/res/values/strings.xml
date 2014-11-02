@@ -2,7 +2,8 @@
 <resources>
 
     <!-- Firebase ref -->
-    <string name="firebase_ref">"https://swrd.firebaseio.com/"</string>
+    <string name="firebase_ref">http://swrd.firebaseio.com/</string>
+    <string name="login_type">password</string>
 
     <!-- Login -->
     <string name="email_placeholder">Email</string>
