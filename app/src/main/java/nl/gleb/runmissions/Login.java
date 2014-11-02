@@ -50,6 +50,10 @@ public class Login extends Fragment {
 
             @Override
             public void onClick(View v) {
+                // Hide soft keyboard
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(login_button.getWindowToken(), 0);
+
                 String email = email_input.getText().toString().trim();
                 String password = password_input.getText().toString().trim();
 
