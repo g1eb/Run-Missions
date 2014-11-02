@@ -20,7 +20,7 @@ import com.firebase.client.FirebaseError;
 /**
  * Created by Gleb on 02/11/14.
  */
-public class Login extends Activity {
+public class Login extends Activity implements LoginComm {
 
     private static final String TAG = "LoginActivity";
 
@@ -93,18 +93,6 @@ public class Login extends Activity {
     }
 
     /**
-     * Unauthenticate from Firebase and from providers where necessary.
-     */
-    private void logout() {
-        if (this.authData != null) {
-            /* logout of Firebase */
-            ref.unauth();
-            /* Update authenticated user and show login buttons */
-            setAuthenticatedUser(null);
-        }
-    }
-
-    /**
      * Once a user is logged in, take the authData provided from Firebase and "use" it.
      */
     private void setAuthenticatedUser(AuthData authData) {
@@ -117,6 +105,20 @@ public class Login extends Activity {
             }
         }
         this.authData = authData;
+    }
+
+    /**
+     * Unauthenticate from Firebase and from providers where necessary.
+     */
+    @Override
+    public void logout() {
+        if (this.authData != null) {
+            /* logout of Firebase */
+            ref.unauth();
+            /* Update authenticated user and show login buttons */
+            setAuthenticatedUser(null);
+            Log.d(TAG, "logged out");
+        }
     }
 
     /**
