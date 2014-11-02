@@ -51,6 +51,7 @@ public class Main extends ActionBarActivity
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
+    private DrawerLayout drawer;
     private CharSequence mTitle;
 
     LocationRequest mLocationRequest;
@@ -76,6 +77,8 @@ public class Main extends ActionBarActivity
         Firebase.setAndroidContext(getApplicationContext());
         ref = new Firebase(getString(R.string.firebase_ref));
 
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         /* Check if the user is authenticated with Firebase already.
          * If this is the case we can set the authenticated
          * user and hide hide any login buttons */
@@ -88,9 +91,7 @@ public class Main extends ActionBarActivity
         });
 
         if (authData == null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.replace(R.id.container, Login.newInstance()).commit();
+            openLoginFragment();
         }
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -334,6 +335,16 @@ public class Main extends ActionBarActivity
         ref.authWithPassword(email, password, new AuthResultHandler(getString(R.string.login_type)));
     }
 
+    public void openLoginFragment() {
+        // Lock the drawer and hide the action bar
+        getSupportActionBar().hide();
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.container, Login.newInstance()).commit();
+    }
+
     /**
      * Unauthenticate from Firebase and from providers where necessary.
      */
@@ -342,9 +353,7 @@ public class Main extends ActionBarActivity
             /* logout of Firebase */
             ref.unauth();
             setAuthenticatedUser(null);
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.replace(R.id.container, Login.newInstance()).commit();
+            openLoginFragment();
         }
     }
 
@@ -353,6 +362,10 @@ public class Main extends ActionBarActivity
      */
     private void setAuthenticatedUser(AuthData authData) {
         if (authData != null) {
+            // Enable the drawer and show the action bar
+            getSupportActionBar().show();
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+
             FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
             ft.replace(R.id.container, Map.newInstance()).commit();
