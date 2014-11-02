@@ -20,24 +20,19 @@ import android.widget.TextView;
  */
 public class MissionList extends Fragment implements AdapterView.OnItemClickListener {
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
-
+    Comm comm;
     ListView mission_list;
     String[] mission_titles, mission_descriptions;
 
-    public static MissionList newInstance(int sectionNumber) {
-        MissionList fragment = new MissionList();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
+    public static MissionList newInstance() {
+        return new MissionList();
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((Main) activity).onSectionAttached(
-                getArguments().getInt(ARG_SECTION_NUMBER));
+        comm = (Comm) activity;
+        comm.setTitle(getString(R.string.title_missions));
     }
 
     @Override

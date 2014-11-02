@@ -22,23 +22,18 @@ public class Instructions extends Fragment implements View.OnClickListener {
     static final long[] ERROR_PATTERN = {0, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300};
     static final long[] CLOSER_PATTERN = {0, 100, 1000, 100, 900, 150, 800, 150, 700, 200, 600, 200, 500, 250, 400, 250, 300, 300, 200, 300, 100, 3000};
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
-
+    Comm comm;
     private Button leftBtn, rightBtn, accelerateBtn, errorBtn, closerBtn;
 
-    public static Instructions newInstance(int sectionNumber) {
-        Instructions fragment = new Instructions();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
+    public static Instructions newInstance() {
+        return new Instructions();
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((Main) activity).onSectionAttached(
-                getArguments().getInt(ARG_SECTION_NUMBER));
+        comm = (Comm) activity;
+        comm.setTitle(getString(R.string.title_instructions));
     }
 
     @Override

@@ -15,23 +15,18 @@ import android.widget.Toast;
  */
 public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListener {
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
-
+    Comm comm;
     SeekBar distanceInput, eventsInput;
 
-    public static Settings newInstance(int sectionNumber) {
-        Settings fragment = new Settings();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
+    public static Settings newInstance() {
+        return new Settings();
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((Main) activity).onSectionAttached(
-                getArguments().getInt(ARG_SECTION_NUMBER));
+        comm = (Comm) activity;
+        comm.setTitle(getString(R.string.title_settings));
     }
 
     @Override

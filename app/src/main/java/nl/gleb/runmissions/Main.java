@@ -155,16 +155,16 @@ public class Main extends ActionBarActivity
                 ft.replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
                 break;
             case 1:
-                ft.replace(R.id.container, Map.newInstance(position + 1)).commit();
+                ft.replace(R.id.container, Map.newInstance()).commit();
                 break;
             case 2:
-                ft.replace(R.id.container, MissionList.newInstance(position + 1)).commit();
+                ft.replace(R.id.container, MissionList.newInstance()).commit();
                 break;
             case 3:
-                ft.replace(R.id.container, Instructions.newInstance(position + 1)).commit();
+                ft.replace(R.id.container, Instructions.newInstance()).commit();
                 break;
             case 4:
-                ft.replace(R.id.container, Settings.newInstance(position + 1)).commit();
+                ft.replace(R.id.container, Settings.newInstance()).commit();
                 break;
         }
     }
@@ -172,16 +172,16 @@ public class Main extends ActionBarActivity
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                mTitle = getString(R.string.title_profile);
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+                mTitle = getString(R.string.title_map);
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                mTitle = getString(R.string.title_missions);
                 break;
             case 4:
-                mTitle = getString(R.string.title_section4);
+                mTitle = getString(R.string.title_instructions);
                 break;
         }
     }
@@ -361,7 +361,7 @@ public class Main extends ActionBarActivity
             // Open the map fragment if user is identified
             FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.replace(R.id.container, Map.newInstance(2)).commit();
+            ft.replace(R.id.container, Map.newInstance()).commit();
 
             String name = authData.getUid();
             if (name != null) {

@@ -30,7 +30,7 @@ public class Login extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         comm = (Comm) activity;
-        comm.setTitle(getString(R.string.action_login));
+        comm.setTitle(getString(R.string.title_login));
     }
 
     @Override

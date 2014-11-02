@@ -16,21 +16,18 @@ import com.google.android.gms.maps.model.LatLng;
  */
 public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCallback {
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
     private static GoogleMap map;
+    Comm comm;
 
-    public static Map newInstance(int sectionNumber) {
-        Map fragment = new Map();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
+    public static Map newInstance() {
+        return new Map();
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((Main) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+        comm = (Comm) activity;
+        comm.setTitle(getString(R.string.title_map));
     }
 
     @Override
