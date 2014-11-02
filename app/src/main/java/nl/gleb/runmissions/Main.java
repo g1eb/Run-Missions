@@ -1,7 +1,10 @@
 package nl.gleb.runmissions;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
@@ -17,9 +20,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -29,7 +35,7 @@ import com.google.android.gms.location.LocationRequest;
 
 
 public class Main extends ActionBarActivity
-        implements MainComm,
+        implements Comm,
         NavigationDrawerFragment.NavigationDrawerCallbacks,
         GooglePlayServicesClient.ConnectionCallbacks,
         GooglePlayServicesClient.OnConnectionFailedListener,
@@ -55,15 +61,40 @@ public class Main extends ActionBarActivity
     Location mCurrentLocation;
     boolean mUpdatesRequested;
 
-    Firebase firebaseRef;
+    private Firebase ref;
+    private AuthData authData;
+    ProgressDialog mAuthProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Firebase.setAndroidContext(this);
-        firebaseRef = new Firebase(getString(R.string.firebase_ref));
+        /* Setup the progress dialog that is displayed later when authenticating with Firebase */
+        mAuthProgressDialog = new ProgressDialog(this);
+        mAuthProgressDialog.setTitle(getString(R.string.progress_dialog_title));
+        mAuthProgressDialog.setMessage(getString(R.string.progress_dialog_message));
+        mAuthProgressDialog.setCancelable(false);
+
+        Firebase.setAndroidContext(getApplicationContext());
+        ref = new Firebase(getString(R.string.firebase_ref));
+
+        /* Check if the user is authenticated with Firebase already.
+         * If this is the case we can set the authenticated
+         * user and hide hide any login buttons */
+        ref.addAuthStateListener(new Firebase.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(AuthData authData) {
+                mAuthProgressDialog.hide();
+                setAuthenticatedUser(authData);
+            }
+        });
+
+        if (authData == null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.replace(R.id.container, Login.newInstance()).commit();
+        }
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -185,6 +216,7 @@ public class Main extends ActionBarActivity
             case R.id.action_settings:
                 break;
             case R.id.action_logout:
+                logout();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -292,6 +324,89 @@ public class Main extends ActionBarActivity
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(data);
+    }
+
+    /**
+     * Login the user, method invoked from the login fragment
+     * @param email
+     * @param password
+     */
+    @Override
+    public void handleLogin(String email, String password) {
+        mAuthProgressDialog.show();
+        mAuthProgressDialog.show();
+        ref.authWithPassword(email, password, new AuthResultHandler(getString(R.string.login_type)));
+    }
+
+    /**
+     * Unauthenticate from Firebase and from providers where necessary.
+     */
+    public void logout() {
+        if (this.authData != null) {
+            /* logout of Firebase */
+            ref.unauth();
+            /* Update authenticated user and show login buttons */
+            setAuthenticatedUser(null);
+            Log.d("MAIN", "logged out");
+            Toast.makeText(getApplicationContext(), "logged out", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Once a user is logged in, take the authData provided from Firebase and "use" it.
+     */
+    private void setAuthenticatedUser(AuthData authData) {
+        if (authData != null) {
+
+            // Open the map fragment if user is identified
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.replace(R.id.container, Map.newInstance(2)).commit();
+
+            String name = authData.getUid();
+            if (name != null) {
+                Toast.makeText(getApplicationContext(), "Logged in as " + name + " (" + authData.getProvider() + ")", Toast.LENGTH_LONG).show();
+            }
+        }
+        this.authData = authData;
+    }
+
+    /**
+     * Utility class for authentication results
+     */
+    private class AuthResultHandler implements Firebase.AuthResultHandler {
+
+        private final String provider;
+
+        public AuthResultHandler(String provider) {
+            this.provider = provider;
+        }
+
+        @Override
+        public void onAuthenticated(AuthData authData) {
+            mAuthProgressDialog.hide();
+            Log.i("MAIN", provider + " auth successful");
+            setAuthenticatedUser(authData);
+        }
+
+        @Override
+        public void onAuthenticationError(FirebaseError firebaseError) {
+            mAuthProgressDialog.hide();
+            Log.i("MAIN", "on auth error");
+            showErrorDialog(firebaseError.toString());
+        }
+
+        /**
+         * Show errors to users
+         */
+        private void showErrorDialog(String message) {
+            new AlertDialog.Builder(Main.this)
+                    .setTitle("Error")
+                    .setMessage(message)
+                    .setPositiveButton(android.R.string.ok, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
     }
 
     /**
