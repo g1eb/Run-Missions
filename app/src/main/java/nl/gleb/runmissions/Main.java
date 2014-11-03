@@ -184,7 +184,7 @@ public class Main extends ActionBarActivity
                 ft.replace(R.id.container, Map.newInstance()).commit();
                 break;
             case 2:
-                ft.replace(R.id.container, Chat.newInstance()).commit();
+                ft.replace(R.id.container, Chat.newInstance(username)).commit();
                 break;
             case 3:
                 ft.replace(R.id.container, MissionList.newInstance()).commit();
