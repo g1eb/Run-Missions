@@ -32,12 +32,12 @@ public class ChatListAdapter extends FirebaseListAdapter<ChatMessage> {
      * when there is a data change, and we are given an instance of a View that corresponds to the layout that we passed
      * to the constructor, as well as a single <code>Chat</code> instance that represents the current data to bind.
      * @param view A view instance corresponding to the layout we passed to the constructor.
-     * @param chat An instance representing the current state of a chat message
+     * @param chatMessage An instance representing the current state of a chat message
      */
     @Override
-    protected void populateView(View view, ChatMessage chat) {
+    protected void populateView(View view, ChatMessage chatMessage) {
         // Map a Chat object to an entry in our listview
-        String author = chat.getAuthor();
+        String author = chatMessage.getAuthor();
         TextView authorText = (TextView)view.findViewById(R.id.author);
         authorText.setText(author + ": ");
         // If the message was sent by this user, color it differently
@@ -46,6 +46,6 @@ public class ChatListAdapter extends FirebaseListAdapter<ChatMessage> {
         } else {
             authorText.setTextColor(Color.BLUE);
         }
-        ((TextView)view.findViewById(R.id.message)).setText(chat.getMessage());
+        ((TextView)view.findViewById(R.id.message)).setText(chatMessage.getMessage());
     }
 }
