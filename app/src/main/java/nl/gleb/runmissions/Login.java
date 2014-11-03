@@ -89,7 +89,7 @@ public class Login extends Fragment implements View.OnClickListener {
             case R.id.signup_link_button:
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-                ft.replace(R.id.container, Profile.newInstance()).commit();
+                ft.replace(R.id.container, Signup.newInstance()).commit();
                 break;
         }
     }
