@@ -51,17 +51,25 @@ public class Main extends ActionBarActivity
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
+    // Drawer & title
     private DrawerLayout drawer;
     private CharSequence mTitle;
 
+    // Location
     LocationRequest mLocationRequest;
     LocationClient mLocationClient;
     Location mCurrentLocation;
     boolean mUpdatesRequested;
 
+    // Firebase
     private Firebase ref;
     private AuthData authData;
     ProgressDialog mAuthProgressDialog;
+
+    // Chat
+    private String username = "username";
+    private ChatListAdapter chatListAdapter;
+    private ValueEventListener connectedListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
