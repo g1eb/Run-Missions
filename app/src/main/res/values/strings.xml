@@ -15,6 +15,10 @@
     <string name="progress_dialog_title">Loading</string>
     <string name="progress_dialog_message">Authenticating with services...</string>
 
+    <!-- Signup-->
+    <string name="username_placeholder">Username</string>
+    <string name="signup_button">Sign Up</string>
+
     <!-- Main menu -->
     <string name="title_login">Login</string>
     <string name="title_profile">Profile</string>
