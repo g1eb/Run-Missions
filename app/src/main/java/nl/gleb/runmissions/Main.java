@@ -94,6 +94,7 @@ public class Main extends ActionBarActivity
             public void onAuthStateChanged(AuthData authData) {
                 mAuthProgressDialog.hide();
                 setAuthenticatedUser(authData);
+                getUsername();
             }
         });
 
@@ -118,6 +119,10 @@ public class Main extends ActionBarActivity
                 LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(UPDATE_INTERVAL);
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
+    }
+
+    private void getUsername() {
+        // TODO: get username from preference
     }
 
     @Override
