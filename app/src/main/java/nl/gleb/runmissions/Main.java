@@ -43,7 +43,6 @@ public class Main extends ActionBarActivity
         GooglePlayServicesClient.OnConnectionFailedListener,
         LocationListener {
 
-    public static Object SPLASH_LOCK = new Object();
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
     private static final long UPDATE_INTERVAL = 10000;
     private static final long FASTEST_INTERVAL = 5000;
@@ -115,11 +114,6 @@ public class Main extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
-        // Cancel splash screen
-        synchronized (SPLASH_LOCK) {
-            SPLASH_LOCK.notifyAll();
-        }
 
         mLocationClient = new LocationClient(this, this, this);
         mUpdatesRequested = false;
