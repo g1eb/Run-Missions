@@ -339,6 +339,17 @@ public class Main extends ActionBarActivity
     }
 
     @Override
+    public void openSignup() {
+        // Lock the drawer and hide the action bar
+        getSupportActionBar().hide();
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.container, Signup.newInstance()).commit();
+    }
+
+    @Override
     public void sendMessage(String message) {
         // Create our 'model', a Chat object
         ChatMessage chat = new ChatMessage(message, username);
