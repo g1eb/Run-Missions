@@ -50,6 +50,12 @@ public class Chat extends Fragment {
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        chatListAdapter.cleanup();
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         // Setup our input methods. Enter key on the keyboard or pushing the send button

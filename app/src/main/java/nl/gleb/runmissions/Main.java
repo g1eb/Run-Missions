@@ -67,6 +67,7 @@ public class Main extends ActionBarActivity
 
     // Firebase
     private Firebase ref;
+    static Firebase chatRef;
     private AuthData authData;
     ProgressDialog mAuthProgressDialog;
 
@@ -88,6 +89,7 @@ public class Main extends ActionBarActivity
 
         Firebase.setAndroidContext(getApplicationContext());
         ref = new Firebase(getString(R.string.firebase_ref));
+        chatRef = ref.child("chat");
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -146,7 +148,7 @@ public class Main extends ActionBarActivity
         });
 
         // Finally, a little indication of connection status
-        connectedListener = ref.child("chat").getRoot().child(".info/connected").addValueEventListener(new ValueEventListener() {
+        connectedListener = chatRef.getRoot().child(".info/connected").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 boolean connected = (Boolean)dataSnapshot.getValue();
@@ -359,7 +361,7 @@ public class Main extends ActionBarActivity
         ChatMessage chat = new ChatMessage(message, username);
 
         // Create a new, auto-generated child of that chat location, and save our chat data there
-        ref.push().setValue(chat);
+        chatRef.push().setValue(chat);
     }
 
     /**
