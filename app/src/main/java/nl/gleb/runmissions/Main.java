@@ -140,9 +140,9 @@ public class Main extends ActionBarActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 boolean connected = (Boolean)dataSnapshot.getValue();
                 if (connected) {
-                    Toast.makeText(Main.this, "Connected to Firebase", Toast.LENGTH_SHORT).show();
+                    Log.d("MAIN", "Connected to Firebase (chat service)");
                 } else {
-                    Toast.makeText(Main.this, "Disconnected from Firebase", Toast.LENGTH_SHORT).show();
+                    Log.d("MAIN", "Disconnected from Firebase (char service)");
                 }
             }
 
