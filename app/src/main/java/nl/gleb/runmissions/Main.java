@@ -359,6 +359,15 @@ public class Main extends ActionBarActivity
         actionBar.setTitle(data);
     }
 
+    @Override
+    public void sendMessage(String message) {
+        // Create our 'model', a Chat object
+        ChatMessage chat = new ChatMessage(message, username);
+
+        // Create a new, auto-generated child of that chat location, and save our chat data there
+        ref.push().setValue(chat);
+    }
+
     /**
      * Login the user, method invoked from the login fragment
      *
