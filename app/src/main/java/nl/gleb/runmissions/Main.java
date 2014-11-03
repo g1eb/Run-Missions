@@ -162,7 +162,6 @@ public class Main extends ActionBarActivity
     protected void onStop() {
         super.onStop();
         ref.child("chat").getRoot().child(".info/connected").removeEventListener(connectedListener);
-        chatListAdapter.cleanup();
     }
 
     @Override
