@@ -60,7 +60,7 @@ public class Login extends Fragment {
         });
 
         login_button = (Button) getActivity().findViewById(R.id.login_button);
-        login_button.setOnClickListener(new View.OnClickListener(){
+        login_button.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
