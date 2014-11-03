@@ -340,13 +340,19 @@ public class Main extends ActionBarActivity
 
     @Override
     public void openSignup() {
-        // Lock the drawer and hide the action bar
-        getSupportActionBar().hide();
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        lockDrawerHideActionBar();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.container, Signup.newInstance()).commit();
+    }
+
+    /*
+     * Lock the nav drawer and hide the action bar
+     */
+    public void lockDrawerHideActionBar() {
+        getSupportActionBar().hide();
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
     @Override
@@ -371,9 +377,7 @@ public class Main extends ActionBarActivity
     }
 
     public void openLoginFragment() {
-        // Lock the drawer and hide the action bar
-        getSupportActionBar().hide();
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        lockDrawerHideActionBar();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
