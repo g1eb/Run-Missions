@@ -134,19 +134,6 @@ public class Main extends ActionBarActivity
             mLocationClient.connect();
         }
 
-        // Setup our view and list adapter. Ensure it scrolls to the bottom as data changes
-        final ListView listView = (ListView) findViewById(R.id.chat_list);
-        // Tell our list adapter that we only want 50 messages at a time
-        chatListAdapter = new ChatListAdapter(ref.child("chat").limit(50), this, R.layout.chat_message, username);
-        listView.setAdapter(chatListAdapter);
-        chatListAdapter.registerDataSetObserver(new DataSetObserver() {
-            @Override
-            public void onChanged() {
-                super.onChanged();
-                listView.setSelection(chatListAdapter.getCount() - 1);
-            }
-        });
-
         // Finally, a little indication of connection status
         connectedListener = chatRef.getRoot().child(".info/connected").addValueEventListener(new ValueEventListener() {
             @Override
