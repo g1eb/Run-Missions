@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +19,10 @@ import android.widget.TextView;
 /**
  * Created by Gleb on 02/11/14.
  */
-public class Login extends Fragment {
+public class Login extends Fragment implements View.OnClickListener {
 
     private EditText email_input, password_input;
-    private Button login_button;
+    private Button login_button, signup_button;
     Comm comm;
 
     public static Login newInstance() {
@@ -60,13 +61,10 @@ public class Login extends Fragment {
         });
 
         login_button = (Button) getActivity().findViewById(R.id.login_button);
-        login_button.setOnClickListener(new View.OnClickListener() {
+        login_button.setOnClickListener(this);
 
-            @Override
-            public void onClick(View v) {
-                submitCredentials();
-            }
-        });
+        signup_button = (Button) getActivity().findViewById(R.id.signup_link_button);
+        signup_button.setOnClickListener(this);
     }
 
     private void submitCredentials() {
@@ -79,6 +77,20 @@ public class Login extends Fragment {
 
         if (email != null && password != null) {
             comm.handleLogin(email, password);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch ( v.getId() ) {
+            case R.id.login_button:
+                submitCredentials();
+                break;
+            case R.id.signup_link_button:
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.container, Profile.newInstance()).commit();
+                break;
         }
     }
 }
