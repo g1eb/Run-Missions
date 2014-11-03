@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.database.DataSetObserver;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,10 +20,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -132,6 +137,37 @@ public class Main extends ActionBarActivity
         if (servicesConnected()) {
             mLocationClient.connect();
         }
+
+        // Setup our view and list adapter. Ensure it scrolls to the bottom as data changes
+        final ListView listView = (ListView) findViewById(R.id.chat_list);
+        // Tell our list adapter that we only want 50 messages at a time
+        chatListAdapter = new ChatListAdapter(ref.child("chat").limit(50), this, R.layout.chat_message, username);
+        listView.setAdapter(chatListAdapter);
+        chatListAdapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                listView.setSelection(chatListAdapter.getCount() - 1);
+            }
+        });
+
+        // Finally, a little indication of connection status
+        connectedListener = ref.child("chat").getRoot().child(".info/connected").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                boolean connected = (Boolean)dataSnapshot.getValue();
+                if (connected) {
+                    Toast.makeText(Main.this, "Connected to Firebase", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Main.this, "Disconnected from Firebase", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.d("MAIN", "Firebase chat listener disconnected");
+            }
+        });
     }
 
     @Override
@@ -142,6 +178,8 @@ public class Main extends ActionBarActivity
     @Override
     protected void onStop() {
         super.onStop();
+        ref.child("chat").getRoot().child(".info/connected").removeEventListener(connectedListener);
+        chatListAdapter.cleanup();
     }
 
     @Override
