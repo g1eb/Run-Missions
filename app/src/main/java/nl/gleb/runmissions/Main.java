@@ -359,7 +359,12 @@ public class Main extends ActionBarActivity
             @Override
             public void onError(FirebaseError firebaseError) {
                 // there was an error
-                Log.d("MAIN", "createUsr error");
+                new AlertDialog.Builder(Main.this)
+                        .setTitle("Errrrrr")
+                        .setMessage(firebaseError.getMessage())
+                        .setPositiveButton(android.R.string.ok, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
         });
     }
