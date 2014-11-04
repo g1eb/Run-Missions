@@ -347,6 +347,30 @@ public class Main extends ActionBarActivity
         ft.replace(R.id.container, Signup.newInstance()).commit();
     }
 
+    @Override
+    public void handleSignup(final String email, final String password, final String username) {
+        ref.createUser(email, password, new Firebase.ResultHandler() {
+            @Override
+            public void onSuccess() {
+                // user was created
+                Log.d("MAIN", "createUsr success");
+                createUserProfile(email, username);
+            }
+            @Override
+            public void onError(FirebaseError firebaseError) {
+                // there was an error
+                Log.d("MAIN", "createUsr error");
+            }
+        });
+    }
+
+    /*
+     * Create initial user profile, use email as key
+     */
+    public void createUserProfile(String email, String username) {
+
+    }
+
     /*
      * Lock the nav drawer and hide the action bar
      */
