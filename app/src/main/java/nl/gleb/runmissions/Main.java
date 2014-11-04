@@ -376,9 +376,8 @@ public class Main extends ActionBarActivity
     public void createUser(String email, String password, String username) {
         User newUser = new User(email, username);
         Firebase usersRef = ref.child("users");
-        usersRef.push().setValue(newUser);
-
-        // TODO: log the new user in
+        usersRef.child(username).setValue(newUser);
+        handleLogin(email, password);
     }
 
     /*
@@ -407,7 +406,7 @@ public class Main extends ActionBarActivity
     }
 
     /**
-     * Login the user, method invoked from the login fragment
+     * Login the user, method invoked from the login fragment or after signup
      *
      * @param email
      * @param password
