@@ -42,6 +42,10 @@
     <string name="player_exp">Exp: </string>
     <string name="player_missions">Missions: </string>
 
+    <!-- Chat -->
+    <string name="text_color_others">#333333</string>
+    <string name="text_color_mine">#FF6600</string>
+
     <!-- Missions List -->
     <string name="title_mission_placeholder">Mission</string>
     <string name="desc_mission_placeholder">Now, this is the story all about how my life got flipped-turned upside down, and I\'d like to take a minute, just sit right there I\'ll tell you how I became the prince of a town called Bel Air</string>
