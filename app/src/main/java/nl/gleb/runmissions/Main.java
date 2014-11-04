@@ -426,6 +426,14 @@ public class Main extends ActionBarActivity
         ft.replace(R.id.container, Login.newInstance()).commit();
     }
 
+    public void openMapFragment() {
+        unlockDrawerShowActionBar();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.container, Map.newInstance()).commit();
+    }
+
     /**
      * Unauthenticate from Firebase and from providers where necessary.
      */
@@ -443,13 +451,7 @@ public class Main extends ActionBarActivity
      */
     private void setAuthenticatedUser(AuthData authData) {
         if (authData != null) {
-            // Enable the drawer and show the action bar
-            getSupportActionBar().show();
-            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.replace(R.id.container, Map.newInstance()).commit();
+            openMapFragment();
         }
         this.authData = authData;
     }
