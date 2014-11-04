@@ -79,6 +79,10 @@ public class Signup extends Fragment {
 
         if ( !password1.equals(password2) ) {
             Toast.makeText(getActivity().getApplicationContext(), "Passwords do not match..", Toast.LENGTH_LONG).show();
+        } else {
+            if ( !email.equals("") && !username.equals("") && !password1.equals("") ) {
+                comm.handleSignup(email, password1, username);
+            }
         }
     }
 }
