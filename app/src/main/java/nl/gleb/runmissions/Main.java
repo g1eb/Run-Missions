@@ -354,7 +354,7 @@ public class Main extends ActionBarActivity
             public void onSuccess() {
                 // user was created
                 Log.d("MAIN", "createUsr success");
-                createUserProfile(email, password, username);
+                createUser(email, password, username);
             }
 
             @Override
@@ -373,8 +373,12 @@ public class Main extends ActionBarActivity
     /*
      * Create initial user profile, use email as key
      */
-    public void createUserProfile(String email, String password, String username) {
+    public void createUser(String email, String password, String username) {
+        User newUser = new User(email, username);
+        Firebase usersRef = ref.child("users");
+        usersRef.push().setValue(newUser);
 
+        // TODO: log the new user in
     }
 
     /*
