@@ -374,10 +374,12 @@ public class Main extends ActionBarActivity
      * Create initial user profile, use email as key
      */
     public void createUser(String email, String password, String username) {
+        this.username = username;
+        handleLogin(email, password);
+
         User newUser = new User(email, username);
         Firebase usersRef = ref.child("users");
         usersRef.child(username).setValue(newUser);
-        handleLogin(email, password);
     }
 
     /*
