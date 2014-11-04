@@ -140,7 +140,7 @@ public class Main extends ActionBarActivity
                 if (connected) {
                     Log.d("MAIN", "Connected to Firebase (chat service)");
                 } else {
-                    Log.d("MAIN", "Disconnected from Firebase (char service)");
+                    Log.d("MAIN", "Disconnected from Firebase (chat service)");
                 }
             }
 
