@@ -1,6 +1,7 @@
 package nl.gleb.runmissions;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,9 +12,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Created by Gleb on 04/11/14.
@@ -62,7 +61,7 @@ public class Signup extends Fragment {
         });
 
         signup_button = (Button) getActivity().findViewById(R.id.signup_button);
-        signup_button.setOnClickListener(new View.OnClickListener(){
+        signup_button.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -77,10 +76,14 @@ public class Signup extends Fragment {
         String password1 = signup_password.getText().toString().trim();
         String password2 = signup_confirm_password.getText().toString().trim();
 
-        if ( !password1.equals(password2) ) {
-            Toast.makeText(getActivity().getApplicationContext(), "Passwords do not match..", Toast.LENGTH_LONG).show();
+        if (!password1.equals(password2)) {
+            new AlertDialog.Builder(getActivity())
+                    .setTitle("Errrrrr")
+                    .setMessage("Passwords do not match..")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
         } else {
-            if ( !email.equals("") && !username.equals("") && !password1.equals("") ) {
+            if (!email.equals("") && !username.equals("") && !password1.equals("")) {
                 comm.handleSignup(email, password1, username);
             }
         }
