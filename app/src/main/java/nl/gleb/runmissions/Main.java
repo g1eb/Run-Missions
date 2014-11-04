@@ -385,8 +385,16 @@ public class Main extends ActionBarActivity
      * Lock the nav drawer and hide the action bar
      */
     public void lockDrawerHideActionBar() {
-        getSupportActionBar().hide();
         drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        getSupportActionBar().hide();
+    }
+
+    /*
+     * Unlock the nav drawer and show the action bar
+     */
+    public void unlockDrawerShowActionBar() {
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        getSupportActionBar().show();
     }
 
     @Override
