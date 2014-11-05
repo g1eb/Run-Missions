@@ -451,10 +451,12 @@ public class Main extends ActionBarActivity
      * Once a user is logged in, take the authData provided from Firebase and "use" it.
      */
     private void setAuthenticatedUser(AuthData authData) {
+        this.authData = authData;
         if (authData != null) {
             openMapFragment();
+        } else {
+            logout();
         }
-        this.authData = authData;
     }
 
     /**
