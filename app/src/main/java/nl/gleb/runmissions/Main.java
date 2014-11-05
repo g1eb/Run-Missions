@@ -416,7 +416,7 @@ public class Main extends ActionBarActivity
     @Override
     public void handleLogin(String email, String password) {
         mAuthProgressDialog.show();
-        ref.authWithPassword(email, password, new AuthResultHandler(getString(R.string.login_type)));
+        ref.authWithPassword(email, password, new AuthResultHandler());
     }
 
     public void openLoginFragment() {
@@ -462,16 +462,12 @@ public class Main extends ActionBarActivity
      */
     private class AuthResultHandler implements Firebase.AuthResultHandler {
 
-        private final String provider;
-
-        public AuthResultHandler(String provider) {
-            this.provider = provider;
-        }
+        public AuthResultHandler() {}
 
         @Override
         public void onAuthenticated(AuthData authData) {
             mAuthProgressDialog.hide();
-            Log.d("MAIN", provider + " auth successful");
+            Log.d("AuthResultHandler", "auth successful");
             setAuthenticatedUser(authData);
         }
 
