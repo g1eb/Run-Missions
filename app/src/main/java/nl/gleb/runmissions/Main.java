@@ -362,6 +362,12 @@ public class Main extends ActionBarActivity
     @Override
     public void onLocationChanged(Location location) {
         mCurrentLocation = location;
+        if (user != null) {
+            user.setLocation(location);
+            Firebase userRef = ref.child("users/" + user.getEmail().replaceAll("[^A-Za-z0-9]", "-"));
+            userRef.child("lat").setValue(location.getLatitude());
+            userRef.child("lng").setValue(location.getLongitude());
+        }
     }
 
     @Override
