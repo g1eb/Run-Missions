@@ -37,6 +37,8 @@ public class Profile extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        User user = comm.getUser();
+
         level = (TextView) getActivity().findViewById(R.id.level);
         exp = (TextView) getActivity().findViewById(R.id.exp);
         missions = (TextView) getActivity().findViewById(R.id.missions);

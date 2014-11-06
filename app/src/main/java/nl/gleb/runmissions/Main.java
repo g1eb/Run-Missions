@@ -419,6 +419,11 @@ public class Main extends ActionBarActivity
         chatRef.push().setValue(chat);
     }
 
+    @Override
+    public User getUser() {
+        return user;
+    }
+
     /**
      * Login the user, method invoked from the login fragment or after signup
      *
