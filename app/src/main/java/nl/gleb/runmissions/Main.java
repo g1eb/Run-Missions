@@ -185,7 +185,7 @@ public class Main extends ActionBarActivity
     @Override
     protected void onStop() {
         super.onStop();
-        if ( mAuthProgressDialog != null ) {
+        if (mAuthProgressDialog != null) {
             mAuthProgressDialog.dismiss();
         }
         ref.child("chat").getRoot().child(".info/connected").removeEventListener(connectedListener);
@@ -393,7 +393,6 @@ public class Main extends ActionBarActivity
             @Override
             public void onSuccess() {
                 // user was created
-                Log.d("MAIN", "create user success");
                 createUser(email, password, username);
             }
 
