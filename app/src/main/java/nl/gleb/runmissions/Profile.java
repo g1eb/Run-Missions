@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * Created by Gleb on 03/11/14.
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 public class Profile extends Fragment {
 
     Comm comm;
+    TextView level, exp, missions, username;
 
     public static Profile newInstance() {
         return new Profile();
@@ -34,5 +36,10 @@ public class Profile extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        level = (TextView) getActivity().findViewById(R.id.level);
+        exp = (TextView) getActivity().findViewById(R.id.exp);
+        missions = (TextView) getActivity().findViewById(R.id.missions);
+        username = (TextView) getActivity().findViewById(R.id.username);
     }
 }
