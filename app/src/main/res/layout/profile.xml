@@ -26,8 +26,8 @@
         <TextView
             android:id="@+id/level"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
+            android:layout_height="45dp"
+            android:gravity="start"
             android:text="@string/player_level"
             android:textColor="@string/text_color"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -35,8 +35,8 @@
         <TextView
             android:id="@+id/exp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
+            android:layout_height="45dp"
+            android:gravity="start"
             android:text="@string/player_exp"
             android:textColor="@string/text_color"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -44,7 +44,8 @@
         <TextView
             android:id="@+id/missions"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
+            android:gravity="start"
             android:text="@string/player_missions"
             android:textColor="@string/text_color"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -52,7 +53,7 @@
         <TextView
             android:id="@+id/username"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:gravity="center"
             android:text="@string/player_name"
             android:textColor="@string/text_color"
