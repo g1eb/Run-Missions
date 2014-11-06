@@ -35,6 +35,7 @@
     <!-- Accessibility -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="duck_image_desc">Rubber duckie</string>
 
     <!-- Profile -->
     <string name="player_name">Name</string>
@@ -75,4 +76,5 @@
     <!--Settings-->
     <string name="label_distance">Preferred distance (km)</string>
     <string name="label_events">Number of events</string>
+
 </resources>
