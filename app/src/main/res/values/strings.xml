@@ -41,6 +41,7 @@
     <string name="player_level">Lvl</string>
     <string name="player_exp">Exp</string>
     <string name="player_missions">Missions</string>
+    <string name="text_color">#333333</string>
 
     <!-- Chat -->
     <string name="text_color_others">#333333</string>
