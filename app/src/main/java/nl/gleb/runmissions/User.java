@@ -23,6 +23,14 @@ public class User {
         this.missions = 0;
     }
 
+    public User(String email, String username, Integer level, Integer exp, Integer missions) {
+        this.email = email;
+        this.username = username;
+        this.level = level;
+        this.exp = exp;
+        this.missions = missions;
+    }
+
     public String getEmail() {
         return email;
     }
