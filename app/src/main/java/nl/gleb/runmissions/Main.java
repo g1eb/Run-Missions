@@ -65,7 +65,7 @@ public class Main extends ActionBarActivity
     ProgressDialog mAuthProgressDialog;
 
     // Profile
-    User user;
+    User user = null;
 
     // Chat
     private ChatListAdapter chatListAdapter;
