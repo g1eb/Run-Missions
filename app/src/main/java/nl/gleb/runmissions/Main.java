@@ -64,8 +64,10 @@ public class Main extends ActionBarActivity
     private AuthData authData;
     ProgressDialog mAuthProgressDialog;
 
+    // Profile
+    User user;
+
     // Chat
-    private String username = "username";
     private ChatListAdapter chatListAdapter;
     private ValueEventListener connectedListener;
 
@@ -129,11 +131,13 @@ public class Main extends ActionBarActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                User user = new User(dataSnapshot.child("email").getValue().toString(),
+                user = new User(dataSnapshot.child("email").getValue().toString(),
                         dataSnapshot.child("username").getValue().toString(),
                         Integer.parseInt(dataSnapshot.child("level").getValue().toString()),
                         Integer.parseInt(dataSnapshot.child("exp").getValue().toString()),
                         Integer.parseInt(dataSnapshot.child("missions").getValue().toString()));
+
+
             }
 
             @Override
@@ -199,7 +203,7 @@ public class Main extends ActionBarActivity
                 ft.replace(R.id.container, Map.newInstance()).commit();
                 break;
             case 2:
-                ft.replace(R.id.container, Chat.newInstance(username)).commit();
+                ft.replace(R.id.container, Chat.newInstance(user.getUsername())).commit();
                 break;
             case 3:
                 ft.replace(R.id.container, MissionList.newInstance()).commit();
@@ -392,7 +396,6 @@ public class Main extends ActionBarActivity
      * Create initial user profile, use email as key
      */
     public void createUser(String email, String password, String username) {
-        this.username = username;
         handleLogin(email, password);
 
         User newUser = new User(email, username);
@@ -419,7 +422,7 @@ public class Main extends ActionBarActivity
     @Override
     public void sendMessage(String message) {
         // Create our 'model', a Chat object
-        ChatMessage chat = new ChatMessage(message, username);
+        ChatMessage chat = new ChatMessage(message, user.getUsername());
 
         // Create a new, auto-generated child of that chat location, and save our chat data there
         chatRef.push().setValue(chat);
