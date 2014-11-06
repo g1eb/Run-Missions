@@ -137,13 +137,13 @@ public class Main extends ActionBarActivity
                         Integer.parseInt(dataSnapshot.child("exp").getValue().toString()),
                         Integer.parseInt(dataSnapshot.child("missions").getValue().toString()));
                 } catch (NullPointerException e) {
-                    openLoginFragment();
+                    logout();
                 }
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-                // Todo: user profile not found
+                logout();
             }
         });
     }
