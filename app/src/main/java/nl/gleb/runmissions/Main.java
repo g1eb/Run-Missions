@@ -182,6 +182,9 @@ public class Main extends ActionBarActivity
     @Override
     protected void onStop() {
         super.onStop();
+        if ( mAuthProgressDialog != null ) {
+            mAuthProgressDialog.dismiss();
+        }
         ref.child("chat").getRoot().child(".info/connected").removeEventListener(connectedListener);
     }
 
