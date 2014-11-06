@@ -13,7 +13,8 @@ public class User {
 
     // Required default constructor for Firebase object mapping
     @SuppressWarnings("unused")
-    private User() { }
+    private User() {
+    }
 
     User(String email, String username) {
         this.email = email;

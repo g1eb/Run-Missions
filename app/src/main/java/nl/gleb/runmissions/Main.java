@@ -353,7 +353,7 @@ public class Main extends ActionBarActivity
             @Override
             public void onSuccess() {
                 // user was created
-                Log.d("MAIN", "createUsr success");
+                Log.d("MAIN", "create user success");
                 createUser(email, password, username);
             }
 
@@ -464,7 +464,8 @@ public class Main extends ActionBarActivity
      */
     private class AuthResultHandler implements Firebase.AuthResultHandler {
 
-        public AuthResultHandler() {}
+        public AuthResultHandler() {
+        }
 
         @Override
         public void onAuthenticated(AuthData authData) {
