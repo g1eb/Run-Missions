@@ -132,11 +132,14 @@ public class Main extends ActionBarActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {
                     user = new User(dataSnapshot.child("email").getValue().toString(),
-                        dataSnapshot.child("username").getValue().toString(),
-                        Integer.parseInt(dataSnapshot.child("level").getValue().toString()),
-                        Integer.parseInt(dataSnapshot.child("exp").getValue().toString()),
-                        Integer.parseInt(dataSnapshot.child("missions").getValue().toString()));
+                            dataSnapshot.child("username").getValue().toString(),
+                            Integer.parseInt(dataSnapshot.child("level").getValue().toString()),
+                            Integer.parseInt(dataSnapshot.child("exp").getValue().toString()),
+                            Integer.parseInt(dataSnapshot.child("missions").getValue().toString()),
+                            Double.parseDouble(dataSnapshot.child("lat").getValue().toString()),
+                            Double.parseDouble(dataSnapshot.child("lng").getValue().toString()));
                 } catch (NullPointerException e) {
+                    e.printStackTrace();
                     logout();
                 }
             }
@@ -405,11 +408,11 @@ public class Main extends ActionBarActivity
      * Create initial user profile, use email as key
      */
     public void createUser(String email, String password, String username) {
-        handleLogin(email, password);
-
-        User newUser = new User(email, username);
+        User newUser = new User(email, username, mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
         Firebase usersRef = ref.child("users");
         usersRef.child(email.replaceAll("[^A-Za-z0-9]", "-")).setValue(newUser);
+
+        handleLogin(email, password);
     }
 
     /*
