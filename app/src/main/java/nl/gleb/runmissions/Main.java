@@ -125,32 +125,6 @@ public class Main extends ActionBarActivity
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
     }
 
-    private void getProfile(String email) {
-        Firebase userRef = ref.child("users/" + email.replaceAll("[^A-Za-z0-9]", "-"));
-        userRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                try {
-                    user = new User(dataSnapshot.child("email").getValue().toString(),
-                            dataSnapshot.child("username").getValue().toString(),
-                            Integer.parseInt(dataSnapshot.child("level").getValue().toString()),
-                            Integer.parseInt(dataSnapshot.child("exp").getValue().toString()),
-                            Integer.parseInt(dataSnapshot.child("missions").getValue().toString()),
-                            Double.parseDouble(dataSnapshot.child("lat").getValue().toString()),
-                            Double.parseDouble(dataSnapshot.child("lng").getValue().toString()));
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                    logout();
-                }
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                logout();
-            }
-        });
-    }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -455,6 +429,35 @@ public class Main extends ActionBarActivity
     public void handleLogin(String email, String password) {
         mAuthProgressDialog.show();
         ref.authWithPassword(email, password, new AuthResultHandler());
+    }
+
+    /*
+     * Get user profile data such as username, level etc. (after the login)
+     */
+    private void getProfile(String email) {
+        Firebase userRef = ref.child("users/" + email.replaceAll("[^A-Za-z0-9]", "-"));
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                try {
+                    user = new User(dataSnapshot.child("email").getValue().toString(),
+                            dataSnapshot.child("username").getValue().toString(),
+                            Integer.parseInt(dataSnapshot.child("level").getValue().toString()),
+                            Integer.parseInt(dataSnapshot.child("exp").getValue().toString()),
+                            Integer.parseInt(dataSnapshot.child("missions").getValue().toString()),
+                            Double.parseDouble(dataSnapshot.child("lat").getValue().toString()),
+                            Double.parseDouble(dataSnapshot.child("lng").getValue().toString()));
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                    logout();
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                logout();
+            }
+        });
     }
 
     public void openLoginFragment() {
