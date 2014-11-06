@@ -75,7 +75,7 @@ public class Login extends Fragment implements View.OnClickListener {
         String email = email_input.getText().toString().trim();
         String password = password_input.getText().toString().trim();
 
-        if (email != null && password != null) {
+        if ( !email.equals("") && !password.equals("") ) {
             comm.handleLogin(email, password);
         }
     }

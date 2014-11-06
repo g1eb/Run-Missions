@@ -130,14 +130,15 @@ public class Main extends ActionBarActivity
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                user = new User(dataSnapshot.child("email").getValue().toString(),
+                try {
+                    user = new User(dataSnapshot.child("email").getValue().toString(),
                         dataSnapshot.child("username").getValue().toString(),
                         Integer.parseInt(dataSnapshot.child("level").getValue().toString()),
                         Integer.parseInt(dataSnapshot.child("exp").getValue().toString()),
                         Integer.parseInt(dataSnapshot.child("missions").getValue().toString()));
-
-
+                } catch (NullPointerException e) {
+                    openLoginFragment();
+                }
             }
 
             @Override
