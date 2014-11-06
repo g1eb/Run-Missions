@@ -95,7 +95,7 @@ public class Main extends ActionBarActivity
                 mAuthProgressDialog.hide();
                 setAuthenticatedUser(authData);
                 if (authData != null) {
-                    getUsername(authData.getProviderData().get("email").toString());
+                    getProfile(authData.getProviderData().get("email").toString());
                 }
             }
         });
@@ -123,7 +123,7 @@ public class Main extends ActionBarActivity
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
     }
 
-    private void getUsername(String email) {
+    private void getProfile(String email) {
         Firebase userRef = ref.child("users/" + email.replaceAll("[^A-Za-z0-9]", "-"));
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -471,7 +471,7 @@ public class Main extends ActionBarActivity
     private void setAuthenticatedUser(AuthData authData) {
         this.authData = authData;
         if (authData != null) {
-            getUsername(authData.getProviderData().get("email").toString());
+            getProfile(authData.getProviderData().get("email").toString());
             openMapFragment();
         } else {
             logout();
