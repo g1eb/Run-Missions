@@ -94,7 +94,9 @@ public class Main extends ActionBarActivity
             public void onAuthStateChanged(AuthData authData) {
                 mAuthProgressDialog.hide();
                 setAuthenticatedUser(authData);
-                getUsername();
+                if (authData != null) {
+                    getUsername(authData.getProviderData().get("email").toString());
+                }
             }
         });
 
@@ -121,8 +123,24 @@ public class Main extends ActionBarActivity
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
     }
 
-    private void getUsername() {
-        // TODO: get username from preference
+    private void getUsername(String email) {
+        Firebase userRef = ref.child("users/" + email.replaceAll("[^A-Za-z0-9]", "-"));
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                User user = new User(dataSnapshot.child("email").getValue().toString(),
+                        dataSnapshot.child("username").getValue().toString(),
+                        Integer.parseInt(dataSnapshot.child("level").getValue().toString()),
+                        Integer.parseInt(dataSnapshot.child("exp").getValue().toString()),
+                        Integer.parseInt(dataSnapshot.child("missions").getValue().toString()));
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                // Todo: user profile not found
+            }
+        });
     }
 
     @Override
@@ -379,7 +397,7 @@ public class Main extends ActionBarActivity
 
         User newUser = new User(email, username);
         Firebase usersRef = ref.child("users");
-        usersRef.child(username).setValue(newUser);
+        usersRef.child(email.replaceAll("[^A-Za-z0-9]", "-")).setValue(newUser);
     }
 
     /*
@@ -453,6 +471,7 @@ public class Main extends ActionBarActivity
     private void setAuthenticatedUser(AuthData authData) {
         this.authData = authData;
         if (authData != null) {
+            getUsername(authData.getProviderData().get("email").toString());
             openMapFragment();
         } else {
             logout();
