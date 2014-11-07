@@ -36,6 +36,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="duck_image_desc">Rubber duckie</string>
+    <string name="background_desc">Background image</string>
 
     <!-- Profile -->
     <string name="player_name">Name</string>
