@@ -133,7 +133,7 @@ public class Main extends ActionBarActivity
     @Override
     protected void onStart() {
         super.onStart();
-        if (servicesConnected()) {
+        if (servicesConnected() && !mLocationClient.isConnected() ) {
             mLocationClient.connect();
         }
 
