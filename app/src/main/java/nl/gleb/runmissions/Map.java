@@ -11,6 +11,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequest;
@@ -137,8 +138,13 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
             PlacesList result = httpResponse.parseAs(PlacesList.class);
 
             List<Place> places = result.results;
+            if ( map != null ) {
+
             for (Place place : places) {
-                Log.d("MAP", place.name);
+                map.addMarker(new MarkerOptions()
+                        .position(new LatLng(l.getLatitude() + Math.random(), l.getLongitude() + Math.random()))
+                        .title(place.name));
+            }
             }
         } catch (IOException e) {
             e.printStackTrace();
