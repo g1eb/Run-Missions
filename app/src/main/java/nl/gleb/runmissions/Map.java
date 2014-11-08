@@ -154,8 +154,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                     Marker marker = map.addMarker(new MarkerOptions()
                             .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
-                            .title(place.name)
-                            .snippet("Lat: " + place.geometry.location.lat + " Lng: " + place.geometry.location.lng));
+                            .title(place.name));
                     place.setMarkerId(marker.getId());
                 }
                 map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
