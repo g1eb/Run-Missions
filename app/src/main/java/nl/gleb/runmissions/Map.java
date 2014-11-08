@@ -2,6 +2,7 @@ package nl.gleb.runmissions;
 
 import android.app.Activity;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequest;
@@ -32,6 +34,8 @@ import java.util.List;
 public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCallback {
 
     private static GoogleMap map;
+    static PolylineOptions route;
+
     Comm comm;
     static final HttpTransport HTTP_TRANSPORT = AndroidHttp.newCompatibleTransport();
     static final com.google.api.client.json.JsonFactory JSON_FACTORY = new JacksonFactory();
@@ -110,6 +114,12 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                 .build();
         map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition),
                 res.getInteger(R.integer.map_animation_duration), null);
+
+        route = new PolylineOptions()
+                .visible(true)
+                .color(Color.BLUE)
+                .width(5)
+                .zIndex(30);
 
         getPlaces();
     }
