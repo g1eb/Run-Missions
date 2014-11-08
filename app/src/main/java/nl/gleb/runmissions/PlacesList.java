@@ -14,4 +14,13 @@ public class PlacesList {
 
     @Key("results")
     public List<Place> results;
+
+    public Place getPlace(String id) {
+        for ( Place place : results ) {
+            if ( place.markerId.equals(id) ) {
+                return place;
+            }
+        }
+        return null;
+    }
 }
