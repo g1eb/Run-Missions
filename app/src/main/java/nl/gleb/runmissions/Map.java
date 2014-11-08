@@ -141,7 +141,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
 
                 for (Place place : places) {
                     map.addMarker(new MarkerOptions()
-                            .position(new LatLng(l.getLatitude() + Math.random(), l.getLongitude() + Math.random()))
+                            .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
                             .title(place.name));
                 }
             }
