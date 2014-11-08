@@ -2,7 +2,6 @@ package nl.gleb.runmissions;
 
 import android.location.Location;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -56,10 +55,16 @@ public class DirectionsFetcher extends AsyncTask<URL, Integer, String> {
             HttpResponse httpResponse = request.execute();
             DirectionsResult directionsResult = httpResponse.parseAs(DirectionsResult.class);
             String encodedPoints = directionsResult.routes.get(0).overviewPolyLine.points;
-//            latLngs = PolylineDecoder.decodePoints(encodedPoints);
+            latLngs = PolylineDecoder.decodePoints(encodedPoints);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+        Map.addPolyLine(latLngs);
     }
 }
