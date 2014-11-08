@@ -27,6 +27,7 @@ public class DirectionsFetcher extends AsyncTask<URL, Integer, String> {
     static final com.google.api.client.json.JsonFactory JSON_FACTORY = new JacksonFactory();
 
     private List<LatLng> latLngs = new ArrayList<LatLng>();
+    private DirectionsBounds bounds;
 
     Location origin;
     Place target;
@@ -54,6 +55,7 @@ public class DirectionsFetcher extends AsyncTask<URL, Integer, String> {
             HttpRequest request = requestFactory.buildGetRequest(url);
             HttpResponse httpResponse = request.execute();
             DirectionsResult directionsResult = httpResponse.parseAs(DirectionsResult.class);
+            bounds = directionsResult.routes.get(0).bounds;
             String encodedPoints = directionsResult.routes.get(0).overviewPolyLine.points;
             latLngs = PolylineDecoder.decodePoints(encodedPoints);
         } catch (Exception ex) {
@@ -66,5 +68,6 @@ public class DirectionsFetcher extends AsyncTask<URL, Integer, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         Map.addPolyLine(latLngs);
+        Map.setNewBounds(bounds);
     }
 }
