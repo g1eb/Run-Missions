@@ -12,6 +12,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -186,6 +187,16 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                     .zIndex(30);
             routeOptions.addAll(points);
             route = map.addPolyline(routeOptions);
+        }
+    }
+
+    public static void setNewBounds(DirectionsBounds directionsBounds) {
+        if (map != null) {
+            LatLngBounds bounds = new LatLngBounds(
+                    new LatLng(directionsBounds.southwest.lat, directionsBounds.southwest.lng),
+                    new LatLng(directionsBounds.northeast.lat, directionsBounds.northeast.lng));
+
+            map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 250), animationDuration, null);
         }
     }
 }
