@@ -172,9 +172,8 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     }
 
     public static void addPolyLine(List<LatLng> points) {
-        route.addAll(points);
-
         if (map != null) {
+            route.addAll(points);
             map.addPolyline(route);
         }
     }
