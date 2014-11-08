@@ -34,11 +34,14 @@ import java.util.List;
  */
 public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCallback {
 
+
     private static GoogleMap map;
     static Polyline route;
     static PolylineOptions routeOptions;
+    static int animationDuration = 2000;
 
     Comm comm;
+    Resources res;
     static final HttpTransport HTTP_TRANSPORT = AndroidHttp.newCompatibleTransport();
     static final com.google.api.client.json.JsonFactory JSON_FACTORY = new JacksonFactory();
 
@@ -53,6 +56,8 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         super.onAttach(activity);
         comm = (Comm) activity;
         comm.setTitle(getString(R.string.title_map));
+        res = getResources();
+        animationDuration = res.getInteger(R.integer.map_animation_duration);
     }
 
     @Override
@@ -114,8 +119,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                 .zoom(res.getInteger(R.integer.map_zoom_level))
                 .tilt(res.getInteger(R.integer.map_tilt_level))
                 .build();
-        map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition),
-                res.getInteger(R.integer.map_animation_duration), null);
+        map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), animationDuration, null);
 
         getPlaces();
     }
