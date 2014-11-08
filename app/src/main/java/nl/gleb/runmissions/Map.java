@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -138,13 +137,13 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
             PlacesList result = httpResponse.parseAs(PlacesList.class);
 
             List<Place> places = result.results;
-            if ( map != null ) {
+            if (map != null) {
 
-            for (Place place : places) {
-                map.addMarker(new MarkerOptions()
-                        .position(new LatLng(l.getLatitude() + Math.random(), l.getLongitude() + Math.random()))
-                        .title(place.name));
-            }
+                for (Place place : places) {
+                    map.addMarker(new MarkerOptions()
+                            .position(new LatLng(l.getLatitude() + Math.random(), l.getLongitude() + Math.random()))
+                            .title(place.name));
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

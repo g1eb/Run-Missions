@@ -9,4 +9,6 @@ public class Place {
     @Key("id")
     public String id;
 
+    @Key("vicinity")
+    public String vicinity;
 }
