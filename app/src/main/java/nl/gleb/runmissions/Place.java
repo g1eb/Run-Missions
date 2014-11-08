@@ -10,6 +10,9 @@ public class Place {
     @Key("name")
     public String name;
 
+    @Key("geometry")
+    public PlaceGeometry geometry;
+
     @Key("types")
     public String[] types;
 
