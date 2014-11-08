@@ -14,6 +14,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.GenericUrl;
@@ -34,7 +35,8 @@ import java.util.List;
 public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCallback {
 
     private static GoogleMap map;
-    static PolylineOptions route;
+    static Polyline route;
+    static PolylineOptions routeOptions;
 
     Comm comm;
     static final HttpTransport HTTP_TRANSPORT = AndroidHttp.newCompatibleTransport();
@@ -115,12 +117,6 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition),
                 res.getInteger(R.integer.map_animation_duration), null);
 
-        route = new PolylineOptions()
-                .visible(true)
-                .color(Color.BLUE)
-                .width(5)
-                .zIndex(30);
-
         getPlaces();
     }
 
@@ -160,8 +156,14 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                 map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
+
+                        if (route != null) {
+                            route.remove(); // Remove previous route from the map if it exists
+                        }
+
                         Place place = result.getPlace(marker.getId());
-                        DirectionsFetcher df = (DirectionsFetcher) new DirectionsFetcher(location, place).execute();
+                        new DirectionsFetcher(location, place).execute();
+
                         return false;
                     }
                 });
@@ -173,8 +175,13 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
 
     public static void addPolyLine(List<LatLng> points) {
         if (map != null) {
-            route.addAll(points);
-            map.addPolyline(route);
+            routeOptions = new PolylineOptions()
+                    .visible(true)
+                    .color(Color.GRAY)
+                    .width(5)
+                    .zIndex(30);
+            routeOptions.addAll(points);
+            route = map.addPolyline(routeOptions);
         }
     }
 }
