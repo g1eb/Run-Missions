@@ -123,7 +123,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
      * Get places of interest around the user
      */
     public void getPlaces() {
-        Location l = ((Main) getActivity()).mCurrentLocation;
+        final Location l = ((Main) getActivity()).mCurrentLocation;
 
         GenericUrl url = new GenericUrl("https://maps.googleapis.com/maps/api/place/nearbysearch/json");
         url.put("key", "AIzaSyCbFFLGTKvJh_on6sRgwp0mcz0Rl-B_ijk");
@@ -152,7 +152,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                     @Override
                     public boolean onMarkerClick(Marker marker) {
                         Place place = result.getPlace(marker.getId());
-                        DirectionsFetcher df =  new DirectionsFetcher(place);
+                        DirectionsFetcher df =  new DirectionsFetcher(l, place);
                         df.startNavigation();
                         return false;
                     }
