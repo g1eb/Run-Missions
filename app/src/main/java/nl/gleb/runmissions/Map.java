@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -121,7 +122,6 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
      * Get places of interest around the user
      */
     public void getPlaces() {
-
         Location l = ((Main) getActivity()).mCurrentLocation;
 
         GenericUrl url = new GenericUrl("https://maps.googleapis.com/maps/api/place/nearbysearch/json");
@@ -142,7 +142,9 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                 for (Place place : places) {
                     map.addMarker(new MarkerOptions()
                             .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
-                            .title(place.name));
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+                            .title(place.name)
+                            .snippet("Lat: " + place.geometry.location.lat + " Lng: " + place.geometry.location.lng));
                 }
             }
         } catch (IOException e) {
