@@ -12,43 +12,35 @@ import java.util.List;
 public class PolylineDecoder {
 
     public static List<LatLng> decodePoints(String encoded_points){
-        int index = 0;
-        int lat = 0;
-        int lng = 0;
-        List <LatLng> out = new ArrayList<LatLng>();
+        List<LatLng> poly = new ArrayList<LatLng>();
+        int index = 0, len = encoded_points.length();
+        int lat = 0, lng = 0;
 
-        try {
-            int shift;
-            int result;
-            while (index < encoded_points.length()) {
-                shift = 0;
-                result = 0;
-                while (true) {
-                    int b = encoded_points.charAt(index++) - '?';
-                    result |= ((b & 31) << shift);
-                    shift += 5;
-                    if (b < 32)
-                        break;
-                }
-                lat += ((result & 1) != 0 ? ~(result >> 1) : result >> 1);
+        while (index < len) {
+            int b, shift = 0, result = 0;
+            do {
+                b = encoded_points.charAt(index++) - 63;
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+            int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lat += dlat;
 
-                shift = 0;
-                result = 0;
-                while (true) {
-                    int b = encoded_points.charAt(index++) - '?';
-                    result |= ((b & 31) << shift);
-                    shift += 5;
-                    if (b < 32)
-                        break;
-                }
-                lng += ((result & 1) != 0 ? ~(result >> 1) : result >> 1);
-                /* Add the new Lat/Lng to the Array. */
-                out.add(new LatLng((lat*10),(lng*10)));
-            }
-            return out;
-        }catch(Exception e) {
-            e.printStackTrace();
+            shift = 0;
+            result = 0;
+            do {
+                b = encoded_points.charAt(index++) - 63;
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+            int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lng += dlng;
+
+            LatLng p = new LatLng((((double) lat / 1E5)),
+                    (((double) lng / 1E5)));
+            poly.add(p);
         }
-        return out;
+
+        return poly;
     }
 }
