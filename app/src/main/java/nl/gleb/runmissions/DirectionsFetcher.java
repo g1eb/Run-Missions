@@ -47,9 +47,9 @@ public class DirectionsFetcher extends AsyncTask<URL, Integer, String> {
             });
 
             GenericUrl url = new GenericUrl("http://maps.googleapis.com/maps/api/directions/json");
-            url.put("origin", "Chicago,IL");
-            url.put("destination", "Los Angeles,CA");
-            url.put("sensor", false);
+            url.put("origin", origin.getLatitude() + "," + origin.getLongitude());
+            url.put("destination", target.geometry.location.lat + "," + target.geometry.location.lng);
+            url.put("mode", "walking");
 
             HttpRequest request = requestFactory.buildGetRequest(url);
             HttpResponse httpResponse = request.execute();
