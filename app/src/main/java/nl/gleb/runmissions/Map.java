@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -153,7 +152,8 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                     @Override
                     public boolean onMarkerClick(Marker marker) {
                         Place place = result.getPlace(marker.getId());
-                        Log.d("MAP", place.name + " Lat: " + place.geometry.location.lat + " Lng: " + place.geometry.location.lng);
+                        DirectionsFetcher df =  new DirectionsFetcher(place);
+                        df.startNavigation();
                         return false;
                     }
                 });
