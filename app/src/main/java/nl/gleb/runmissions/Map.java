@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -11,6 +12,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.GenericUrl;
@@ -134,18 +136,27 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
             request = requestFactory.buildGetRequest(url);
             HttpResponse httpResponse = request.execute();
 
-            PlacesList result = httpResponse.parseAs(PlacesList.class);
-
+            final PlacesList result = httpResponse.parseAs(PlacesList.class);
             List<Place> places = result.results;
+
             if (map != null) {
 
                 for (Place place : places) {
-                    map.addMarker(new MarkerOptions()
+                    Marker marker = map.addMarker(new MarkerOptions()
                             .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
                             .title(place.name)
                             .snippet("Lat: " + place.geometry.location.lat + " Lng: " + place.geometry.location.lng));
+                    place.setMarkerId(marker.getId());
                 }
+                map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        Place place = result.getPlace(marker.getId());
+                        Log.d("MAP", place.name + " Lat: " + place.geometry.location.lat + " Lng: " + place.geometry.location.lng);
+                        return false;
+                    }
+                });
             }
         } catch (IOException e) {
             e.printStackTrace();
