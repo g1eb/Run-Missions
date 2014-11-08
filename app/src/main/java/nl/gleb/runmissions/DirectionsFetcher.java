@@ -2,15 +2,32 @@ package nl.gleb.runmissions;
 
 import android.location.Location;
 import android.os.AsyncTask;
+import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.GenericUrl;
+import com.google.api.client.http.HttpRequest;
+import com.google.api.client.http.HttpRequestFactory;
+import com.google.api.client.http.HttpRequestInitializer;
+import com.google.api.client.http.HttpResponse;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.json.JsonObjectParser;
+import com.google.api.client.json.jackson.JacksonFactory;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Gleb on 08/11/14.
  */
 public class DirectionsFetcher extends AsyncTask<URL, Integer, String> {
+
+    static final HttpTransport HTTP_TRANSPORT = AndroidHttp.newCompatibleTransport();
+    static final com.google.api.client.json.JsonFactory JSON_FACTORY = new JacksonFactory();
+
+    private List<LatLng> latLngs = new ArrayList<LatLng>();
 
     Location origin;
     Place target;
@@ -22,13 +39,27 @@ public class DirectionsFetcher extends AsyncTask<URL, Integer, String> {
 
     @Override
     protected String doInBackground(URL... params) {
-        GenericUrl url = new GenericUrl("http://maps.googleapis.com/maps/api/directions/json");
-        url.put("origin", origin.getLatitude() + "," + origin.getLongitude());
-        url.put("destination", target.geometry.location.lat + "," + target.geometry.location.lng);
-        url.put("sensor",false);
-        return null;
-    }
+        try {
+            HttpRequestFactory requestFactory = HTTP_TRANSPORT.createRequestFactory(new HttpRequestInitializer() {
+                @Override
+                public void initialize(HttpRequest request) {
+                    request.setParser(new JsonObjectParser(JSON_FACTORY));
+                }
+            });
 
-    public void startNavigation() {
+            GenericUrl url = new GenericUrl("http://maps.googleapis.com/maps/api/directions/json");
+            url.put("origin", "Chicago,IL");
+            url.put("destination", "Los Angeles,CA");
+            url.put("sensor", false);
+
+            HttpRequest request = requestFactory.buildGetRequest(url);
+            HttpResponse httpResponse = request.execute();
+            DirectionsResult directionsResult = httpResponse.parseAs(DirectionsResult.class);
+            String encodedPoints = directionsResult.routes.get(0).overviewPolyLine.points;
+//            latLngs = PolylineDecoder.decodePoints(encodedPoints);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }
