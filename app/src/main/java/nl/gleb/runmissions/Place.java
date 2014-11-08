@@ -21,4 +21,10 @@ public class Place {
 
     @Key("vicinity")
     public String vicinity;
+
+    public String markerId;
+
+    public void setMarkerId(String markerId) {
+        this.markerId = markerId;
+    }
 }
