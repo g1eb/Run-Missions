@@ -81,6 +81,7 @@ public class Main extends ActionBarActivity
 
     // Firebase
     private Firebase ref;
+    static Firebase userRef;
     static Firebase chatRef;
     private AuthData authData;
     ProgressDialog mAuthProgressDialog;
@@ -369,7 +370,6 @@ public class Main extends ActionBarActivity
         mCurrentLocation = location;
         if (user != null) {
             user.setLocation(location);
-            Firebase userRef = ref.child("users/" + user.getEmail().replaceAll("[^A-Za-z0-9]", "-"));
             userRef.child("lat").setValue(location.getLatitude());
             userRef.child("lng").setValue(location.getLongitude());
         }
@@ -553,7 +553,7 @@ public class Main extends ActionBarActivity
      * Get user profile data such as username, level etc. (after the login)
      */
     private void getProfile(String email) {
-        Firebase userRef = ref.child("users/" + email.replaceAll("[^A-Za-z0-9]", "-"));
+        userRef = ref.child("users/" + email.replaceAll("[^A-Za-z0-9]", "-"));
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
