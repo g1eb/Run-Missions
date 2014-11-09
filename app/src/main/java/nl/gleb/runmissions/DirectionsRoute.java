@@ -8,6 +8,9 @@ public class DirectionsRoute {
     @Key("bounds")
     public DirectionsBounds bounds;
 
+    @Key("copyrights")
+    public String copyrights;
+
     @Key("legs")
     public List<DirectionsLeg> legs;
 
