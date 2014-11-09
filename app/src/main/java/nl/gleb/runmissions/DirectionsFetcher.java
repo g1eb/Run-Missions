@@ -26,6 +26,8 @@ public class DirectionsFetcher extends AsyncTask<URL, Integer, String> {
     static final HttpTransport HTTP_TRANSPORT = AndroidHttp.newCompatibleTransport();
     static final com.google.api.client.json.JsonFactory JSON_FACTORY = new JacksonFactory();
 
+    HttpRequestFactory requestFactory;
+
     private List<LatLng> latLngs = new ArrayList<LatLng>();
     private DirectionsBounds bounds;
 
@@ -40,12 +42,14 @@ public class DirectionsFetcher extends AsyncTask<URL, Integer, String> {
     @Override
     protected String doInBackground(URL... params) {
         try {
-            HttpRequestFactory requestFactory = HTTP_TRANSPORT.createRequestFactory(new HttpRequestInitializer() {
-                @Override
-                public void initialize(HttpRequest request) {
-                    request.setParser(new JsonObjectParser(JSON_FACTORY));
-                }
-            });
+            requestFactory = HTTP_TRANSPORT.createRequestFactory(
+                    new HttpRequestInitializer() {
+                        @Override
+                        public void initialize(HttpRequest request) {
+                            request.setParser(new JsonObjectParser(JSON_FACTORY));
+                        }
+                    }
+            );
 
             GenericUrl url = new GenericUrl("http://maps.googleapis.com/maps/api/directions/json");
             url.put("origin", origin.getLatitude() + "," + origin.getLongitude());
