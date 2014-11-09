@@ -171,6 +171,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                         }
 
                         Place target = result.getPlace(marker.getId());
+                        comm.setTarget(target);
                         new DirectionsFetcher(location, target).execute();
 
                         return false;
