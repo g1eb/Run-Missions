@@ -29,6 +29,9 @@ import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Main extends ActionBarActivity
         implements Comm,
@@ -67,6 +70,10 @@ public class Main extends ActionBarActivity
 
     // Profile
     User user = null;
+
+    // Checkpoints
+    List<Place> places = new ArrayList<Place>();
+    List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
 
     // Chat
     private ChatListAdapter chatListAdapter;
