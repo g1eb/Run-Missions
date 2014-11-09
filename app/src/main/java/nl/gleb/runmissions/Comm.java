@@ -15,4 +15,6 @@ public interface Comm {
 
     void updatePlaces(List<Place> places);
     void updateSteps(List<DirectionsStep> steps);
+
+    long[] getPattern(String left);
 }
