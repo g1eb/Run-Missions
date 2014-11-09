@@ -471,6 +471,23 @@ public class Main extends ActionBarActivity
         this.steps = steps;
     }
 
+    @Override
+    public long[] getPattern(String type) {
+        if ( type.equals("left") ) {
+            return LEFT_PATTERN;
+        } else if ( type.equals("right") ) {
+            return RIGHT_PATTERN;
+        } else if ( type.equals("accelerate") ) {
+            return ACCELERATE_PATTERN;
+        } else if ( type.equals("error") ) {
+            return ERROR_PATTERN;
+        } else if ( type.equals("closer") ) {
+            return CLOSER_PATTERN;
+        } else {
+            return ACCELERATE_PATTERN;
+        }
+    }
+
     /**
      * Login the user, method invoked from the login fragment or after signup
      *
