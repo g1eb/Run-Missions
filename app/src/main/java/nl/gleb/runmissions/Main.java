@@ -43,6 +43,7 @@ public class Main extends ActionBarActivity
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
     private static final long UPDATE_INTERVAL = 10000;
     private static final long FASTEST_INTERVAL = 5000;
+    private static final int FEEDBACK_RANGE = 50;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
