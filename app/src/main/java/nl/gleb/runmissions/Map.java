@@ -190,7 +190,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         }
     }
 
-    public static void setNewBounds(DirectionsBounds directionsBounds) {
+    public static void setBounds(DirectionsBounds directionsBounds) {
         if (map != null) {
             LatLngBounds bounds = new LatLngBounds(
                     new LatLng(directionsBounds.southwest.lat, directionsBounds.southwest.lng),

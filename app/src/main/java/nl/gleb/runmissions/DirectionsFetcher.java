@@ -70,6 +70,6 @@ public class DirectionsFetcher extends AsyncTask<URL, Integer, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         Map.addPolyLine(latLngs);
-        Map.setNewBounds(bounds);
+        Map.setBounds(bounds);
     }
 }
