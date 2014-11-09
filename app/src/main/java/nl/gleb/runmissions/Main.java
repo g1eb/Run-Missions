@@ -423,6 +423,7 @@ public class Main extends ActionBarActivity
         vibrator.vibrate(5000);
         Toast.makeText(this, "Congratz! +10 pts", Toast.LENGTH_LONG).show();
 
+        userRef.child("exp").setValue(user.getExp()+10);
     }
 
     @Override
