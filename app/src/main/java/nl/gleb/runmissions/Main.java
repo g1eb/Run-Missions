@@ -215,7 +215,7 @@ public class Main extends ActionBarActivity
         android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
         switch (position) {
             case 0:
-                ft.replace(R.id.container, Profile.newInstance()).commit();
+                ft.replace(R.id.container, Profile.newInstance(), "profile").commit();
                 break;
             case 1:
                 ft.replace(R.id.container, Map.newInstance()).commit();
@@ -565,6 +565,11 @@ public class Main extends ActionBarActivity
                             Integer.parseInt(dataSnapshot.child("missions").getValue().toString()),
                             Double.parseDouble(dataSnapshot.child("lat").getValue().toString()),
                             Double.parseDouble(dataSnapshot.child("lng").getValue().toString()));
+
+                    Profile profile = (Profile) getSupportFragmentManager().findFragmentByTag("profile");
+                    if ( profile != null ) {
+                        profile.setUserInfo(user);
+                    }
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                     logout();
