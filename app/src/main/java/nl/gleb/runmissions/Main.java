@@ -87,6 +87,7 @@ public class Main extends ActionBarActivity
     User user = null;
 
     // Checkpoints
+    Place target;
     List<Place> places = new ArrayList<Place>();
     List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
 
@@ -499,6 +500,11 @@ public class Main extends ActionBarActivity
         } else {
             return ACCELERATE_PATTERN;
         }
+    }
+
+    @Override
+    public void setTarget(Place target) {
+        this.target = target;
     }
 
     /**
