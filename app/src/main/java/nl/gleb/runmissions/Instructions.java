@@ -61,19 +61,19 @@ public class Instructions extends Fragment implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.hapticButtonLeft:
-                vibrator.vibrate(LEFT_PATTERN, -1);
+                vibrator.vibrate(comm.getPattern("left"), -1);
                 break;
             case R.id.hapticButtonRight:
-                vibrator.vibrate(RIGHT_PATTERN, -1);
+                vibrator.vibrate(comm.getPattern("right"), -1);
                 break;
             case R.id.hapticButtonAccelerate:
-                vibrator.vibrate(ACCELERATE_PATTERN, -1);
+                vibrator.vibrate(comm.getPattern("accelerate"), -1);
                 break;
             case R.id.hapticButtonError:
-                vibrator.vibrate(ERROR_PATTERN, -1);
+                vibrator.vibrate(comm.getPattern("error"), -1);
                 break;
             case R.id.hapticButtonCloser:
-                vibrator.vibrate(CLOSER_PATTERN, -1);
+                vibrator.vibrate(comm.getPattern("closer"), -1);
                 break;
         }
     }
