@@ -7,5 +7,5 @@ public class DirectionsDuration {
     public String text;
 
     @Key("value")
-    public String value;
+    public Integer value;
 }
