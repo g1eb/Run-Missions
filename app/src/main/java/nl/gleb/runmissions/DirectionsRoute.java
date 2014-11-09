@@ -4,7 +4,7 @@ import com.google.api.client.util.Key;
 
 import java.util.List;
 
-public class Route {
+public class DirectionsRoute {
     @Key("overview_polyline")
     public OverviewPolyLine overviewPolyLine;
 

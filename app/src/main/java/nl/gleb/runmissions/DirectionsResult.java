@@ -6,5 +6,5 @@ import java.util.List;
 
 public class DirectionsResult {
     @Key("routes")
-    public List<Route> routes;
+    public List<DirectionsRoute> routes;
 }
