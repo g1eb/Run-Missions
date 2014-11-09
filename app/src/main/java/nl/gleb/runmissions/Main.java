@@ -50,6 +50,7 @@ public class Main extends ActionBarActivity
     private static final long UPDATE_INTERVAL = 10000;
     private static final long FASTEST_INTERVAL = 5000;
     private static final int FEEDBACK_RANGE = 50;
+    private static final int FINISH_RANGE = 25;
 
     /**
      * Haptic feedback patterns
@@ -381,7 +382,7 @@ public class Main extends ActionBarActivity
                 }
             }
             double dist = distance(location.getLatitude(), location.getLongitude(), target.geometry.location.lat, target.geometry.location.lng);
-            if ( dist <= FEEDBACK_RANGE ) {
+            if ( dist <= FINISH_RANGE ) {
                 handleFinish(target);
             }
         }
