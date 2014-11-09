@@ -382,6 +382,10 @@ public class Main extends ActionBarActivity
         }
     }
 
+    /**
+     * Provide haptic feedback for the current state based on the html instructions
+     * @param step current route step
+     */
     private void handleFeedback(DirectionsStep step) {
 
         if ( feedbackCounter == 0 ) {
