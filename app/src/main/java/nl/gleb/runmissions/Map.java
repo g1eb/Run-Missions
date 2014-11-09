@@ -28,6 +28,7 @@ import com.google.api.client.json.JsonObjectParser;
 import com.google.api.client.json.jackson.JacksonFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,9 +40,10 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     private static GoogleMap map;
     static Polyline route;
     static PolylineOptions routeOptions;
+    private List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
     static int animationDuration = 2000;
 
-    Comm comm;
+    static Comm comm;
     Resources res;
     static final HttpTransport HTTP_TRANSPORT = AndroidHttp.newCompatibleTransport();
     static final com.google.api.client.json.JsonFactory JSON_FACTORY = new JacksonFactory();
@@ -148,6 +150,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
 
             final PlacesList result = httpResponse.parseAs(PlacesList.class);
             List<Place> places = result.results;
+            comm.updatePlaces(places);
 
             if (map != null) {
 
@@ -198,5 +201,9 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
 
             map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 250), animationDuration, null);
         }
+    }
+
+    public static void setSteps(List<DirectionsStep> steps) {
+        comm.updateSteps(steps);
     }
 }

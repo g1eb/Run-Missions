@@ -77,5 +77,6 @@ public class DirectionsFetcher extends AsyncTask<URL, Integer, String> {
         super.onPostExecute(s);
         Map.addPolyLine(latLngs);
         Map.setBounds(bounds);
+        Map.setSteps(steps);
     }
 }
