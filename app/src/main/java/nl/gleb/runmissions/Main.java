@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.os.Vibrator;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -379,6 +381,17 @@ public class Main extends ActionBarActivity
     }
 
     private void handleFeedback(DirectionsStep step) {
+        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+        if ( step.html_instructions.toLowerCase().contains("left") ) {
+            vibrator.vibrate(LEFT_PATTERN, -1);
+        } else if ( step.html_instructions.toLowerCase().contains("right") ) {
+            vibrator.vibrate(RIGHT_PATTERN, -1);
+        } else if ( step.html_instructions.toLowerCase().contains("head") ) {
+            vibrator.vibrate(ACCELERATE_PATTERN, -1);
+        } else if ( step.html_instructions.toLowerCase().contains("Continue") ) {
+            vibrator.vibrate(CLOSER_PATTERN, -1);
+        }
     }
 
     @Override
