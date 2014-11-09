@@ -373,12 +373,16 @@ public class Main extends ActionBarActivity
             userRef.child("lng").setValue(location.getLongitude());
         }
 
-        if ( !steps.isEmpty() ) {
+        if ( !steps.isEmpty() && target != null ) {
             for ( DirectionsStep step : steps ) {
                 double dist = distance(location.getLatitude(), location.getLongitude(), step.end_location.lat, step.end_location.lng);
                 if ( dist <= FEEDBACK_RANGE ) {
                     handleFeedback(step);
                 }
+            }
+            double dist = distance(location.getLatitude(), location.getLongitude(), target.geometry.location.lat, target.geometry.location.lng);
+            if ( dist <= FEEDBACK_RANGE ) {
+                handleFinish(target);
             }
         }
     }
