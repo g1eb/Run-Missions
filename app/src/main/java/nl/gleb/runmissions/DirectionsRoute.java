@@ -11,6 +11,6 @@ public class DirectionsRoute {
     @Key("bounds")
     public DirectionsBounds bounds;
 
-    @Key("Legs")
+    @Key("legs")
     public List<DirectionsLegs> legs;
 }
