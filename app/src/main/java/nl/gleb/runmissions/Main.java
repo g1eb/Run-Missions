@@ -436,6 +436,16 @@ public class Main extends ActionBarActivity
         return user;
     }
 
+    @Override
+    public void updatePlaces(List<Place> places) {
+        this.places = places;
+    }
+
+    @Override
+    public void updateSteps(List<DirectionsStep> steps) {
+        this.steps = steps;
+    }
+
     /**
      * Login the user, method invoked from the login fragment or after signup
      *
