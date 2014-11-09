@@ -158,7 +158,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                     Marker marker = map.addMarker(new MarkerOptions()
                             .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
                             .anchor((float) 0.5, (float) 0.5)
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.compass))
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.cross))
                             .title(place.name));
                     place.setMarkerId(marker.getId());
                 }
