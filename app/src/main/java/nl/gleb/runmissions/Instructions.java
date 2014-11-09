@@ -16,12 +16,6 @@ import android.widget.Button;
  */
 public class Instructions extends Fragment implements View.OnClickListener {
 
-    static final long[] LEFT_PATTERN = {0, 300, 150, 100};
-    static final long[] RIGHT_PATTERN = {0, 100, 150, 300};
-    static final long[] ACCELERATE_PATTERN = {0, 100, 100, 100, 100, 100};
-    static final long[] ERROR_PATTERN = {0, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300};
-    static final long[] CLOSER_PATTERN = {0, 100, 1000, 100, 900, 150, 800, 150, 700, 200, 600, 200, 500, 250, 400, 250, 300, 300, 200, 300, 100, 3000};
-
     Comm comm;
     private Button leftBtn, rightBtn, accelerateBtn, errorBtn, closerBtn;
 
