@@ -160,7 +160,7 @@ public class Main extends ActionBarActivity
     @Override
     protected void onStart() {
         super.onStart();
-        if (servicesConnected() && !mLocationClient.isConnected() ) {
+        if (servicesConnected() && !mLocationClient.isConnected()) {
             mLocationClient.connect();
         }
 
@@ -374,15 +374,15 @@ public class Main extends ActionBarActivity
             userRef.child("lng").setValue(location.getLongitude());
         }
 
-        if ( !steps.isEmpty() && target != null ) {
-            for ( DirectionsStep step : steps ) {
+        if (!steps.isEmpty() && target != null) {
+            for (DirectionsStep step : steps) {
                 double dist = distance(location.getLatitude(), location.getLongitude(), step.end_location.lat, step.end_location.lng);
-                if ( dist <= FEEDBACK_RANGE ) {
+                if (dist <= FEEDBACK_RANGE) {
                     handleFeedback(step);
                 }
             }
             double dist = distance(location.getLatitude(), location.getLongitude(), target.geometry.location.lat, target.geometry.location.lng);
-            if ( dist <= FINISH_RANGE ) {
+            if (dist <= FINISH_RANGE) {
                 handleFinish(target);
             }
         }
@@ -390,21 +390,22 @@ public class Main extends ActionBarActivity
 
     /**
      * Provide haptic feedback for the current state based on the html instructions
+     *
      * @param step current route step
      */
     private void handleFeedback(DirectionsStep step) {
 
-        if ( feedbackCounter == 0 ) {
+        if (feedbackCounter == 0) {
 
             Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-            if ( step.html_instructions.toLowerCase().contains("left") ) {
+            if (step.html_instructions.toLowerCase().contains("left")) {
                 vibrator.vibrate(LEFT_PATTERN, -1);
-            } else if ( step.html_instructions.toLowerCase().contains("right") ) {
+            } else if (step.html_instructions.toLowerCase().contains("right")) {
                 vibrator.vibrate(RIGHT_PATTERN, -1);
-            } else if ( step.html_instructions.toLowerCase().contains("head") ) {
+            } else if (step.html_instructions.toLowerCase().contains("head")) {
                 vibrator.vibrate(ACCELERATE_PATTERN, -1);
-            } else if ( step.html_instructions.toLowerCase().contains("Continue") ) {
+            } else if (step.html_instructions.toLowerCase().contains("Continue")) {
                 vibrator.vibrate(CLOSER_PATTERN, -1);
             }
 
@@ -416,6 +417,7 @@ public class Main extends ActionBarActivity
 
     /**
      * User is at the finish, give 'em some points
+     *
      * @param target
      */
     private void handleFinish(Place target) {
@@ -423,7 +425,7 @@ public class Main extends ActionBarActivity
         vibrator.vibrate(5000);
         Toast.makeText(this, "Congratz! +10 pts", Toast.LENGTH_LONG).show();
 
-        userRef.child("exp").setValue(user.getExp()+10);
+        userRef.child("exp").setValue(user.getExp() + 10);
     }
 
     @Override
@@ -518,15 +520,15 @@ public class Main extends ActionBarActivity
 
     @Override
     public long[] getPattern(String type) {
-        if ( type.equals("left") ) {
+        if (type.equals("left")) {
             return LEFT_PATTERN;
-        } else if ( type.equals("right") ) {
+        } else if (type.equals("right")) {
             return RIGHT_PATTERN;
-        } else if ( type.equals("accelerate") ) {
+        } else if (type.equals("accelerate")) {
             return ACCELERATE_PATTERN;
-        } else if ( type.equals("error") ) {
+        } else if (type.equals("error")) {
             return ERROR_PATTERN;
-        } else if ( type.equals("closer") ) {
+        } else if (type.equals("closer")) {
             return CLOSER_PATTERN;
         } else {
             return ACCELERATE_PATTERN;
@@ -568,7 +570,7 @@ public class Main extends ActionBarActivity
                             Double.parseDouble(dataSnapshot.child("lng").getValue().toString()));
 
                     Profile profile = (Profile) getSupportFragmentManager().findFragmentByTag("profile");
-                    if ( profile != null ) {
+                    if (profile != null) {
                         profile.setUserInfo(user);
                     }
                 } catch (NullPointerException e) {
@@ -627,6 +629,7 @@ public class Main extends ActionBarActivity
 
     /**
      * Helper method to calculate distance between two GPS points (given lat/lng)
+     *
      * @return distance in meters
      */
     private double distance(double lat1, double lon1, double lat2, double lon2) {
@@ -640,6 +643,7 @@ public class Main extends ActionBarActivity
 
     /**
      * This function converts decimal degrees to radians
+     *
      * @param deg
      * @return
      */
@@ -649,13 +653,13 @@ public class Main extends ActionBarActivity
 
     /**
      * This function converts radians to decimal degrees
+     *
      * @param rad
      * @return
      */
     private double rad2deg(double rad) {
         return (rad * 180 / Math.PI);
     }
-
 
 
     /**
