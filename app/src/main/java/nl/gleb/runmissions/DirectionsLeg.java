@@ -4,7 +4,7 @@ import com.google.api.client.util.Key;
 
 import java.util.List;
 
-public class DirectionsLegs {
+public class DirectionsLeg {
     @Key("distance")
     public DirectionsDistance distance;
 

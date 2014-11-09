@@ -54,8 +54,10 @@ public class DirectionsFetcher extends AsyncTask<URL, Integer, String> {
 
             HttpRequest request = requestFactory.buildGetRequest(url);
             HttpResponse httpResponse = request.execute();
+
             DirectionsResult directionsResult = httpResponse.parseAs(DirectionsResult.class);
             bounds = directionsResult.routes.get(0).bounds;
+
             String encodedPoints = directionsResult.routes.get(0).overviewPolyLine.points;
             latLngs = PolylineDecoder.decodePoints(encodedPoints);
         } catch (Exception ex) {

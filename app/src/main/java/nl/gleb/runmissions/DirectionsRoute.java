@@ -9,7 +9,7 @@ public class DirectionsRoute {
     public DirectionsBounds bounds;
 
     @Key("legs")
-    public List<DirectionsLegs> legs;
+    public List<DirectionsLeg> legs;
 
     @Key("overview_polyline")
     public OverviewPolyLine overviewPolyLine;
