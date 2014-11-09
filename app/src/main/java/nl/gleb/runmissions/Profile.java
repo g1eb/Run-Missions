@@ -37,18 +37,19 @@ public class Profile extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        User user = comm.getUser();
+        level = (TextView) getActivity().findViewById(R.id.level);
+        exp = (TextView) getActivity().findViewById(R.id.exp);
+        missions = (TextView) getActivity().findViewById(R.id.missions);
+        username = (TextView) getActivity().findViewById(R.id.username);
+
+        setUserInfo(comm.getUser());
+    }
+
+    public void setUserInfo(User user) {
         if (user != null) {
-            level = (TextView) getActivity().findViewById(R.id.level);
             level.setText("Lvl " + user.getLevel());
-
-            exp = (TextView) getActivity().findViewById(R.id.exp);
             exp.setText("Exp " + user.getExp());
-
-            missions = (TextView) getActivity().findViewById(R.id.missions);
             missions.setText("Missions " + user.getMissions());
-
-            username = (TextView) getActivity().findViewById(R.id.username);
             username.setText(user.getUsername());
         }
     }
