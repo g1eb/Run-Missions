@@ -18,6 +18,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
@@ -406,6 +407,17 @@ public class Main extends ActionBarActivity
         }
 
         feedbackCounter--;
+    }
+
+    /**
+     * User is at the finish, give 'em some points
+     * @param target
+     */
+    private void handleFinish(Place target) {
+        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(5000);
+        Toast.makeText(this, "Congratz! +10 pts", Toast.LENGTH_LONG).show();
+
     }
 
     @Override
