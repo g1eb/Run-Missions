@@ -355,6 +355,18 @@ public class Main extends ActionBarActivity
             userRef.child("lat").setValue(location.getLatitude());
             userRef.child("lng").setValue(location.getLongitude());
         }
+
+        if ( !steps.isEmpty() ) {
+            for ( DirectionsStep step : steps ) {
+                double dist = distance(location.getLatitude(), location.getLongitude(), step.end_location.lat, step.end_location.lng);
+                if ( dist <= FEEDBACK_RANGE ) {
+                    handleFeedback(step);
+                }
+            }
+        }
+    }
+
+    private void handleFeedback(DirectionsStep step) {
     }
 
     @Override
