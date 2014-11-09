@@ -3,6 +3,12 @@ package nl.gleb.runmissions;
 import com.google.api.client.util.Key;
 
 public class DirectionsStep {
+    @Key("distance")
+    public DirectionsDistance distance;
+
+    @Key("duration")
+    public DirectionsDuration duration;
+
     @Key("start_location")
     public PlaceLocation start_location;
 
@@ -11,10 +17,4 @@ public class DirectionsStep {
 
     @Key("html_instructions")
     public String html_instructions;
-
-    @Key("distance")
-    public DirectionsDistance distance;
-
-    @Key("duration")
-    public DirectionsDuration duration;
 }
