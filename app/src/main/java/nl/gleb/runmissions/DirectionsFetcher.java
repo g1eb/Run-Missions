@@ -29,6 +29,7 @@ public class DirectionsFetcher extends AsyncTask<URL, Integer, String> {
     HttpRequestFactory requestFactory;
 
     private List<LatLng> latLngs = new ArrayList<LatLng>();
+    private List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
     private DirectionsBounds bounds;
 
     Location origin;
@@ -61,6 +62,7 @@ public class DirectionsFetcher extends AsyncTask<URL, Integer, String> {
 
             DirectionsResult directionsResult = httpResponse.parseAs(DirectionsResult.class);
             bounds = directionsResult.routes.get(0).bounds;
+            steps = directionsResult.routes.get(0).legs.get(0).steps;
 
             String encodedPoints = directionsResult.routes.get(0).overviewPolyLine.points;
             latLngs = PolylineDecoder.decodePoints(encodedPoints);

@@ -166,8 +166,8 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                             route.remove(); // Remove previous route from the map if it exists
                         }
 
-                        Place place = result.getPlace(marker.getId());
-                        new DirectionsFetcher(location, place).execute();
+                        Place target = result.getPlace(marker.getId());
+                        new DirectionsFetcher(location, target).execute();
 
                         return false;
                     }
