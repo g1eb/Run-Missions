@@ -90,6 +90,7 @@ public class Main extends ActionBarActivity
     Place target;
     List<Place> places = new ArrayList<Place>();
     List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
+    int feedbackCounter = 0;
 
     // Chat
     private ChatListAdapter chatListAdapter;
@@ -382,17 +383,25 @@ public class Main extends ActionBarActivity
     }
 
     private void handleFeedback(DirectionsStep step) {
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-        if ( step.html_instructions.toLowerCase().contains("left") ) {
-            vibrator.vibrate(LEFT_PATTERN, -1);
-        } else if ( step.html_instructions.toLowerCase().contains("right") ) {
-            vibrator.vibrate(RIGHT_PATTERN, -1);
-        } else if ( step.html_instructions.toLowerCase().contains("head") ) {
-            vibrator.vibrate(ACCELERATE_PATTERN, -1);
-        } else if ( step.html_instructions.toLowerCase().contains("Continue") ) {
-            vibrator.vibrate(CLOSER_PATTERN, -1);
+        if ( feedbackCounter == 0 ) {
+
+            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+            if ( step.html_instructions.toLowerCase().contains("left") ) {
+                vibrator.vibrate(LEFT_PATTERN, -1);
+            } else if ( step.html_instructions.toLowerCase().contains("right") ) {
+                vibrator.vibrate(RIGHT_PATTERN, -1);
+            } else if ( step.html_instructions.toLowerCase().contains("head") ) {
+                vibrator.vibrate(ACCELERATE_PATTERN, -1);
+            } else if ( step.html_instructions.toLowerCase().contains("Continue") ) {
+                vibrator.vibrate(CLOSER_PATTERN, -1);
+            }
+
+            feedbackCounter = 3;
         }
+
+        feedbackCounter--;
     }
 
     @Override
