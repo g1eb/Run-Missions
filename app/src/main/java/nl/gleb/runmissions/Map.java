@@ -18,16 +18,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.api.client.extensions.android.http.AndroidHttp;
-import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpRequestInitializer;
-import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonObjectParser;
 import com.google.api.client.json.jackson.JacksonFactory;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +42,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
 
     static Comm comm;
     Resources res;
+    static Location location;
     static final HttpTransport HTTP_TRANSPORT = AndroidHttp.newCompatibleTransport();
     static final com.google.api.client.json.JsonFactory JSON_FACTORY = new JacksonFactory();
 
@@ -132,54 +130,38 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         setupMap();
     }
 
-    /*
-     * Get places of interest around the user
-     */
     public void getPlaces() {
-        final Location location = ((Main) getActivity()).mCurrentLocation;
+        location = ((Main) getActivity()).mCurrentLocation;
+        new PlacesFetcher(location).execute();
+    }
 
-        GenericUrl url = new GenericUrl("https://maps.googleapis.com/maps/api/place/nearbysearch/json");
-        url.put("key", "AIzaSyCbFFLGTKvJh_on6sRgwp0mcz0Rl-B_ijk");
-        url.put("location", location.getLatitude() + "," + location.getLongitude());
-        url.put("radius", 5000);
+    public static void addPlaces(final PlacesList places) {
+        comm.updatePlaces(places.results);
 
-        HttpRequest request;
-        try {
-            request = requestFactory.buildGetRequest(url);
-            HttpResponse httpResponse = request.execute();
-
-            final PlacesList result = httpResponse.parseAs(PlacesList.class);
-            List<Place> places = result.results;
-            comm.updatePlaces(places);
-
-            if (map != null) {
-
-                for (Place place : places) {
-                    Marker marker = map.addMarker(new MarkerOptions()
-                            .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
-                            .anchor((float) 0.5, (float) 0.5)
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.cross))
-                            .title(place.name));
-                    place.setMarkerId(marker.getId());
-                }
-                map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                    @Override
-                    public boolean onMarkerClick(Marker marker) {
-
-                        if (route != null) {
-                            route.remove(); // Remove previous route from the map if it exists
-                        }
-
-                        Place target = result.getPlace(marker.getId());
-                        comm.setTarget(target);
-                        new DirectionsFetcher(location, target).execute();
-
-                        return false;
-                    }
-                });
+        if (map != null) {
+            for (Place place : places.results) {
+                Marker marker = map.addMarker(new MarkerOptions()
+                        .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
+                        .anchor((float) 0.5, (float) 0.5)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.cross))
+                        .title(place.name));
+                place.setMarkerId(marker.getId());
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+
+                    if (route != null) {
+                        route.remove(); // Remove previous route from the map if it exists
+                    }
+
+                    Place target = places.getPlace(marker.getId());
+                    comm.setTarget(target);
+                    new DirectionsFetcher(location, target).execute();
+
+                    return false;
+                }
+            });
         }
     }
 
