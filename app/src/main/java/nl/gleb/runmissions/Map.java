@@ -139,6 +139,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         comm.updatePlaces(places);
 
         if (map != null) {
+            map.clear();
             for (Place place : Main.places.results) {
                 Marker marker = map.addMarker(new MarkerOptions()
                         .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
