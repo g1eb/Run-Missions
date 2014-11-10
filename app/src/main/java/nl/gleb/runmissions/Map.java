@@ -139,7 +139,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         comm.updatePlaces(places);
 
         if (map != null) {
-            for (Place place : places.results) {
+            for (Place place : Main.places.results) {
                 Marker marker = map.addMarker(new MarkerOptions()
                         .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
                         .anchor((float) 0.5, (float) 0.5)
@@ -147,6 +147,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                         .title(place.name));
                 place.setMarkerId(marker.getId());
             }
+
             map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
                 public boolean onMarkerClick(Marker marker) {
@@ -155,7 +156,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                         route.remove(); // Remove previous route from the map if it exists
                     }
 
-                    Place target = places.getPlace(marker.getId());
+                    Place target = Main.places.getPlace(marker.getId());
                     comm.setTarget(target);
                     new DirectionsFetcher(location, target).execute();
 
