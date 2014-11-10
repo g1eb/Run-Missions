@@ -91,7 +91,7 @@ public class Main extends ActionBarActivity
 
     // Checkpoints
     Place target;
-    List<Place> places = new ArrayList<Place>();
+    static PlacesList places;
     List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
     int feedbackCounter = 0;
 
@@ -509,7 +509,7 @@ public class Main extends ActionBarActivity
     }
 
     @Override
-    public void updatePlaces(List<Place> places) {
+    public void updatePlaces(PlacesList places) {
         this.places = places;
     }
 

@@ -136,7 +136,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     }
 
     public static void addPlaces(final PlacesList places) {
-        comm.updatePlaces(places.results);
+        comm.updatePlaces(places);
 
         if (map != null) {
             for (Place place : places.results) {
