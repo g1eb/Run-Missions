@@ -82,6 +82,7 @@ public class Main extends ActionBarActivity
     // Firebase
     private Firebase ref;
     static Firebase userRef;
+    static Firebase usersRef;
     static Firebase chatRef;
     private AuthData authData;
     ProgressDialog mAuthProgressDialog;
@@ -117,6 +118,7 @@ public class Main extends ActionBarActivity
         Firebase.setAndroidContext(getApplicationContext());
         ref = new Firebase(getString(R.string.firebase_ref));
         chatRef = ref.child("chat");
+        usersRef = ref.child("users");
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
