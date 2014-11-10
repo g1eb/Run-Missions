@@ -66,8 +66,8 @@ public class DirectionsFetcher extends AsyncTask<URL, Integer, String> {
 
             String encodedPoints = directionsResult.routes.get(0).overviewPolyLine.points;
             latLngs = PolylineDecoder.decodePoints(encodedPoints);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }
