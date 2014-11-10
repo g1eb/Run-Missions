@@ -98,7 +98,13 @@ public class NavigationDrawerFragment extends Fragment {
 
         mDrawerListView.setAdapter(new NavDrawerItemListAdapter(
                 getActionBar().getThemedContext(),
-                new Integer[]{R.drawable.ic_action_profile}
+                new Integer[]{
+                        R.drawable.ic_action_user,
+                        R.drawable.ic_action_map,
+                        R.drawable.ic_action_chat,
+                        R.drawable.ic_action_fav,
+                        R.drawable.ic_action_settings
+                }
         ));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 
