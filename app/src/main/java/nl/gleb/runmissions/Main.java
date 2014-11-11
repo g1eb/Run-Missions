@@ -486,7 +486,7 @@ public class Main extends ActionBarActivity
 
     @Override
     public void openSignup() {
-        lockDrawerHideActionBar();
+        lockDrawer();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
@@ -526,20 +526,18 @@ public class Main extends ActionBarActivity
         handleLogin(email, password);
     }
 
-    /*
-     * Lock the nav drawer and hide the action bar
+    /**
+     * Lock the nav drawer
      */
-    public void lockDrawerHideActionBar() {
+    public void lockDrawer() {
         drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        getSupportActionBar().hide();
     }
 
-    /*
-     * Unlock the nav drawer and show the action bar
+    /**
+     * Unlock the nav drawer
      */
-    public void unlockDrawerShowActionBar() {
+    public void unlockDrawer() {
         drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-        getSupportActionBar().show();
     }
 
     @Override
@@ -635,7 +633,7 @@ public class Main extends ActionBarActivity
     }
 
     public void openLoginFragment() {
-        lockDrawerHideActionBar();
+        lockDrawer();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
@@ -643,7 +641,7 @@ public class Main extends ActionBarActivity
     }
 
     public void openMapFragment() {
-        unlockDrawerShowActionBar();
+        unlockDrawer();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
