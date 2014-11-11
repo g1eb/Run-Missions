@@ -301,6 +301,9 @@ public class Main extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Open the settings fragment
+     */
     private void openSettings() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
