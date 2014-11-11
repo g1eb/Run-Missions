@@ -186,8 +186,8 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         if (map != null) {
             routeOptions = new PolylineOptions()
                     .visible(true)
-                    .color(Color.GRAY)
-                    .width(5)
+                    .color(new Color().parseColor("#c21d2b"))
+                    .width(15)
                     .zIndex(30);
             routeOptions.addAll(points);
             route = map.addPolyline(routeOptions);
