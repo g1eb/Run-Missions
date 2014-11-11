@@ -183,6 +183,49 @@ public class Main extends ActionBarActivity
                 Log.d("MAIN", "Firebase chat listener disconnected");
             }
         });
+
+        usersRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if ( user != null ) {
+                    Iterable<DataSnapshot> users = dataSnapshot.getChildren();
+                    for (DataSnapshot u : users ) {
+                        if ( !user.getUsername().equals(u.child("username").getValue()) ){
+                            updateUsersLocation(u);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.d("MAIN", "Firebase users listener disconnected");
+            }
+        });
+    }
+
+    /**
+     * Update other users location on the map
+     * @param ds DataSnapshotnof changed user model
+     */
+    private void updateUsersLocation(DataSnapshot ds) {
+        try {
+            User user = new User(ds.child("email").getValue().toString(),
+                    ds.child("username").getValue().toString(),
+                    Integer.parseInt(ds.child("level").getValue().toString()),
+                    Integer.parseInt(ds.child("exp").getValue().toString()),
+                    Integer.parseInt(ds.child("missions").getValue().toString()),
+                    Double.parseDouble(ds.child("lat").getValue().toString()),
+                    Double.parseDouble(ds.child("lng").getValue().toString()));
+
+            Map map = (Map) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_map));
+            if (map != null) {
+                map.updateUsersPosition(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -220,7 +263,7 @@ public class Main extends ActionBarActivity
                 ft.replace(R.id.container, Profile.newInstance(), getString(R.string.title_profile)).commit();
                 break;
             case 1:
-                ft.replace(R.id.container, Map.newInstance()).commit();
+                ft.replace(R.id.container, Map.newInstance(), getString(R.string.title_map)).commit();
                 break;
             case 2:
                 ft.replace(R.id.container, Chat.newInstance(user.getUsername())).commit();
