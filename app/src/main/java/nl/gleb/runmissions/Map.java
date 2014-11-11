@@ -41,8 +41,8 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     private List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
     static int animationDuration = 2000;
 
-    private HashMap<String, Marker> placesMapping = new HashMap<String, Marker>();
-    private HashMap<String, Marker> usersMapping = new HashMap<String, Marker>();
+    private HashMap<String, Marker> placesMarkers = new HashMap<String, Marker>();
+    private HashMap<String, Marker> usersMarkers = new HashMap<String, Marker>();
 
     static Comm comm;
     Resources res;
@@ -198,10 +198,10 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     }
 
     public void updateUsersPosition(User user) {
-        if (usersMapping.containsKey(user.getUsername())) {
-            usersMapping.get(user.getUsername()).setPosition(new LatLng(user.getLat(), user.getLng()));
+        if (usersMarkers.containsKey(user.getUsername())) {
+            usersMarkers.get(user.getUsername()).setPosition(new LatLng(user.getLat(), user.getLng()));
         } else {
-            usersMapping.put(user.getUsername(), map.addMarker(new MarkerOptions()
+            usersMarkers.put(user.getUsername(), map.addMarker(new MarkerOptions()
                     .position(new LatLng(user.getLat(), user.getLng()))
                     .anchor((float) 0.5, (float) 0.5)
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_user))
