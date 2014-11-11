@@ -255,6 +255,12 @@ public class Main extends ActionBarActivity
             case 4:
                 ft.replace(R.id.container, Instructions.newInstance()).commit();
                 break;
+            case 5:
+                ft.replace(R.id.container, Settings.newInstance()).commit();
+                break;
+            case 6:
+                logout();
+                break;
         }
     }
 
