@@ -126,6 +126,24 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                 .build();
         map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), animationDuration, null);
 
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+
+                if (route != null) {
+                    route.remove(); // Remove previous route from the map if it exists
+                }
+
+                Place target = Main.places.getPlace(marker.getId());
+                if (target != null) {
+                    comm.setTarget(target);
+                    new DirectionsFetcher(((Main) getActivity()).mCurrentLocation, target).execute();
+                }
+
+                return false;
+            }
+        });
+
         getPlaces();
     }
 
@@ -157,22 +175,6 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                     placesMarkers.put(place.id, marker);
                 }
             }
-
-            map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                @Override
-                public boolean onMarkerClick(Marker marker) {
-
-                    if (route != null) {
-                        route.remove(); // Remove previous route from the map if it exists
-                    }
-
-                    Place target = Main.places.getPlace(marker.getId());
-                    comm.setTarget(target);
-                    new DirectionsFetcher(location, target).execute();
-
-                    return false;
-                }
-            });
         }
     }
 
