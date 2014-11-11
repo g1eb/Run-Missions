@@ -105,6 +105,9 @@ public class Main extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Hide the action bar
+        getSupportActionBar().hide();
+
         // Enable strict mode (for the network connection)
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
