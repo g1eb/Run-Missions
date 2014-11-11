@@ -289,22 +289,19 @@ public class Main extends ActionBarActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+
         int id = item.getItemId();
         switch (id) {
             case R.id.action_settings:
-                openSettings();
+                ft.replace(R.id.container, Settings.newInstance()).commit();
                 break;
             case R.id.action_logout:
                 logout();
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void openSettings() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.replace(R.id.container, Settings.newInstance()).commit();
     }
 
     @Override
