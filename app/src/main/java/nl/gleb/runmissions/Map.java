@@ -196,4 +196,17 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     public static void setSteps(List<DirectionsStep> steps) {
         comm.updateSteps(steps);
     }
+
+    public void updateUsersPosition(User user) {
+        if (usersMapping.containsKey(user.getUsername())) {
+            usersMapping.get(user.getUsername()).setPosition(new LatLng(user.getLat(), user.getLng()));
+        } else {
+            usersMapping.put(user.getUsername(), map.addMarker(new MarkerOptions()
+                    .position(new LatLng(user.getLat(), user.getLng()))
+                    .anchor((float) 0.5, (float) 0.5)
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_user))
+                    .title(user.getUsername())));
+        }
+    }
+
 }
