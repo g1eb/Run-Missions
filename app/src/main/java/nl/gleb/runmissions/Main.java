@@ -195,7 +195,7 @@ public class Main extends ActionBarActivity
                 if ( user != null ) {
                     Iterable<DataSnapshot> users = dataSnapshot.getChildren();
                     for (DataSnapshot u : users ) {
-                        if ( !user.getUsername().equals(u.child("username").getValue()) ){
+                        if ( !user.getUsername().equals(u.child("username").getValue().toString()) ){
                             updateUsersLocation(u);
                         }
                     }
