@@ -655,7 +655,7 @@ public class Main extends ActionBarActivity
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.replace(R.id.container, Map.newInstance()).commit();
+        ft.replace(R.id.container, Map.newInstance(), getString(R.string.title_map)).commit();
     }
 
     /**
