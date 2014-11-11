@@ -78,4 +78,7 @@
     <string name="label_distance">Preferred distance (km)</string>
     <string name="label_events">Number of events</string>
 
+    <!-- Miscellaneous -->
+    <string name="nav_drawer_background">#80FFFFFF</string>
+
 </resources>

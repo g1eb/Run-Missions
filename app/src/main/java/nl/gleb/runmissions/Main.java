@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -147,10 +148,10 @@ public class Main extends ActionBarActivity
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
-        // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+        // Set up the drawer
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.setScrimColor(Color.parseColor(getString(R.string.nav_drawer_scrim)));
+        mNavigationDrawerFragment.setUp(R.id.navigation_drawer, drawer);
 
         mLocationClient = new LocationClient(this, this, this);
         mUpdatesRequested = false;
