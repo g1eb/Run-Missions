@@ -208,29 +208,6 @@ public class Main extends ActionBarActivity
         });
     }
 
-    /**
-     * Update other users location on the map
-     * @param ds DataSnapshotnof changed user model
-     */
-    private void updateUsersLocation(DataSnapshot ds) {
-        try {
-            User user = new User(ds.child("email").getValue().toString(),
-                    ds.child("username").getValue().toString(),
-                    Integer.parseInt(ds.child("level").getValue().toString()),
-                    Integer.parseInt(ds.child("exp").getValue().toString()),
-                    Integer.parseInt(ds.child("missions").getValue().toString()),
-                    Double.parseDouble(ds.child("lat").getValue().toString()),
-                    Double.parseDouble(ds.child("lng").getValue().toString()));
-
-            Map map = (Map) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_map));
-            if (map != null) {
-                map.updateUsersPosition(user);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -474,6 +451,29 @@ public class Main extends ActionBarActivity
         Toast.makeText(this, "Congratz! +10 pts", Toast.LENGTH_LONG).show();
 
         userRef.child("exp").setValue(user.getExp() + 10);
+    }
+
+    /**
+     * Update other users location on the map
+     * @param ds DataSnapshotnof changed user model
+     */
+    private void updateUsersLocation(DataSnapshot ds) {
+        try {
+            User user = new User(ds.child("email").getValue().toString(),
+                    ds.child("username").getValue().toString(),
+                    Integer.parseInt(ds.child("level").getValue().toString()),
+                    Integer.parseInt(ds.child("exp").getValue().toString()),
+                    Integer.parseInt(ds.child("missions").getValue().toString()),
+                    Double.parseDouble(ds.child("lat").getValue().toString()),
+                    Double.parseDouble(ds.child("lng").getValue().toString()));
+
+            Map map = (Map) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_map));
+            if (map != null) {
+                map.updateUsersPosition(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
