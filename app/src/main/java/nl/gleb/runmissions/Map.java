@@ -41,7 +41,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     private List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
     static int animationDuration = 2000;
 
-    private HashMap<String, Marker> placesMarkers = new HashMap<String, Marker>();
+    private static HashMap<String, Marker> placesMarkers = new HashMap<String, Marker>();
     private HashMap<String, Marker> usersMarkers = new HashMap<String, Marker>();
 
     static Comm comm;
@@ -143,14 +143,19 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         comm.updatePlaces(places);
 
         if (map != null) {
-            map.clear();
             for (Place place : Main.places.results) {
-                Marker marker = map.addMarker(new MarkerOptions()
-                        .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
-                        .anchor((float) 0.5, (float) 0.5)
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.cross))
-                        .title(place.name));
-                place.setMarkerId(marker.getId());
+                if (placesMarkers.containsKey(place.id)) {
+                    Marker marker = placesMarkers.get(place.id);
+                    place.setMarkerId(marker.getId());
+                } else {
+                    Marker marker = map.addMarker(new MarkerOptions()
+                            .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
+                            .anchor((float) 0.5, (float) 0.5)
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.cross))
+                            .title(place.name));
+                    place.setMarkerId(marker.getId());
+                    placesMarkers.put(place.id, marker);
+                }
             }
 
             map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
