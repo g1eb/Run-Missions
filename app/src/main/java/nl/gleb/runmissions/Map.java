@@ -26,6 +26,7 @@ import com.google.api.client.json.JsonObjectParser;
 import com.google.api.client.json.jackson.JacksonFactory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -39,6 +40,9 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     static PolylineOptions routeOptions;
     private List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
     static int animationDuration = 2000;
+
+    private HashMap<String, Marker> placesMapping = new HashMap<String, Marker>();
+    private HashMap<String, Marker> usersMapping = new HashMap<String, Marker>();
 
     static Comm comm;
     Resources res;
