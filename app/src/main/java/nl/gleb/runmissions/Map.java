@@ -163,19 +163,23 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         if (map != null) {
             for (Place place : Main.places.results) {
                 if (placesMarkers.containsKey(place.id)) {
-                    Marker marker = placesMarkers.get(place.id);
-                    place.setMarkerId(marker.getId());
+                    placesMarkers.get(place.id).remove();
+                    addPlaceMarker(place);
                 } else {
-                    Marker marker = map.addMarker(new MarkerOptions()
-                            .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
-                            .anchor((float) 0.5, (float) 0.5)
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.cross))
-                            .title(place.name));
-                    place.setMarkerId(marker.getId());
-                    placesMarkers.put(place.id, marker);
+                    addPlaceMarker(place);
                 }
             }
         }
+    }
+
+    private static void addPlaceMarker(Place place) {
+        Marker marker = map.addMarker(new MarkerOptions()
+                .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
+                .anchor((float) 0.5, (float) 0.5)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.cross))
+                .title(place.name));
+        place.setMarkerId(marker.getId());
+        placesMarkers.put(place.id, marker);
     }
 
     public static void addPolyLine(List<LatLng> points) {
@@ -206,14 +210,18 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
 
     public void updateUsersPosition(User user) {
         if (usersMarkers.containsKey(user.getUsername())) {
-            usersMarkers.get(user.getUsername()).setPosition(new LatLng(user.getLat(), user.getLng()));
+            usersMarkers.get(user.getUsername()).remove();
+            addUserMarker(user);
         } else {
-            usersMarkers.put(user.getUsername(), map.addMarker(new MarkerOptions()
-                    .position(new LatLng(user.getLat(), user.getLng()))
-                    .anchor((float) 0.5, (float) 0.5)
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_user))
-                    .title(user.getUsername())));
+            addUserMarker(user);
         }
     }
 
+    private void addUserMarker(User user) {
+        usersMarkers.put(user.getUsername(), map.addMarker(new MarkerOptions()
+                .position(new LatLng(user.getLat(), user.getLng()))
+                .anchor((float) 0.5, (float) 0.5)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_user))
+                .title(user.getUsername())));
+    }
 }
