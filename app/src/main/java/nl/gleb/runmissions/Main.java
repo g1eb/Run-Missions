@@ -150,7 +150,7 @@ public class Main extends ActionBarActivity
 
         // Set up the drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.setScrimColor(Color.parseColor(getString(R.string.nav_drawer_scrim)));
+        drawer.setScrimColor(Color.parseColor(getString(R.string.nav_drawer_background)));
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, drawer);
 
         mLocationClient = new LocationClient(this, this, this);
