@@ -192,10 +192,10 @@ public class Main extends ActionBarActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                if ( user != null ) {
+                if (user != null) {
                     Iterable<DataSnapshot> users = dataSnapshot.getChildren();
-                    for (DataSnapshot u : users ) {
-                        if ( !user.getUsername().equals(u.child("username").getValue().toString()) ){
+                    for (DataSnapshot u : users) {
+                        if (!user.getUsername().equals(u.child("username").getValue().toString())) {
                             updateUsersLocation(u);
                         }
                     }
@@ -465,6 +465,7 @@ public class Main extends ActionBarActivity
 
     /**
      * Update other users location on the map
+     *
      * @param ds DataSnapshotnof changed user model
      */
     private void updateUsersLocation(DataSnapshot ds) {
