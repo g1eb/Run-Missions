@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.graphics.Color;
@@ -471,15 +470,15 @@ public class Main extends ActionBarActivity
         // Update new exp value to firebase
         userRef.child("exp").setValue(exp);
 
-        int level = (int) (Math.sqrt(100 * ( 2 * exp + 25)) + 50) / 100;
-        if ( level > user.getLevel() ) {
+        int level = (int) (Math.sqrt(100 * (2 * exp + 25)) + 50) / 100;
+        if (level > user.getLevel()) {
             // Update new level value to firebase
             userRef.child("level").setValue(level);
 
             // Show level up dialog
             new AlertDialog.Builder(this)
                     .setTitle(getString(R.string.level_up_dialog_title))
-                    .setMessage(getString(R.string.level_up_dialog_message)+" "+level+"!!")
+                    .setMessage(getString(R.string.level_up_dialog_message) + " " + level + "!!")
                     .setIcon(R.drawable.ic_action_fav)
                     .setCancelable(true)
                     .show();
