@@ -157,11 +157,11 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         new PlacesFetcher(location).execute();
     }
 
-    public static void addPlaces(final PlacesList places) {
+    public static void addPlaces(PlacesList places) {
         comm.updatePlaces(places);
 
         if (map != null) {
-            for (Place place : Main.places.results) {
+            for (Place place : places.results) {
                 if (placesMarkers.containsKey(place.id)) {
                     placesMarkers.get(place.id).remove();
                     addPlaceMarker(place);
