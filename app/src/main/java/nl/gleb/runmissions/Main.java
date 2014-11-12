@@ -90,6 +90,7 @@ public class Main extends ActionBarActivity
 
     // Profile
     User user = null;
+    private ProgressDialog levelUpDialog;
 
     // Checkpoints
     Place target;
@@ -461,9 +462,21 @@ public class Main extends ActionBarActivity
     private void handleFinish(Place target) {
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(5000);
-        Toast.makeText(this, "Congratz! +10 pts", Toast.LENGTH_LONG).show();
 
-        userRef.child("exp").setValue(user.getExp() + 10);
+        int points = 10 * user.getLevel();
+        Toast.makeText(this, "Congratz! +" + points + " pts.", Toast.LENGTH_LONG).show();
+
+        userRef.child("exp").setValue(user.getExp() + points);
+
+        if ( user.getExp() + points % 100 == 0 ) {
+            // Level up
+
+            levelUpDialog = new ProgressDialog(this);
+            levelUpDialog.setTitle(getString(R.string.level_up_dialog_title));
+            levelUpDialog.setMessage(getString(R.string.level_up_dialog_message)+"!!");
+            levelUpDialog.setCancelable(false);
+            Toast.makeText(this, "Congratz! +" + points + " pts.", Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
