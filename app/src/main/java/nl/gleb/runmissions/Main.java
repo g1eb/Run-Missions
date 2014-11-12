@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.graphics.Color;
@@ -90,7 +91,6 @@ public class Main extends ActionBarActivity
 
     // Profile
     User user = null;
-    private ProgressDialog levelUpDialog;
 
     // Checkpoints
     Place target;
@@ -477,10 +477,12 @@ public class Main extends ActionBarActivity
             userRef.child("level").setValue(level);
 
             // Show level up dialog
-            levelUpDialog = new ProgressDialog(this);
-            levelUpDialog.setTitle(getString(R.string.level_up_dialog_title));
-            levelUpDialog.setMessage(getString(R.string.level_up_dialog_message)+"!!");
-            levelUpDialog.setCancelable(false);
+            new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.level_up_dialog_title))
+                    .setMessage(getString(R.string.level_up_dialog_message)+" "+level+"!!")
+                    .setIcon(R.drawable.ic_action_fav)
+                    .setCancelable(true)
+                    .show();
         }
     }
 
