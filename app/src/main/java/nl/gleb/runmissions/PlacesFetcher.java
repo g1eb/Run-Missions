@@ -62,6 +62,10 @@ public class PlacesFetcher extends AsyncTask<URL, Integer, String> {
             url.put("location", location.getLatitude() + "," + location.getLongitude());
             url.put("radius", 5000);
 
+            if ( next_page_token != null && !next_page_token.equals("") ) {
+                url.put("pagetoken", places.next_page_token);
+            }
+
             HttpRequest request = requestFactory.buildGetRequest(url);
             HttpResponse httpResponse = request.execute();
             places = httpResponse.parseAs(PlacesList.class);
