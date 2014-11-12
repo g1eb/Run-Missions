@@ -457,14 +457,14 @@ public class Main extends ActionBarActivity
     /**
      * User is at the finish, give 'em some points
      *
-     * @param target
+     * @param place
      */
-    private void handleFinish(Place target) {
+    private void handleFinish(Place place) {
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(5000);
 
         int points = 10 * user.getLevel();
-        Toast.makeText(this, "Congratz! +" + points + " pts.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Congratz! +" + points + " pts. (@" + place.name + ")", Toast.LENGTH_LONG).show();
 
         int exp = user.getExp() + points;
 
