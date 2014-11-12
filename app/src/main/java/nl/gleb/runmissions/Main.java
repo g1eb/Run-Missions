@@ -466,16 +466,21 @@ public class Main extends ActionBarActivity
         int points = 10 * user.getLevel();
         Toast.makeText(this, "Congratz! +" + points + " pts.", Toast.LENGTH_LONG).show();
 
-        userRef.child("exp").setValue(user.getExp() + points);
+        int exp = user.getExp() + points;
 
-        if ( user.getExp() + points % 100 == 0 ) {
-            // Level up
+        // Update new exp value to firebase
+        userRef.child("exp").setValue(exp);
 
+        int level = (int) (Math.sqrt(100 * ( 2 * exp + 25)) + 50) / 100;
+        if ( level > user.getLevel() ) {
+            // Update new level value to firebase
+            userRef.child("level").setValue(level);
+
+            // Show level up dialog
             levelUpDialog = new ProgressDialog(this);
             levelUpDialog.setTitle(getString(R.string.level_up_dialog_title));
             levelUpDialog.setMessage(getString(R.string.level_up_dialog_message)+"!!");
             levelUpDialog.setCancelable(false);
-            Toast.makeText(this, "Congratz! +" + points + " pts.", Toast.LENGTH_LONG).show();
         }
     }
 
