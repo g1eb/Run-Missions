@@ -101,6 +101,9 @@ public class Main extends ActionBarActivity
     private ChatListAdapter chatListAdapter;
     private ValueEventListener connectedListener;
 
+    // Settings
+    int feedbackRate = 3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -444,7 +447,7 @@ public class Main extends ActionBarActivity
                 vibrator.vibrate(CLOSER_PATTERN, -1);
             }
 
-            feedbackCounter = 3;
+            feedbackCounter = feedbackRate;
         }
 
         feedbackCounter--;
