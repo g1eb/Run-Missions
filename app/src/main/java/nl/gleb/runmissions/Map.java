@@ -93,6 +93,11 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         map = null;
     }
 
+    @Override
+    public void onMapLoaded() {
+        setupMap();
+    }
+
     private void initMap() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (map == null) {
@@ -145,11 +150,6 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         });
 
         getPlaces();
-    }
-
-    @Override
-    public void onMapLoaded() {
-        setupMap();
     }
 
     public void getPlaces() {
