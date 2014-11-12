@@ -72,8 +72,8 @@
     <string name="haptic_test_title">Tap on the buttons below to familiarize with haptic signals</string>
     <string name="haptic_button_left">Left ( - . )</string>
     <string name="haptic_button_right">Right ( . - )</string>
-    <string name="haptic_button_accelerate">Accelerate ( . . . )</string>
-    <string name="haptic_button_error">Wrong Direction ( - . - . - . )</string>
+    <string name="haptic_button_accelerate">Sprint ( . . . )</string>
+    <string name="haptic_button_error">Wrong Direction ( - . - . - . - . - .)</string>
     <string name="haptic_button_closer">Getting Closer( . . ...--- )</string>
 
     <!--Settings-->
