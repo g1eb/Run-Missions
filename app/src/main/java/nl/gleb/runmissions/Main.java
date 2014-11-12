@@ -592,7 +592,12 @@ public class Main extends ActionBarActivity
 
     @Override
     public void updatePlaces(PlacesList places) {
-        this.places = places;
+        if ( this.places != null ) {
+            this.places.results.addAll(places.results);
+        } else {
+            this.places = places;
+        }
+        Log.e("MAIN", "places list update to size: "+this.places.results.size());
     }
 
     @Override
