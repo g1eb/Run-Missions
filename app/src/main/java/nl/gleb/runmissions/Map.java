@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * Created by Gleb on 29/10/14.
  */
-public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCallback {
+public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCallback, GoogleMap.OnCameraChangeListener {
 
 
     private static GoogleMap map;
@@ -98,6 +98,10 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         setupMap();
     }
 
+    @Override
+    public void onCameraChange(CameraPosition cameraPosition) {
+    }
+
     private void initMap() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (map == null) {
@@ -110,6 +114,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                 map.setTrafficEnabled(false);
                 map.setIndoorEnabled(true);
                 map.setOnMapLoadedCallback(this);
+                map.setOnCameraChangeListener(this);
                 map.setBuildingsEnabled(false);
                 map.getUiSettings().setZoomControlsEnabled(false);
                 map.getUiSettings().setCompassEnabled(false);
