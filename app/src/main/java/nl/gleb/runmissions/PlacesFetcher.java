@@ -33,10 +33,16 @@ public class PlacesFetcher extends AsyncTask<URL, Integer, String> {
     private DirectionsBounds bounds;
 
     Location location;
+    String next_page_token;
     PlacesList places;
 
     public PlacesFetcher(Location location) {
         this.location = location;
+    }
+
+    public PlacesFetcher(Location location, String next_page_token) {
+        this.location = location;
+        this.next_page_token = next_page_token;
     }
 
     @Override
