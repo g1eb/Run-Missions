@@ -117,7 +117,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         Resources res = getResources();
 
         // Center the map on the current position of the user
-        Location location = ((Main) getActivity()).mCurrentLocation;
+        location = ((Main) getActivity()).mCurrentLocation;
         LatLng center = new LatLng(location.getLatitude(), location.getLongitude());
         CameraPosition cameraPosition = CameraPosition.builder()
                 .target(center)
