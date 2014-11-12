@@ -78,6 +78,7 @@ public class Main extends ActionBarActivity
     LocationRequest mLocationRequest;
     LocationClient mLocationClient;
     Location mCurrentLocation;
+    Location mPreviousLocation;
     boolean mUpdatesRequested;
 
     // Firebase
@@ -405,7 +406,9 @@ public class Main extends ActionBarActivity
 
     @Override
     public void onLocationChanged(Location location) {
+        mPreviousLocation = mCurrentLocation;
         mCurrentLocation = location;
+
         if (user != null) {
             user.setLocation(location);
             userRef.child("lat").setValue(location.getLatitude());
