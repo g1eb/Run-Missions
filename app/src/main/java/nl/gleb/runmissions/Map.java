@@ -35,7 +35,7 @@ import java.util.List;
 public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCallback, GoogleMap.OnCameraChangeListener {
 
 
-    private static GoogleMap map;
+    public static GoogleMap map;
     static Polyline route;
     static PolylineOptions routeOptions;
     private List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
@@ -158,8 +158,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     }
 
     public void getPlaces() {
-        location = ((Main) getActivity()).mCurrentLocation;
-        new PlacesFetcher(location).execute();
+        new PlacesFetcher(((Main) getActivity())).execute();
     }
 
     public static void addPlaces(PlacesList places) {

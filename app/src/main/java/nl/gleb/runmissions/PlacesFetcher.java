@@ -89,6 +89,6 @@ public class PlacesFetcher extends AsyncTask<URL, Integer, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        Map.addPlaces(places);
+        main.updatePlaces(places);
     }
 }

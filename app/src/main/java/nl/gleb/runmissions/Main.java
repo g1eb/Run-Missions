@@ -32,8 +32,13 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -95,6 +100,7 @@ public class Main extends ActionBarActivity
     // Checkpoints
     Place target;
     static PlacesList places;
+    private static HashMap<String, Marker> placesMarkers = new HashMap<String, Marker>();
     List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
     int feedbackCounter = 0;
 
@@ -593,6 +599,26 @@ public class Main extends ActionBarActivity
     @Override
     public void updatePlaces(PlacesList places) {
         this.places = places;
+        if ( Map.map != null ) {
+            for (Place place : places.results) {
+                if (placesMarkers.containsKey(place.id)) {
+                    placesMarkers.get(place.id).remove();
+                    addPlaceMarker(place);
+                } else {
+                    addPlaceMarker(place);
+                }
+            }
+        }
+    }
+
+    private static void addPlaceMarker(Place place) {
+        Marker marker = Map.map.addMarker(new MarkerOptions()
+                .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
+                .anchor((float) 0.5, (float) 0.5)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.cross))
+                .title(place.name));
+        place.setMarkerId(marker.getId());
+        placesMarkers.put(place.id, marker);
     }
 
     @Override
