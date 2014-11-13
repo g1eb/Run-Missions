@@ -35,12 +35,15 @@ public class PlacesFetcher extends AsyncTask<URL, Integer, String> {
     Location location;
     String next_page_token;
     PlacesList places;
+    Main main;
 
-    public PlacesFetcher(Location location) {
+    public PlacesFetcher(Main activity, Location location) {
+        this.main = activity;
         this.location = location;
     }
 
-    public PlacesFetcher(Location location, String next_page_token) {
+    public PlacesFetcher(Main activity, Location location, String next_page_token) {
+        this.main = activity;
         this.location = location;
         this.next_page_token = next_page_token;
     }
