@@ -596,7 +596,6 @@ public class Main extends ActionBarActivity
         return user;
     }
 
-    @Override
     public void updatePlaces(PlacesList places) {
         this.places = places;
         if ( Map.map != null ) {

@@ -13,7 +13,6 @@ public interface Comm {
     public void sendMessage(String message);
     public User getUser();
 
-    void updatePlaces(PlacesList places);
     void updateSteps(List<DirectionsStep> steps);
 
     long[] getPattern(String left);
