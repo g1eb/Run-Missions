@@ -37,6 +37,10 @@ public class PlacesFetcher extends AsyncTask<URL, Integer, String> {
     PlacesList places;
     Main main;
 
+    public PlacesFetcher(Main activity) {
+        this.main = activity;
+    }
+
     public PlacesFetcher(Main activity, Location location) {
         this.main = activity;
         this.location = location;
