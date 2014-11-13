@@ -71,7 +71,7 @@ public class PlacesFetcher extends AsyncTask<URL, Integer, String> {
             GenericUrl url = new GenericUrl("https://maps.googleapis.com/maps/api/place/nearbysearch/json");
             url.put("key", "AIzaSyCbFFLGTKvJh_on6sRgwp0mcz0Rl-B_ijk");
             url.put("location", location.getLatitude() + "," + location.getLongitude());
-            url.put("radius", 5000);
+            url.put("radius", 2500);
 
             if (next_page_token != null && !next_page_token.equals("")) {
                 url.put("pagetoken", places.next_page_token);
