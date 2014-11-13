@@ -161,31 +161,6 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         new PlacesFetcher(((Main) getActivity())).execute();
     }
 
-    public static void addPlaces(PlacesList places) {
-        comm.updatePlaces(places);
-
-        if (map != null) {
-            for (Place place : places.results) {
-                if (placesMarkers.containsKey(place.id)) {
-                    placesMarkers.get(place.id).remove();
-                    addPlaceMarker(place);
-                } else {
-                    addPlaceMarker(place);
-                }
-            }
-        }
-    }
-
-    private static void addPlaceMarker(Place place) {
-        Marker marker = map.addMarker(new MarkerOptions()
-                .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
-                .anchor((float) 0.5, (float) 0.5)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.cross))
-                .title(place.name));
-        place.setMarkerId(marker.getId());
-        placesMarkers.put(place.id, marker);
-    }
-
     public static void addPolyLine(List<LatLng> points) {
         if (map != null) {
             routeOptions = new PolylineOptions()
