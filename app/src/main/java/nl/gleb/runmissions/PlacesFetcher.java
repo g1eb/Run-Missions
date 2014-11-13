@@ -54,6 +54,10 @@ public class PlacesFetcher extends AsyncTask<URL, Integer, String> {
 
     @Override
     protected String doInBackground(URL... params) {
+        if ( location == null ) {
+            location = main.mCurrentLocation;
+        }
+
         try {
             requestFactory = HTTP_TRANSPORT.createRequestFactory(
                     new HttpRequestInitializer() {
