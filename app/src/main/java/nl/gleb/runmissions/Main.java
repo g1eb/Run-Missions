@@ -99,8 +99,7 @@ public class Main extends ActionBarActivity
 
     // Checkpoints
     Place target;
-    static PlacesList places;
-    private static HashMap<String, Marker> placesMarkers = new HashMap<String, Marker>();
+    private static HashMap<String, Place> places = new HashMap<String, Place>();
     List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
     int feedbackCounter = 0;
 
@@ -596,28 +595,19 @@ public class Main extends ActionBarActivity
         return user;
     }
 
-    public void updatePlaces(PlacesList places) {
-        this.places = places;
+    public void updatePlaces(PlacesList placesList) {
         if ( Map.map != null ) {
-            for (Place place : places.results) {
-                if (placesMarkers.containsKey(place.id)) {
-                    placesMarkers.get(place.id).remove();
-                    addPlaceMarker(place);
+            for (Place place : placesList.results) {
+                // TODO: check withou this check, pointless to readd a marker if is there already
+                if (places.containsKey(place.id)) {
+                    places.remove(place.id);
+                    Map.updatePlaceMarker(place);
                 } else {
-                    addPlaceMarker(place);
+                    places.put(place.id, place);
+                    Map.updatePlaceMarker(place);
                 }
             }
         }
-    }
-
-    private static void addPlaceMarker(Place place) {
-        Marker marker = Map.map.addMarker(new MarkerOptions()
-                .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
-                .anchor((float) 0.5, (float) 0.5)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.cross))
-                .title(place.name));
-        place.setMarkerId(marker.getId());
-        placesMarkers.put(place.id, marker);
     }
 
     @Override

@@ -41,7 +41,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     private List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
     static int animationDuration = 2000;
 
-    private static HashMap<String, Marker> placesMarkers = new HashMap<String, Marker>();
+    private static HashMap<String, Place> placesMarkers = new HashMap<String, Place>();
     private HashMap<String, Marker> usersMarkers = new HashMap<String, Marker>();
 
     static Comm comm;
@@ -144,7 +144,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                     route.remove(); // Remove previous route from the map if it exists
                 }
 
-                Place target = Main.places.getPlace(marker.getId());
+                Place target = placesMarkers.get(marker.getId());
                 if (target != null) {
                     comm.setTarget(target);
                     new DirectionsFetcher(((Main) getActivity()).mCurrentLocation, target).execute();
@@ -159,6 +159,25 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
 
     public void getPlaces() {
         new PlacesFetcher(((Main) getActivity())).execute();
+    }
+
+    public static void updatePlaceMarker(Place place) {
+        if (placesMarkers.containsKey(place.markerId)) {
+            placesMarkers.remove(place.markerId);
+            addPlaceMarker(place);
+        } else {
+            addPlaceMarker(place);
+        }
+    }
+
+    private static void addPlaceMarker(Place place) {
+        Marker marker = Map.map.addMarker(new MarkerOptions()
+                .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
+                .anchor((float) 0.5, (float) 0.5)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.cross))
+                .title(place.name));
+        place.setMarkerId(marker.getId());
+        placesMarkers.put(marker.getId(), place);
     }
 
     public static void addPolyLine(List<LatLng> points) {
