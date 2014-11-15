@@ -3,7 +3,6 @@ package nl.gleb.runmissions;
 import android.location.Location;
 import android.os.AsyncTask;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequest;
@@ -15,8 +14,6 @@ import com.google.api.client.json.JsonObjectParser;
 import com.google.api.client.json.jackson.JacksonFactory;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Gleb on 10/11/14.
@@ -27,10 +24,6 @@ public class PlacesFetcher extends AsyncTask<URL, Integer, String> {
     static final com.google.api.client.json.JsonFactory JSON_FACTORY = new JacksonFactory();
 
     HttpRequestFactory requestFactory;
-
-    private List<LatLng> latLngs = new ArrayList<LatLng>();
-    private List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
-    private DirectionsBounds bounds;
 
     Location location;
     String next_page_token;
