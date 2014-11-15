@@ -601,14 +601,10 @@ public class Main extends ActionBarActivity
     public void updatePlaces(final PlacesList placesList, final GenericUrl url) {
         if (Map.map != null) {
             for (Place place : placesList.results) {
-                // TODO: check withou this check, pointless to readd a marker if is there already
-                if (places.containsKey(place.id)) {
-                    places.remove(place.id);
-                    Map.updatePlaceMarker(place);
-                } else {
+                if (!places.containsKey(place.id)) {
                     places.put(place.id, place);
-                    Map.updatePlaceMarker(place);
                 }
+                Map.updatePlaceMarker(place);
             }
         }
     }
