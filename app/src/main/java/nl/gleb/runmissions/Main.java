@@ -98,7 +98,7 @@ public class Main extends ActionBarActivity
 
     // Checkpoints
     Place target;
-    private static HashMap<String, Place> places = new HashMap<String, Place>();
+    public static HashMap<String, Place> places = new HashMap<String, Place>();
     List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
     int feedbackCounter = 0;
 
