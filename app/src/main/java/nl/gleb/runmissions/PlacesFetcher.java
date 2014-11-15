@@ -30,6 +30,8 @@ public class PlacesFetcher extends AsyncTask<URL, Integer, String> {
     PlacesList places;
     Main main;
 
+    GenericUrl url = new GenericUrl("https://maps.googleapis.com/maps/api/place/nearbysearch/json");
+
     public PlacesFetcher(Main activity) {
         this.main = activity;
     }
@@ -39,9 +41,9 @@ public class PlacesFetcher extends AsyncTask<URL, Integer, String> {
         this.location = location;
     }
 
-    public PlacesFetcher(Main activity, Location location, String next_page_token) {
+    public PlacesFetcher(Main activity, GenericUrl url, String next_page_token) {
         this.main = activity;
-        this.location = location;
+        this.url = url;
         this.next_page_token = next_page_token;
     }
 
@@ -82,6 +84,6 @@ public class PlacesFetcher extends AsyncTask<URL, Integer, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        main.updatePlaces(places);
+        main.updatePlaces(places, url);
     }
 }
