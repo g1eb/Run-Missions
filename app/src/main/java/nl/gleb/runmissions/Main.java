@@ -19,6 +19,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.AuthData;
@@ -479,12 +481,16 @@ public class Main extends ActionBarActivity
             userRef.child("level").setValue(level);
 
             // Show level up dialog
-            new AlertDialog.Builder(this)
-                    .setTitle(getString(R.string.level_up_dialog_title))
-                    .setMessage(getString(R.string.level_up_dialog_message) + " " + level + "!!")
-                    .setIcon(R.drawable.ic_action_fav)
-                    .setCancelable(true)
-                    .show();
+            Dialog levelUpDialog = new Dialog(Main.this);
+            levelUpDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            levelUpDialog.setContentView(R.layout.level_up);
+            levelUpDialog.setTitle(getString(R.string.level_up_dialog_title));
+            levelUpDialog.setCancelable(true);
+
+            TextView msg = (TextView) levelUpDialog.findViewById(R.id.message);
+            msg.setText(msg.getText().toString() + " " + level + "!!");
+
+            levelUpDialog.show();
         }
     }
 
