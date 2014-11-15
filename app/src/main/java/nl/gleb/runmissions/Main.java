@@ -34,10 +34,6 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -502,7 +498,7 @@ public class Main extends ActionBarActivity
     /**
      * Update other users location on the map
      *
-     * @param ds DataSnapshotnof changed user model
+     * @param ds DataSnapshot of changed user model
      */
     private void updateUsersLocation(DataSnapshot ds) {
         try {
@@ -602,7 +598,7 @@ public class Main extends ActionBarActivity
     }
 
     public void updatePlaces(PlacesList placesList) {
-        if ( Map.map != null ) {
+        if (Map.map != null) {
             for (Place place : placesList.results) {
                 // TODO: check withou this check, pointless to readd a marker if is there already
                 if (places.containsKey(place.id)) {
