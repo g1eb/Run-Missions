@@ -607,6 +607,16 @@ public class Main extends ActionBarActivity
                 Map.updatePlaceMarker(place);
             }
         }
+
+        if (placesList.next_page_token != null) {
+            new android.os.Handler().postDelayed(
+                    new Runnable() {
+                        public void run() {
+                            new PlacesFetcher(Main.this, url, placesList.next_page_token).execute();
+                        }
+                    },
+                    3000);
+        }
     }
 
     @Override
