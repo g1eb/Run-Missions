@@ -34,6 +34,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
+import com.google.api.client.http.GenericUrl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -597,7 +598,7 @@ public class Main extends ActionBarActivity
         return user;
     }
 
-    public void updatePlaces(PlacesList placesList) {
+    public void updatePlaces(final PlacesList placesList, final GenericUrl url) {
         if (Map.map != null) {
             for (Place place : placesList.results) {
                 // TODO: check withou this check, pointless to readd a marker if is there already
