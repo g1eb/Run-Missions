@@ -34,11 +34,9 @@ import java.util.List;
  */
 public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCallback, GoogleMap.OnCameraChangeListener {
 
-
     public static GoogleMap map;
     static Polyline route;
     static PolylineOptions routeOptions;
-    static int animationDuration = 2000;
 
     private static HashMap<String, Place> placesMarkers = new HashMap<String, Place>();
     private HashMap<String, Marker> usersMarkers = new HashMap<String, Marker>();
@@ -51,6 +49,11 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
 
     HttpRequestFactory requestFactory;
 
+    /* Animations */
+    static int mapAnimationDuration = 2000;
+    static long markerAnimationDuration = 300;
+    static final Handler handler = new Handler();
+
     public static Map newInstance() {
         return new Map();
     }
@@ -61,7 +64,8 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         comm = (Comm) activity;
         comm.setTitle(getString(R.string.title_map));
         res = getResources();
-        animationDuration = res.getInteger(R.integer.map_animation_duration);
+        mapAnimationDuration = res.getInteger(R.integer.map_animation_duration);
+        markerAnimationDuration = res.getInteger(R.integer.marker_animation_duration);
     }
 
     @Override
@@ -131,7 +135,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                 .zoom(res.getInteger(R.integer.map_zoom_level))
                 .tilt(res.getInteger(R.integer.map_tilt_level))
                 .build();
-        map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), animationDuration, null);
+        map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), mapAnimationDuration, null);
 
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
@@ -195,7 +199,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                     new LatLng(directionsBounds.southwest.lat, directionsBounds.southwest.lng),
                     new LatLng(directionsBounds.northeast.lat, directionsBounds.northeast.lng));
 
-            map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 250), animationDuration, null);
+            map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 250), mapAnimationDuration, null);
         }
     }
 
