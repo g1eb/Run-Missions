@@ -85,8 +85,6 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                     }
                 }
         );
-
-        initMap();
     }
 
     @Override
