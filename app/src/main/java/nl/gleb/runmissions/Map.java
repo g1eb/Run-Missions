@@ -3,11 +3,17 @@ package nl.gleb.runmissions;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
+import android.view.animation.Interpolator;
+import android.view.animation.LinearInterpolator;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -25,7 +31,6 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonObjectParser;
 import com.google.api.client.json.jackson.JacksonFactory;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -172,11 +177,38 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     }
 
     private static void addPlaceMarker(Place place) {
-        Marker marker = Map.map.addMarker(new MarkerOptions()
-                .position(new LatLng(place.geometry.location.lat, place.geometry.location.lng))
+        final LatLng target = new LatLng(place.geometry.location.lat, place.geometry.location.lng);
+
+        final Marker marker = Map.map.addMarker(new MarkerOptions()
+                .position(target)
                 .anchor((float) 0.5, (float) 0.5)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.cross))
                 .title(place.name));
+
+        final long start = SystemClock.uptimeMillis();
+        Projection proj = map.getProjection();
+
+        Point startPoint = proj.toScreenLocation(target);
+        startPoint.y = 0;
+        final LatLng startLatLng = proj.fromScreenLocation(startPoint);
+
+        final Interpolator interpolator = new LinearInterpolator();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                long elapsed = SystemClock.uptimeMillis() - start;
+                float t = interpolator.getInterpolation((float) elapsed / markerAnimationDuration);
+                double lng = t * target.longitude + (1 - t) * startLatLng.longitude;
+                double lat = t * target.latitude + (1 - t) * startLatLng.latitude;
+                marker.setPosition(new LatLng(lat, lng));
+                if (t < 1.0) {
+                    handler.postDelayed(this, 10);
+                } else {
+                    marker.setPosition(target);
+                }
+            }
+        });
+
         place.setMarkerId(marker.getId());
         placesMarkers.put(marker.getId(), place);
     }

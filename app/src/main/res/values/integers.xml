@@ -5,6 +5,8 @@
     <integer name="map_zoom_level">15</integer>
     <integer name="map_tilt_level">30</integer>
     <integer name="map_animation_duration">2000</integer>
+    <integer name="marker_animation_duration">300</integer>
+
 
     <!-- Settings -->
     <integer name="max_distance">15</integer>
