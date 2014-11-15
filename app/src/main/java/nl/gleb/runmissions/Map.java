@@ -38,7 +38,6 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     public static GoogleMap map;
     static Polyline route;
     static PolylineOptions routeOptions;
-    private List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
     static int animationDuration = 2000;
 
     private static HashMap<String, Place> placesMarkers = new HashMap<String, Place>();
@@ -124,8 +123,6 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     }
 
     private void setupMap() {
-        Resources res = getResources();
-
         // Center the map on the current position of the user
         location = ((Main) getActivity()).mCurrentLocation;
         LatLng center = new LatLng(location.getLatitude(), location.getLongitude());
