@@ -36,11 +36,6 @@ public class PlacesFetcher extends AsyncTask<URL, Integer, String> {
         this.main = activity;
     }
 
-    public PlacesFetcher(Main activity, Location location) {
-        this.main = activity;
-        this.location = location;
-    }
-
     public PlacesFetcher(Main activity, GenericUrl url, String next_page_token) {
         this.main = activity;
         this.url = url;

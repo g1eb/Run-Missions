@@ -37,7 +37,7 @@ import java.util.List;
 /**
  * Created by Gleb on 29/10/14.
  */
-public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCallback, GoogleMap.OnCameraChangeListener {
+public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCallback {
 
     public static GoogleMap map;
     static Polyline route;
@@ -104,14 +104,6 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         setupMap();
     }
 
-    @Override
-    public void onCameraChange(CameraPosition cameraPosition) {
-        Location newCenter = new Location("MAP PROVIDER");
-        newCenter.setLatitude(cameraPosition.target.latitude);
-        newCenter.setLongitude(cameraPosition.target.longitude);
-        new PlacesFetcher(((Main) getActivity()), newCenter).execute();
-    }
-
     private void initMap() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (map == null) {
@@ -124,7 +116,6 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                 map.setTrafficEnabled(false);
                 map.setIndoorEnabled(false);
                 map.setOnMapLoadedCallback(this);
-                map.setOnCameraChangeListener(this);
                 map.setBuildingsEnabled(false);
                 map.getUiSettings().setZoomControlsEnabled(false);
                 map.getUiSettings().setCompassEnabled(false);
