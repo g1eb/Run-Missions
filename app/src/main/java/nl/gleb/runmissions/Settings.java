@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Created by Gleb on 27/10/14.
@@ -45,45 +44,54 @@ public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListene
 
         Resources res = getResources();
 
+        // Init seekbars
+        selectedDistance = (TextView) getActivity().findViewById(R.id.selectedDistance);
+        selectedDistance.setText(String.valueOf(Main.distance));
+
         distanceInput = (SeekBar) getActivity().findViewById(R.id.seekbarDistance);
         distanceInput.setOnSeekBarChangeListener(this);
         distanceInput.setMax(res.getInteger(R.integer.max_distance));
         distanceInput.setProgress(Main.distance);
+
+        selectedSprints = (TextView) getActivity().findViewById(R.id.selectedSprints);
+        selectedSprints.setText(String.valueOf(Main.sprints));
 
         sprintsInput = (SeekBar) getActivity().findViewById(R.id.seekbarSprints);
         sprintsInput.setOnSeekBarChangeListener(this);
         sprintsInput.setMax(res.getInteger(R.integer.max_sprints));
         sprintsInput.setProgress(Main.sprints);
 
+        selectedFeedbackRate = (TextView) getActivity().findViewById(R.id.selectedFeedbackRate);
+        selectedFeedbackRate.setText(String.valueOf(Main.feedbackRate));
+
         feedbackRateInput = (SeekBar) getActivity().findViewById(R.id.seekbarFeedbackRate);
         feedbackRateInput.setOnSeekBarChangeListener(this);
         feedbackRateInput.setMax(res.getInteger(R.integer.max_feedback_rate));
-        feedbackRateInput.incrementProgressBy(10);
         feedbackRateInput.setProgress(Main.feedbackRate);
+        feedbackRateInput.incrementProgressBy(10);
 
-        selectedDistance = (TextView) getActivity().findViewById(R.id.selectedDistance);
-        selectedSprints = (TextView) getActivity().findViewById(R.id.selectedSprints);
-        selectedFeedbackRate = (TextView) getActivity().findViewById(R.id.selectedFeedbackRate);
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        if (!fromUser) return;
+
         SharedPreferences prefs = getActivity().getSharedPreferences(Main.SETTINGS_TAG, Context.MODE_PRIVATE);
 
         switch (seekBar.getId()) {
             case R.id.seekbarDistance:
                 prefs.edit().putInt("distance", progress).apply();
-                selectedDistance.setText(progress);
+                selectedDistance.setText(String.valueOf(progress));
                 Main.distance = progress;
                 break;
             case R.id.seekbarSprints:
                 prefs.edit().putInt("sprints", progress).apply();
-                selectedSprints.setText(progress);
+                selectedSprints.setText(String.valueOf(progress));
                 Main.sprints = progress;
                 break;
             case R.id.seekbarFeedbackRate:
                 prefs.edit().putInt("feedbackRate", progress).apply();
-                selectedFeedbackRate.setText(progress);
+                selectedFeedbackRate.setText(String.valueOf(progress));
                 Main.feedbackRate = progress;
                 break;
         }
