@@ -237,10 +237,11 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     }
 
     private void addUserMarker(User user) {
+        int resID = getResources().getIdentifier(user.getAvatar(), "drawable", getActivity().getPackageName());
         usersMarkers.put(user.getUsername(), map.addMarker(new MarkerOptions()
                 .position(new LatLng(user.getLat(), user.getLng()))
                 .anchor((float) 0.5, (float) 0.5)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_user))
+                .icon(BitmapDescriptorFactory.fromResource(resID))
                 .title(user.getUsername())));
     }
 }
