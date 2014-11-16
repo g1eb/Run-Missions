@@ -671,6 +671,11 @@ public class Main extends ActionBarActivity
         this.target = target;
     }
 
+    @Override
+    public void updateUserAvatar(String avatar) {
+        userRef.child("level").setValue(avatar);
+    }
+
     /**
      * Login the user, method invoked from the login fragment or after signup
      *

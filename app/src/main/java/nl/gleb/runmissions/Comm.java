@@ -18,4 +18,6 @@ public interface Comm {
     long[] getPattern(String left);
 
     void setTarget(Place target);
+
+    void updateUserAvatar(String avatar);
 }
