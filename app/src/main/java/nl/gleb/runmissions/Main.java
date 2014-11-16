@@ -329,7 +329,7 @@ public class Main extends ActionBarActivity
         SharedPreferences prefs = this.getSharedPreferences(SETTINGS_TAG, Context.MODE_PRIVATE);
         distance = prefs.getInt("distance", 5);
         sprints = prefs.getInt("sprints", 5);
-        feedbackRate = prefs.getInt("feedbackRate", 10);
+        feedbackRate = prefs.getInt("feedbackRate", 1);
         feedbackCounter = 0;
     }
 
@@ -472,7 +472,7 @@ public class Main extends ActionBarActivity
             feedbackCounter = feedbackRate;
         }
 
-        feedbackCounter -= 10;
+        feedbackCounter -= 1;
     }
 
     /**

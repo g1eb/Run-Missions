@@ -62,14 +62,12 @@ public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListene
         sprintsInput.setProgress(Main.sprints);
 
         selectedFeedbackRate = (TextView) getActivity().findViewById(R.id.selectedFeedbackRate);
-        selectedFeedbackRate.setText(String.valueOf(Main.feedbackRate));
+        selectedFeedbackRate.setText(String.valueOf(Main.feedbackRate * 10));
 
         feedbackRateInput = (SeekBar) getActivity().findViewById(R.id.seekbarFeedbackRate);
         feedbackRateInput.setOnSeekBarChangeListener(this);
         feedbackRateInput.setMax(res.getInteger(R.integer.max_feedback_rate));
         feedbackRateInput.setProgress(Main.feedbackRate);
-        feedbackRateInput.incrementProgressBy(10);
-
     }
 
     @Override
@@ -90,9 +88,13 @@ public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListene
                 Main.sprints = progress;
                 break;
             case R.id.seekbarFeedbackRate:
+                if (progress == 0) {
+                    progress += 1;
+                    seekBar.setProgress(progress);
+                }
                 prefs.edit().putInt("feedbackRate", progress).apply();
-                selectedFeedbackRate.setText(String.valueOf(progress));
-                Main.feedbackRate = progress;
+                selectedFeedbackRate.setText(String.valueOf(progress * 10));
+                Main.feedbackRate = progress * 10;
                 break;
         }
     }
