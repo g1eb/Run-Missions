@@ -118,7 +118,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                 map.setMyLocationEnabled(true);
                 map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                 map.setTrafficEnabled(false);
-                map.setIndoorEnabled(true);
+                map.setIndoorEnabled(false);
                 map.setOnMapLoadedCallback(this);
                 map.setOnCameraChangeListener(this);
                 map.setBuildingsEnabled(false);
