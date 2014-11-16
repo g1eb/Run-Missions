@@ -108,7 +108,7 @@ public class Main extends ActionBarActivity
     private ValueEventListener connectedListener;
 
     // Settings
-    int distance, sprints, feedbackCounter, feedbackRate;
+    static int distance, sprints, feedbackCounter, feedbackRate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
