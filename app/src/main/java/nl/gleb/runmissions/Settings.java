@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -20,6 +21,7 @@ public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListene
 
     Comm comm;
     SeekBar distanceInput, sprintsInput, feedbackRateInput;
+    TextView selectedDistance, selectedSprints, selectedFeedbackRate;
 
     public static Settings newInstance() {
         return new Settings();
@@ -58,6 +60,10 @@ public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListene
         feedbackRateInput.setMax(res.getInteger(R.integer.max_feedback_rate));
         feedbackRateInput.incrementProgressBy(10);
         feedbackRateInput.setProgress(Main.feedbackRate);
+
+        selectedDistance = (TextView) getActivity().findViewById(R.id.selectedDistance);
+        selectedSprints = (TextView) getActivity().findViewById(R.id.selectedSprints);
+        selectedFeedbackRate = (TextView) getActivity().findViewById(R.id.selectedFeedbackRate);
     }
 
     @Override
@@ -67,14 +73,17 @@ public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListene
         switch (seekBar.getId()) {
             case R.id.seekbarDistance:
                 prefs.edit().putInt("distance", progress).apply();
+                selectedDistance.setText(progress);
                 Main.distance = progress;
                 break;
             case R.id.seekbarSprints:
                 prefs.edit().putInt("sprints", progress).apply();
+                selectedSprints.setText(progress);
                 Main.sprints = progress;
                 break;
             case R.id.seekbarFeedbackRate:
                 prefs.edit().putInt("feedbackRate", progress).apply();
+                selectedFeedbackRate.setText(progress);
                 Main.feedbackRate = progress;
                 break;
         }
