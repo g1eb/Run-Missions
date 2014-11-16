@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ public class Profile extends Fragment {
 
     Comm comm;
     TextView level, exp, missions, username;
+    ViewPager viewPager;
 
     public static Profile newInstance() {
         return new Profile();
@@ -41,6 +43,10 @@ public class Profile extends Fragment {
         exp = (TextView) getActivity().findViewById(R.id.exp);
         missions = (TextView) getActivity().findViewById(R.id.missions);
         username = (TextView) getActivity().findViewById(R.id.username);
+
+        viewPager = (ViewPager) getActivity().findViewById(R.id.view_pager);
+        AvatarAdapter adapter = new AvatarAdapter(getActivity().getApplicationContext());
+        viewPager.setAdapter(adapter);
 
         setUserInfo(comm.getUser());
     }
