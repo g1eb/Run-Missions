@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListener {
 
     Comm comm;
-    SeekBar distanceInput, eventsInput;
+    SeekBar distanceInput, sprintsInput, feedbackRateInput;
 
     public static Settings newInstance() {
         return new Settings();
@@ -38,17 +38,17 @@ public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListene
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        distanceInput = (SeekBar) getActivity().findViewById(R.id.distanceInput);
-        eventsInput = (SeekBar) getActivity().findViewById(R.id.eventsInput);
+        distanceInput = (SeekBar) getActivity().findViewById(R.id.seekbarDistance);
+        sprintsInput = (SeekBar) getActivity().findViewById(R.id.seekbarSprints);
+        feedbackRateInput = (SeekBar) getActivity().findViewById(R.id.seekbarFeedbackRate);
 
         distanceInput.setOnSeekBarChangeListener(this);
-        eventsInput.setOnSeekBarChangeListener(this);
+        sprintsInput.setOnSeekBarChangeListener(this);
+        feedbackRateInput.setOnSeekBarChangeListener(this);
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-        Toast.makeText(getActivity().getApplicationContext(), "Progress: " + Integer.toString(progress), Toast.LENGTH_SHORT).show();
     }
 
     @Override
