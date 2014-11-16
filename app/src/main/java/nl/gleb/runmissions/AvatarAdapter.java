@@ -14,7 +14,7 @@ public class AvatarAdapter extends PagerAdapter {
 
     Context context;
 
-    private int[] AvatarImages = new int[]{
+    private int[] avatarImages = new int[]{
             R.drawable.a_1,
             R.drawable.a_2,
             R.drawable.a_3,
@@ -75,7 +75,7 @@ public class AvatarAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return AvatarImages.length;
+        return avatarImages.length;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class AvatarAdapter extends PagerAdapter {
         int padding = context.getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin);
         imageView.setPadding(padding * 5, padding * 5, padding * 5, padding * 5);
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        imageView.setImageResource(AvatarImages[position]);
+        imageView.setImageResource(avatarImages[position]);
         ((ViewPager) container).addView(imageView, 0);
         return imageView;
     }
@@ -100,6 +100,17 @@ public class AvatarAdapter extends PagerAdapter {
     }
 
     public int getItem(int i) {
-        return AvatarImages[i];
+        return avatarImages[i];
+    }
+
+    public int getAvatarPosition(int resID) {
+        int res = 0;
+        for (int i = 0; i < avatarImages.length; i++) {
+            if (avatarImages[i] == resID) {
+                res = i;
+                break;
+            }
+        }
+        return res;
     }
 }
