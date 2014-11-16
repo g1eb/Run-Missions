@@ -673,7 +673,7 @@ public class Main extends ActionBarActivity
 
     @Override
     public void updateUserAvatar(String avatar) {
-        userRef.child("level").setValue(avatar);
+        userRef.child("avatar").setValue(avatar);
     }
 
     /**
