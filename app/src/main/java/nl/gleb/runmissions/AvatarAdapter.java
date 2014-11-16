@@ -38,7 +38,7 @@ public class AvatarAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         ImageView imageView = new ImageView(context);
         int padding = context.getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin);
-        imageView.setPadding(padding, padding, padding, padding);
+        imageView.setPadding(padding * 5, padding * 5, padding * 5, padding * 5);
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView.setImageResource(AvatarImages[position]);
         ((ViewPager) container).addView(imageView, 0);
