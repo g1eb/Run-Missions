@@ -67,12 +67,15 @@ public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListene
         switch (seekBar.getId()) {
             case R.id.seekbarDistance:
                 prefs.edit().putInt("distance", progress).apply();
+                Main.distance = progress;
                 break;
             case R.id.seekbarSprints:
                 prefs.edit().putInt("sprints", progress).apply();
+                Main.sprints = progress;
                 break;
             case R.id.seekbarFeedbackRate:
                 prefs.edit().putInt("feedbackRate", progress).apply();
+                Main.feedbackRate = progress;
                 break;
         }
     }
