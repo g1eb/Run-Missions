@@ -483,17 +483,26 @@ public class Main extends ActionBarActivity
             userRef.child("level").setValue(level);
 
             // Show level up dialog
-            Dialog levelUpDialog = new Dialog(Main.this);
-            levelUpDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            levelUpDialog.setContentView(R.layout.level_up);
-            levelUpDialog.setTitle(getString(R.string.level_up_dialog_title));
-            levelUpDialog.setCancelable(true);
-
-            TextView msg = (TextView) levelUpDialog.findViewById(R.id.message);
-            msg.setText(msg.getText().toString() + " " + level + "!!");
-
-            levelUpDialog.show();
+            showLevelUpDialog(level);
         }
+    }
+
+    /**
+     * Show level up! dialog to the user
+     *
+     * @param level
+     */
+    private void showLevelUpDialog(int level) {
+        Dialog levelUpDialog = new Dialog(Main.this);
+        levelUpDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        levelUpDialog.setContentView(R.layout.level_up);
+        levelUpDialog.setTitle(getString(R.string.level_up_dialog_title));
+        levelUpDialog.setCancelable(true);
+
+        TextView msg = (TextView) levelUpDialog.findViewById(R.id.message);
+        msg.setText(msg.getText().toString() + " " + level + "!!");
+
+        levelUpDialog.show();
     }
 
     /**
