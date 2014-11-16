@@ -11,11 +11,26 @@
         android:orientation="vertical"
         android:padding="10dip">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/label_distance"
-            android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_distance"
+                android:layout_alignParentLeft="true"
+                android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+
+
+            <TextView
+                android:id="@+id/selectedDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+        </RelativeLayout>
 
         <SeekBar
             android:id="@+id/seekbarDistance"
@@ -38,17 +53,32 @@
         android:orientation="vertical"
         android:padding="10dip">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/label_sprints"
-            android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_sprints"
+                android:layout_alignParentLeft="true"
+                android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+
+
+            <TextView
+                android:id="@+id/selectedSprints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+        </RelativeLayout>
 
         <SeekBar
             android:id="@+id/seekbarSprints"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="@integer/max_events" />
+            android:max="@integer/max_sprints" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -64,11 +94,26 @@
         android:orientation="vertical"
         android:padding="10dip">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/label_feedback_rate"
-            android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_feedback_rate"
+                android:layout_alignParentLeft="true"
+                android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+
+
+            <TextView
+                android:id="@+id/selectedFeedbackRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+        </RelativeLayout>
 
         <SeekBar
             android:id="@+id/seekbarFeedbackRate"
