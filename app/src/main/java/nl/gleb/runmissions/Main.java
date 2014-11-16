@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
@@ -101,14 +102,13 @@ public class Main extends ActionBarActivity
     Place target;
     public static HashMap<String, Place> places = new HashMap<String, Place>();
     List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
-    int feedbackCounter = 0;
 
     // Chat
     private ChatListAdapter chatListAdapter;
     private ValueEventListener connectedListener;
 
     // Settings
-    int feedbackRate = 3;
+    int distance, sprints, feedbackCounter, feedbackRate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,6 +170,9 @@ public class Main extends ActionBarActivity
                 LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(UPDATE_INTERVAL);
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
+
+        // Init settings variables from shared preferences
+        initSettingsFromPreferences();
     }
 
     @Override
@@ -319,6 +322,17 @@ public class Main extends ActionBarActivity
         ft.replace(R.id.container, Settings.newInstance()).commit();
     }
 
+    /**
+     * Setup settings variables from shared preferences or use defaults
+     */
+    private void initSettingsFromPreferences() {
+        SharedPreferences prefs = this.getSharedPreferences(SETTINGS_TAG, Context.MODE_PRIVATE);
+        distance = prefs.getInt("distance", 5000);
+        sprints = prefs.getInt("sprints", 5);
+        feedbackRate = prefs.getInt("feedbackRate", 10);
+        feedbackCounter = 0;
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -458,7 +472,7 @@ public class Main extends ActionBarActivity
             feedbackCounter = feedbackRate;
         }
 
-        feedbackCounter--;
+        feedbackCounter -= 10;
     }
 
     /**
