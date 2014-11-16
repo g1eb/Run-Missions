@@ -1,6 +1,7 @@
 package nl.gleb.runmissions;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -38,14 +39,19 @@ public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListene
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        Resources res = getResources();
+
         distanceInput = (SeekBar) getActivity().findViewById(R.id.seekbarDistance);
         distanceInput.setOnSeekBarChangeListener(this);
+        distanceInput.setMax(res.getInteger(R.integer.max_distance));
 
         sprintsInput = (SeekBar) getActivity().findViewById(R.id.seekbarSprints);
         sprintsInput.setOnSeekBarChangeListener(this);
+        sprintsInput.setMax(res.getInteger(R.integer.max_sprints));
 
         feedbackRateInput = (SeekBar) getActivity().findViewById(R.id.seekbarFeedbackRate);
         feedbackRateInput.setOnSeekBarChangeListener(this);
+        feedbackRateInput.setMax(res.getInteger(R.integer.max_feedback_rate));
         feedbackRateInput.incrementProgressBy(10);
     }
 

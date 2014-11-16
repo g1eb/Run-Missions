@@ -19,8 +19,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_distance"
                 android:layout_alignParentLeft="true"
+                android:text="@string/label_distance"
                 android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
 
 
@@ -35,8 +35,7 @@
         <SeekBar
             android:id="@+id/seekbarDistance"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="@integer/max_distance" />
+            android:layout_height="wrap_content" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -61,8 +60,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_sprints"
                 android:layout_alignParentLeft="true"
+                android:text="@string/label_sprints"
                 android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
 
 
@@ -77,8 +76,7 @@
         <SeekBar
             android:id="@+id/seekbarSprints"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="@integer/max_sprints" />
+            android:layout_height="wrap_content" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -102,8 +100,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_feedback_rate"
                 android:layout_alignParentLeft="true"
+                android:text="@string/label_feedback_rate"
                 android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
 
 
@@ -118,8 +116,7 @@
         <SeekBar
             android:id="@+id/seekbarFeedbackRate"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="@integer/max_feedback_rate" />
+            android:layout_height="wrap_content" />
 
         <ImageView
             android:layout_width="match_parent"
