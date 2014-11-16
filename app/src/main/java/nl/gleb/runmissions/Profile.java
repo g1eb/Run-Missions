@@ -13,7 +13,7 @@ import android.widget.TextView;
 /**
  * Created by Gleb on 03/11/14.
  */
-public class Profile extends Fragment {
+public class Profile extends Fragment implements ViewPager.OnPageChangeListener {
 
     Comm comm;
     AvatarAdapter adapter;
@@ -48,6 +48,7 @@ public class Profile extends Fragment {
 
         viewPager = (ViewPager) getActivity().findViewById(R.id.view_pager);
         adapter = new AvatarAdapter(getActivity().getApplicationContext());
+        viewPager.setOnPageChangeListener(this);
         viewPager.setAdapter(adapter);
 
         setUserInfo(comm.getUser());
@@ -60,5 +61,18 @@ public class Profile extends Fragment {
             missions.setText("Missions " + user.getMissions());
             username.setText(user.getUsername());
         }
+    }
+
+    @Override
+    public void onPageScrolled(int i, float v, int i2) {
+    }
+
+    @Override
+    public void onPageSelected(int i) {
+        comm.updateUserAvatar(getResources().getResourceEntryName(adapter.getAvatar(i)));
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int i) {
     }
 }
