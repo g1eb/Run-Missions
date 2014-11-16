@@ -60,6 +60,9 @@ public class Profile extends Fragment implements ViewPager.OnPageChangeListener 
             exp.setText("Exp " + user.getExp());
             missions.setText("Missions " + user.getMissions());
             username.setText(user.getUsername());
+
+            int resID = getResources().getIdentifier(user.getAvatar(), "drawable", getActivity().getPackageName());
+            viewPager.setCurrentItem(adapter.getAvatarPosition(resID), true);
         }
     }
 
