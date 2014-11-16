@@ -49,4 +49,8 @@ public class AvatarAdapter extends PagerAdapter {
     public void destroyItem(ViewGroup container, int position, Object object) {
         ((ViewPager) container).removeView((ImageView) object);
     }
+
+    public int getAvatar(int i) {
+        return AvatarImages[i];
+    }
 }
