@@ -99,7 +99,7 @@ public class AvatarAdapter extends PagerAdapter {
         ((ViewPager) container).removeView((ImageView) object);
     }
 
-    public int getAvatar(int i) {
+    public int getItem(int i) {
         return AvatarImages[i];
     }
 }

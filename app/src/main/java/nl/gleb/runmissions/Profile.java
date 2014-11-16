@@ -46,8 +46,8 @@ public class Profile extends Fragment implements ViewPager.OnPageChangeListener 
         missions = (TextView) getActivity().findViewById(R.id.missions);
         username = (TextView) getActivity().findViewById(R.id.username);
 
-        viewPager = (ViewPager) getActivity().findViewById(R.id.view_pager);
         adapter = new AvatarAdapter(getActivity().getApplicationContext());
+        viewPager = (ViewPager) getActivity().findViewById(R.id.view_pager);
         viewPager.setOnPageChangeListener(this);
         viewPager.setAdapter(adapter);
 
@@ -69,7 +69,7 @@ public class Profile extends Fragment implements ViewPager.OnPageChangeListener 
 
     @Override
     public void onPageSelected(int i) {
-        comm.updateUserAvatar(getResources().getResourceEntryName(adapter.getAvatar(i)));
+        comm.updateUserAvatar(getResources().getResourceEntryName(adapter.getItem(i)));
     }
 
     @Override
