@@ -106,6 +106,10 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
 
     @Override
     public void onCameraChange(CameraPosition cameraPosition) {
+        Location newCenter = new Location("MAP PROVIDER");
+        newCenter.setLatitude(cameraPosition.target.latitude);
+        newCenter.setLongitude(cameraPosition.target.longitude);
+        new PlacesFetcher(((Main) getActivity()), newCenter).execute();
     }
 
     private void initMap() {
