@@ -2,6 +2,8 @@ package nl.gleb.runmissions;
 
 import android.app.Activity;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.location.Location;
@@ -237,11 +239,14 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     }
 
     private void addUserMarker(User user) {
-        int resID = getResources().getIdentifier(user.getAvatar(), "drawable", getActivity().getPackageName());
+        Resources res = getResources();
+        int resID = res.getIdentifier(user.getAvatar(), "drawable", getActivity().getPackageName());
+        Bitmap b = BitmapFactory.decodeResource(res, resID);
+        Bitmap avatar = Bitmap.createScaledBitmap(b, b.getWidth()/3, b.getHeight()/3, false);
         usersMarkers.put(user.getUsername(), map.addMarker(new MarkerOptions()
                 .position(new LatLng(user.getLat(), user.getLng()))
-                .anchor((float) 0.5, (float) 0.5)
-                .icon(BitmapDescriptorFactory.fromResource(resID))
+                .anchor((float) 0.5, (float) 1.0)
+                .icon(BitmapDescriptorFactory.fromBitmap(avatar))
                 .title(user.getUsername())));
     }
 }
