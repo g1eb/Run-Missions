@@ -1,6 +1,8 @@
 package nl.gleb.runmissions;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +17,8 @@ import android.widget.Toast;
  * Created by Gleb on 27/10/14.
  */
 public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListener {
+
+    static final String SETTINGS_TAG = "SETTINGS";
 
     Comm comm;
     SeekBar distanceInput, sprintsInput, feedbackRateInput;
@@ -57,6 +61,19 @@ public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListene
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        SharedPreferences prefs = getActivity().getSharedPreferences(SETTINGS_TAG, Context.MODE_PRIVATE);
+
+        switch (seekBar.getId()) {
+            case R.id.seekbarDistance:
+                prefs.edit().putInt("distance", progress).apply();
+                break;
+            case R.id.seekbarSprints:
+                prefs.edit().putInt("sprints", progress).apply();
+                break;
+            case R.id.seekbarFeedbackRate:
+                prefs.edit().putInt("feedbackRate", progress).apply();
+                break;
+        }
     }
 
     @Override
