@@ -421,7 +421,7 @@ public class Main extends ActionBarActivity
 
         if (!steps.isEmpty() && target != null) {
             for (DirectionsStep step : steps) {
-                double dist = distance(location.getLatitude(), location.getLongitude(), step.end_location.lat, step.end_location.lng);
+                double dist = distance(location.getLatitude(), location.getLongitude(), step.start_location.lat, step.start_location.lng);
                 if (dist <= FEEDBACK_RANGE) {
                     handleFeedback(step);
                 }
