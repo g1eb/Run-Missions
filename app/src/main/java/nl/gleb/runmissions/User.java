@@ -9,6 +9,7 @@ public class User {
 
     private String email;
     private String username;
+    private String avatar;
     private int level;
     private int exp;
     private int missions;
@@ -23,6 +24,7 @@ public class User {
     User(String email, String username, Double lat, Double lng) {
         this.email = email;
         this.username = username;
+        this.avatar = "a_1";
         this.level = 1;
         this.exp = 0;
         this.missions = 0;
@@ -30,9 +32,10 @@ public class User {
         this.lng = lng;
     }
 
-    public User(String email, String username, Integer level, Integer exp, Integer missions, Double lat, Double lng) {
+    public User(String email, String username, String avatar, Integer level, Integer exp, Integer missions, Double lat, Double lng) {
         this.email = email;
         this.username = username;
+        this.avatar = avatar;
         this.level = level;
         this.exp = exp;
         this.missions = missions;
@@ -46,6 +49,10 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getAvatar() {
+        return avatar;
     }
 
     public int getLevel() {

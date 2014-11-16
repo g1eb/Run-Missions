@@ -529,6 +529,7 @@ public class Main extends ActionBarActivity
         try {
             User user = new User(ds.child("email").getValue().toString(),
                     ds.child("username").getValue().toString(),
+                    ds.child("avatar").getValue().toString(),
                     Integer.parseInt(ds.child("level").getValue().toString()),
                     Integer.parseInt(ds.child("exp").getValue().toString()),
                     Integer.parseInt(ds.child("missions").getValue().toString()),
@@ -693,6 +694,7 @@ public class Main extends ActionBarActivity
                 try {
                     user = new User(dataSnapshot.child("email").getValue().toString(),
                             dataSnapshot.child("username").getValue().toString(),
+                            dataSnapshot.child("avatar").getValue().toString(),
                             Integer.parseInt(dataSnapshot.child("level").getValue().toString()),
                             Integer.parseInt(dataSnapshot.child("exp").getValue().toString()),
                             Integer.parseInt(dataSnapshot.child("missions").getValue().toString()),
