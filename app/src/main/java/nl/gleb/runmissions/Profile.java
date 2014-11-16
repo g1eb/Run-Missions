@@ -16,6 +16,8 @@ import android.widget.TextView;
 public class Profile extends Fragment {
 
     Comm comm;
+    AvatarAdapter adapter;
+
     TextView level, exp, missions, username;
     ViewPager viewPager;
 
@@ -45,7 +47,7 @@ public class Profile extends Fragment {
         username = (TextView) getActivity().findViewById(R.id.username);
 
         viewPager = (ViewPager) getActivity().findViewById(R.id.view_pager);
-        AvatarAdapter adapter = new AvatarAdapter(getActivity().getApplicationContext());
+        adapter = new AvatarAdapter(getActivity().getApplicationContext());
         viewPager.setAdapter(adapter);
 
         setUserInfo(comm.getUser());
