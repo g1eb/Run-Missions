@@ -158,23 +158,15 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
             }
         });
 
-        getPlaces();
-    }
-
-    public void getPlaces() {
-        new PlacesFetcher(((Main) getActivity())).execute();
-    }
-
-    public static void updatePlaceMarker(Place place) {
-        if (placesMarkers.containsKey(place.markerId)) {
-            placesMarkers.remove(place.markerId);
-            addPlaceMarker(place);
+        map.clear();
+        if (Main.places.size() == 0) {
+            new PlacesFetcher(((Main) getActivity())).execute();
         } else {
-            addPlaceMarker(place);
+            for (Place place : Main.places.values()) updatePlaceMarker(place, false);
         }
     }
 
-    private static void addPlaceMarker(Place place) {
+    public static void updatePlaceMarker(Place place, Boolean animation) {
         final LatLng target = new LatLng(place.geometry.location.lat, place.geometry.location.lng);
 
         final Marker marker = Map.map.addMarker(new MarkerOptions()
@@ -183,32 +175,35 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.cross))
                 .title(place.name));
 
-        final long start = SystemClock.uptimeMillis();
-        Projection proj = map.getProjection();
+        if (animation) {
+            final long start = SystemClock.uptimeMillis();
+            Projection projection = map.getProjection();
 
-        Point startPoint = proj.toScreenLocation(target);
-        startPoint.y = 0;
-        final LatLng startLatLng = proj.fromScreenLocation(startPoint);
+            Point startPoint = projection.toScreenLocation(target);
+            startPoint.y = 0;
+            final LatLng startLatLng = projection.fromScreenLocation(startPoint);
 
-        final Interpolator interpolator = new LinearInterpolator();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                long elapsed = SystemClock.uptimeMillis() - start;
-                float t = interpolator.getInterpolation((float) elapsed / markerAnimationDuration);
-                double lng = t * target.longitude + (1 - t) * startLatLng.longitude;
-                double lat = t * target.latitude + (1 - t) * startLatLng.latitude;
-                marker.setPosition(new LatLng(lat, lng));
-                if (t < 1.0) {
-                    handler.postDelayed(this, 10);
-                } else {
-                    marker.setPosition(target);
+            final Interpolator interpolator = new LinearInterpolator();
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    long elapsed = SystemClock.uptimeMillis() - start;
+                    float t = interpolator.getInterpolation((float) elapsed / markerAnimationDuration);
+                    double lng = t * target.longitude + (1 - t) * startLatLng.longitude;
+                    double lat = t * target.latitude + (1 - t) * startLatLng.latitude;
+                    marker.setPosition(new LatLng(lat, lng));
+                    if (t < 1.0) {
+                        handler.postDelayed(this, 10);
+                    } else {
+                        marker.setPosition(target);
+                    }
                 }
-            }
-        });
+            });
+        }
 
-        place.setMarkerId(marker.getId());
+        placesMarkers.remove(place.markerId);
         placesMarkers.put(marker.getId(), place);
+        place.setMarkerId(marker.getId());
     }
 
     public static void addPolyLine(List<LatLng> points) {
