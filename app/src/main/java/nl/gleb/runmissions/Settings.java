@@ -18,8 +18,6 @@ import android.widget.Toast;
  */
 public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListener {
 
-    static final String SETTINGS_TAG = "SETTINGS";
-
     Comm comm;
     SeekBar distanceInput, sprintsInput, feedbackRateInput;
 
@@ -61,7 +59,7 @@ public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListene
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        SharedPreferences prefs = getActivity().getSharedPreferences(SETTINGS_TAG, Context.MODE_PRIVATE);
+        SharedPreferences prefs = getActivity().getSharedPreferences(Main.SETTINGS_TAG, Context.MODE_PRIVATE);
 
         switch (seekBar.getId()) {
             case R.id.seekbarDistance:
