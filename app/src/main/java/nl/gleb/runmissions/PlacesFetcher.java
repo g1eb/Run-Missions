@@ -60,7 +60,7 @@ public class PlacesFetcher extends AsyncTask<URL, Integer, String> {
 
             url.put("key", "AIzaSyCbFFLGTKvJh_on6sRgwp0mcz0Rl-B_ijk");
             url.put("location", location.getLatitude() + "," + location.getLongitude());
-            url.put("radius", 2500);
+            url.put("radius", (main.distance*1000 / 2));
 
             if (next_page_token != null) {
                 url.put("pagetoken", next_page_token);
