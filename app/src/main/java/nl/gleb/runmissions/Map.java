@@ -96,9 +96,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     @Override
     public void onStop() {
         super.onStop();
-        map.clear();
         map = null;
-        Main.places = new HashMap<String, Place>();
     }
 
     @Override
