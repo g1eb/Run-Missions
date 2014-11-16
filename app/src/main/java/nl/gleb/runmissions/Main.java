@@ -603,8 +603,8 @@ public class Main extends ActionBarActivity
             for (Place place : placesList.results) {
                 if (!places.containsKey(place.id)) {
                     places.put(place.id, place);
+                    Map.updatePlaceMarker(place, true);
                 }
-                Map.updatePlaceMarker(place);
             }
         }
 
