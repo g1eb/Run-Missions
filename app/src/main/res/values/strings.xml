@@ -78,7 +78,8 @@
 
     <!--Settings-->
     <string name="label_distance">Preferred distance (km)</string>
-    <string name="label_events">Number of events</string>
+    <string name="label_sprints">Number of sprints</string>
+    <string name="label_feedback_rate">Feedback Rate (seconds)</string>
 
     <!-- Miscellaneous -->
     <string name="nav_drawer_background">#80FFFFFF</string>

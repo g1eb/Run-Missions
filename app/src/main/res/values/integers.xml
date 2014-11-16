@@ -10,5 +10,6 @@
 
     <!-- Settings -->
     <integer name="max_distance">15</integer>
-    <integer name="max_events">30</integer>
+    <integer name="max_sprints">30</integer>
+    <integer name="max_feedback_rate">60</integer>
 </resources>
