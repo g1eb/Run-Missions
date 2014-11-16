@@ -39,12 +39,14 @@ public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListene
         super.onActivityCreated(savedInstanceState);
 
         distanceInput = (SeekBar) getActivity().findViewById(R.id.seekbarDistance);
-        sprintsInput = (SeekBar) getActivity().findViewById(R.id.seekbarSprints);
-        feedbackRateInput = (SeekBar) getActivity().findViewById(R.id.seekbarFeedbackRate);
-
         distanceInput.setOnSeekBarChangeListener(this);
+
+        sprintsInput = (SeekBar) getActivity().findViewById(R.id.seekbarSprints);
         sprintsInput.setOnSeekBarChangeListener(this);
+
+        feedbackRateInput = (SeekBar) getActivity().findViewById(R.id.seekbarFeedbackRate);
         feedbackRateInput.setOnSeekBarChangeListener(this);
+        feedbackRateInput.incrementProgressBy(10);
     }
 
     @Override
