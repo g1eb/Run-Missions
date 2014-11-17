@@ -242,7 +242,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         Resources res = getResources();
         int resID = res.getIdentifier(user.getAvatar(), "drawable", getActivity().getPackageName());
         Bitmap b = BitmapFactory.decodeResource(res, resID);
-        Bitmap avatar = Bitmap.createScaledBitmap(b, b.getWidth()/3, b.getHeight()/3, false);
+        Bitmap avatar = Bitmap.createScaledBitmap(b, b.getWidth() / 3, b.getHeight() / 3, false);
         usersMarkers.put(user.getUsername(), map.addMarker(new MarkerOptions()
                 .position(new LatLng(user.getLat(), user.getLng()))
                 .anchor((float) 0.5, (float) 1.0)
