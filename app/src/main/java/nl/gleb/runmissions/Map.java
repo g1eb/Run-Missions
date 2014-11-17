@@ -230,29 +230,27 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
     }
 
     public void updateUsersPosition(User user) {
-        if (usersMarkers.containsKey(user.getUsername())) {
-            usersMarkers.get(user.getUsername()).remove();
-            addUserMarker(user);
-        } else {
-            addUserMarker(user);
-        }
-    }
-
-    private void addUserMarker(User user) {
         Resources res = getResources();
         int resID = res.getIdentifier(user.getAvatar(), "drawable", getActivity().getPackageName());
         Bitmap b = BitmapFactory.decodeResource(res, resID);
         Bitmap avatar = Bitmap.createScaledBitmap(b, b.getWidth() / 3, b.getHeight() / 3, false);
-        Marker marker = map.addMarker(new MarkerOptions()
-                .position(new LatLng(user.getLat(), user.getLng()))
-                .anchor((float) 0.5, (float) 1.0)
-                .icon(BitmapDescriptorFactory.fromBitmap(avatar))
-                .title(user.getUsername()));
+        LatLng location = new LatLng(user.getLat(), user.getLng());
+
+        Marker marker;
+        if (usersMarkers.containsKey(user.getUsername())) {
+            marker = usersMarkers.get(user.getUsername());
+        } else {
+            marker = map.addMarker(new MarkerOptions()
+                    .position(location)
+                    .anchor((float) 0.5, (float) 1.0)
+                    .icon(BitmapDescriptorFactory.fromBitmap(avatar))
+                    .title(user.getUsername()));
+            usersMarkers.put(user.getUsername(), marker);
+        }
         animateMarker(marker, location);
-        usersMarkers.put(user.getUsername(), marker);
     }
 
-    private void animateMarker(final Marker marker, final Location location) {
+    private void animateMarker(final Marker marker, final LatLng location) {
         final Handler handler = new Handler();
         final long start = SystemClock.uptimeMillis();
         final LatLng startLatLng = marker.getPosition();
@@ -266,10 +264,8 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                 long elapsed = SystemClock.uptimeMillis() - start;
                 float t = interpolator.getInterpolation((float) elapsed / duration);
 
-                double lng = t * location.getLongitude() + (1 - t)
-                        * startLatLng.longitude;
-                double lat = t * location.getLatitude() + (1 - t)
-                        * startLatLng.latitude;
+                double lng = t * location.longitude + (1 - t) * startLatLng.longitude;
+                double lat = t * location.latitude + (1 - t) * startLatLng.latitude;
 
 
                 marker.setPosition(new LatLng(lat, lng));
