@@ -113,7 +113,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
             map = getMap();
             // Check if we were successful in obtaining the map.
             if (map != null) {
-                map.setMyLocationEnabled(true);
+                map.setMyLocationEnabled(false);
                 map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                 map.setTrafficEnabled(false);
                 map.setIndoorEnabled(false);
