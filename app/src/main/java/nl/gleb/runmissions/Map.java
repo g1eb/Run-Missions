@@ -243,41 +243,10 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         int resID = res.getIdentifier(user.getAvatar(), "drawable", getActivity().getPackageName());
         Bitmap b = BitmapFactory.decodeResource(res, resID);
         Bitmap avatar = Bitmap.createScaledBitmap(b, b.getWidth() / 3, b.getHeight() / 3, false);
-        Marker marker = map.addMarker(new MarkerOptions()
+        usersMarkers.put(user.getUsername(), map.addMarker(new MarkerOptions()
                 .position(new LatLng(user.getLat(), user.getLng()))
                 .anchor((float) 0.5, (float) 1.0)
                 .icon(BitmapDescriptorFactory.fromBitmap(avatar))
-                .title(user.getUsername()));
-        animateMarker(marker, location);
-        usersMarkers.put(user.getUsername(), marker);
-    }
-
-    private void animateMarker(final Marker marker, final Location location) {
-        final Handler handler = new Handler();
-        final long start = SystemClock.uptimeMillis();
-        final LatLng startLatLng = marker.getPosition();
-        final long duration = markerAnimationDuration;
-
-        final Interpolator interpolator = new LinearInterpolator();
-
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                long elapsed = SystemClock.uptimeMillis() - start;
-                float t = interpolator.getInterpolation((float) elapsed / duration);
-
-                double lng = t * location.getLongitude() + (1 - t)
-                        * startLatLng.longitude;
-                double lat = t * location.getLatitude() + (1 - t)
-                        * startLatLng.latitude;
-
-
-                marker.setPosition(new LatLng(lat, lng));
-
-                if (t < 1.0) {
-                    handler.postDelayed(this, 16);
-                }
-            }
-        });
+                .title(user.getUsername())));
     }
 }
