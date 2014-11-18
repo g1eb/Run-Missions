@@ -249,4 +249,30 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                 .icon(BitmapDescriptorFactory.fromBitmap(avatar))
                 .title(user.getUsername())));
     }
+
+    private void animateMarker(final Marker marker, final LatLng location) {
+        final Handler handler = new Handler();
+        final long start = SystemClock.uptimeMillis();
+        final LatLng startLatLng = marker.getPosition();
+        final long duration = markerAnimationDuration;
+
+        final Interpolator interpolator = new LinearInterpolator();
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                long elapsed = SystemClock.uptimeMillis() - start;
+                float t = interpolator.getInterpolation((float) elapsed / duration);
+
+                double lat = t * location.latitude + (1 - t) * startLatLng.latitude;
+                double lng = t * location.longitude + (1 - t) * startLatLng.longitude;
+
+                marker.setPosition(new LatLng(lat, lng));
+
+                if (t < 1.0) {
+                    handler.postDelayed(this, 16);
+                }
+            }
+        });
+    }
 }
