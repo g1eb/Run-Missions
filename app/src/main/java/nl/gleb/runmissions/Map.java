@@ -231,23 +231,27 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
 
     public void updateUsersPosition(User user) {
         if (usersMarkers.containsKey(user.getUsername())) {
-            usersMarkers.get(user.getUsername()).remove();
-            addUserMarker(user);
+            Marker m1 = usersMarkers.get(user.getUsername());
+            Marker m2 = addUserMarker(user, new LatLng(m1.getPosition().latitude, m1.getPosition().longitude));
+            m1.remove();
+            animateMarker(m2, new LatLng(user.getLat(), user.getLng()));
         } else {
-            addUserMarker(user);
+            addUserMarker(user, new LatLng(user.getLat(), user.getLng()));
         }
     }
 
-    private void addUserMarker(User user) {
+    private Marker addUserMarker(User user, LatLng location) {
         Resources res = getResources();
         int resID = res.getIdentifier(user.getAvatar(), "drawable", getActivity().getPackageName());
         Bitmap b = BitmapFactory.decodeResource(res, resID);
         Bitmap avatar = Bitmap.createScaledBitmap(b, b.getWidth() / 3, b.getHeight() / 3, false);
-        usersMarkers.put(user.getUsername(), map.addMarker(new MarkerOptions()
-                .position(new LatLng(user.getLat(), user.getLng()))
+        Marker marker = map.addMarker(new MarkerOptions()
+                .position(location)
                 .anchor((float) 0.5, (float) 1.0)
                 .icon(BitmapDescriptorFactory.fromBitmap(avatar))
-                .title(user.getUsername())));
+                .title(user.getUsername()));
+        usersMarkers.put(user.getUsername(), marker);
+        return marker;
     }
 
     private void animateMarker(final Marker marker, final LatLng location) {
