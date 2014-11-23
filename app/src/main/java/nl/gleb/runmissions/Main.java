@@ -98,9 +98,12 @@ public class Main extends ActionBarActivity
     // Profile
     User user = null;
 
+    // Markers
+    public static HashMap<String, Place> places = new HashMap<String, Place>();
+    public static HashMap<String, User> users = new HashMap<String, User>();
+
     // Checkpoints
     Place target;
-    public static HashMap<String, Place> places = new HashMap<String, Place>();
     List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
 
     // Chat
@@ -534,9 +537,13 @@ public class Main extends ActionBarActivity
                     Double.parseDouble(ds.child("lat").getValue().toString()),
                     Double.parseDouble(ds.child("lng").getValue().toString()));
 
+            if (!users.containsKey(user.getEmail())) {
+                users.put(user.getEmail(), user);
+            }
+
             Map map = (Map) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_map));
             if (map != null) {
-                map.updateUsersPosition(user);
+                map.updateUserMarker(user);
             }
         } catch (Exception e) {
             e.printStackTrace();

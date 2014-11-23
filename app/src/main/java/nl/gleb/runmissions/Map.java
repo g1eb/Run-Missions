@@ -155,11 +155,19 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
             }
         });
 
+        // Clear the map with old markers
         map.clear();
+
+        // Put place markers on the map
         if (Main.places.size() == 0) {
             new PlacesFetcher(((Main) getActivity())).execute();
         } else {
             for (Place place : Main.places.values()) updatePlaceMarker(place, false);
+        }
+
+        // Put user markers on the map
+        if (Main.users.size() > 0) {
+            for (User user : Main.users.values()) updateUserMarker(user);
         }
     }
 
@@ -229,7 +237,7 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
         comm.updateSteps(steps);
     }
 
-    public void updateUsersPosition(User user) {
+    public void updateUserMarker(User user) {
         if (usersMarkers.containsKey(user.getUsername())) {
             Marker m1 = usersMarkers.get(user.getUsername());
             Marker m2 = addUserMarker(user, new LatLng(m1.getPosition().latitude, m1.getPosition().longitude));
