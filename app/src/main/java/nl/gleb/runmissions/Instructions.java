@@ -1,9 +1,7 @@
 package nl.gleb.runmissions;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,12 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 /**
- * Created by Gleb on 25/10/14.
+ * Created by Gleb on 23/11/14.
  */
 public class Instructions extends Fragment implements View.OnClickListener {
 
     Comm comm;
-    private Button leftBtn, rightBtn, accelerateBtn, errorBtn, closerBtn;
+    private Button hapticIntro1, hapticIntro2, hapticTest1, hapticTest2;
 
     public static Instructions newInstance() {
         return new Instructions();
@@ -39,41 +37,29 @@ public class Instructions extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        leftBtn = (Button) getActivity().findViewById(R.id.hapticButtonLeft);
-        leftBtn.setOnClickListener(this);
+        hapticIntro1 = (Button) getActivity().findViewById(R.id.hapticIntro1);
+        hapticIntro1.setOnClickListener(this);
 
-        rightBtn = (Button) getActivity().findViewById(R.id.hapticButtonRight);
-        rightBtn.setOnClickListener(this);
+        hapticIntro2 = (Button) getActivity().findViewById(R.id.hapticIntro2);
+        hapticIntro2.setOnClickListener(this);
 
-        accelerateBtn = (Button) getActivity().findViewById(R.id.hapticButtonAccelerate);
-        accelerateBtn.setOnClickListener(this);
+        hapticTest1 = (Button) getActivity().findViewById(R.id.hapticTest1);
+        hapticTest1.setOnClickListener(this);
 
-        errorBtn = (Button) getActivity().findViewById(R.id.hapticButtonError);
-        errorBtn.setOnClickListener(this);
-
-        closerBtn = (Button) getActivity().findViewById(R.id.hapticButtonCloser);
-        closerBtn.setOnClickListener(this);
+        hapticTest2 = (Button) getActivity().findViewById(R.id.hapticTest2);
+        hapticTest2.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-
         switch (v.getId()) {
-            case R.id.hapticButtonLeft:
-                vibrator.vibrate(comm.getPattern("left"), -1);
+            case R.id.hapticIntro1:
                 break;
-            case R.id.hapticButtonRight:
-                vibrator.vibrate(comm.getPattern("right"), -1);
+            case R.id.hapticIntro2:
                 break;
-            case R.id.hapticButtonAccelerate:
-                vibrator.vibrate(comm.getPattern("accelerate"), -1);
+            case R.id.hapticTest1:
                 break;
-            case R.id.hapticButtonError:
-                vibrator.vibrate(comm.getPattern("error"), -1);
-                break;
-            case R.id.hapticButtonCloser:
-                vibrator.vibrate(comm.getPattern("closer"), -1);
+            case R.id.hapticTest2:
                 break;
         }
     }
