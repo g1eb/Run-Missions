@@ -15,7 +15,7 @@ public interface Comm {
 
     void updateSteps(List<DirectionsStep> steps);
 
-    long[] getPattern(String left);
+    long[] getPattern(String pattern);
 
     void setTarget(Place target);
 

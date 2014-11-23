@@ -60,13 +60,18 @@ public class Main extends ActionBarActivity
     static final String SETTINGS_TAG = "SETTINGS";
 
     /**
-     * Haptic feedback patterns
+     * Haptic feedback patterns (2 different sets)
      */
-    static final long[] LEFT_PATTERN = {0, 300, 150, 100};
-    static final long[] RIGHT_PATTERN = {0, 100, 150, 300};
-    static final long[] ACCELERATE_PATTERN = {0, 100, 100, 100, 100, 100};
-    static final long[] ERROR_PATTERN = {0, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300};
-    static final long[] CLOSER_PATTERN = {0, 100, 1000, 100, 900, 150, 800, 150, 700, 200, 600, 200, 500, 250, 400, 250, 300, 300, 200, 300, 100, 3000};
+    static final long[] LEFT_PATTERN1 = {0, 300, 150, 100};
+    static final long[] LEFT_PATTERN2 = {0, 300, 150, 100};
+    static final long[] RIGHT_PATTERN1 = {0, 100, 150, 300};
+    static final long[] RIGHT_PATTERN2 = {0, 100, 150, 300};
+    static final long[] ACCELERATE_PATTERN1 = {0, 100, 100, 100, 100, 100};
+    static final long[] ACCELERATE_PATTERN2 = {0, 100, 100, 100, 100, 100};
+    static final long[] ERROR_PATTERN1 = {0, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300};
+    static final long[] ERROR_PATTERN2 = {0, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300};
+    static final long[] CLOSER_PATTERN1 = {0, 100, 1000, 100, 900, 150, 800, 150, 700, 200, 600, 200, 500, 250, 400, 250, 300, 300, 200, 300, 100, 3000};
+    static final long[] CLOSER_PATTERN2 = {0, 100, 1000, 100, 900, 150, 800, 150, 700, 200, 600, 200, 500, 250, 400, 250, 300, 300, 200, 300, 100, 3000};
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -461,13 +466,13 @@ public class Main extends ActionBarActivity
             Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
             if (step.html_instructions.toLowerCase().contains("left")) {
-                vibrator.vibrate(LEFT_PATTERN, -1);
+                vibrator.vibrate(getPattern("left1"), -1);
             } else if (step.html_instructions.toLowerCase().contains("right")) {
-                vibrator.vibrate(RIGHT_PATTERN, -1);
+                vibrator.vibrate(getPattern("right1"), -1);
             } else if (step.html_instructions.toLowerCase().contains("head")) {
-                vibrator.vibrate(ACCELERATE_PATTERN, -1);
+                vibrator.vibrate(getPattern("accelerate1"), -1);
             } else if (step.html_instructions.toLowerCase().contains("Continue")) {
-                vibrator.vibrate(CLOSER_PATTERN, -1);
+                vibrator.vibrate(getPattern("closer1"), -1);
             }
 
             feedbackCounter = feedbackRate;
@@ -656,18 +661,28 @@ public class Main extends ActionBarActivity
 
     @Override
     public long[] getPattern(String type) {
-        if (type.equals("left")) {
-            return LEFT_PATTERN;
-        } else if (type.equals("right")) {
-            return RIGHT_PATTERN;
-        } else if (type.equals("accelerate")) {
-            return ACCELERATE_PATTERN;
-        } else if (type.equals("error")) {
-            return ERROR_PATTERN;
-        } else if (type.equals("closer")) {
-            return CLOSER_PATTERN;
+        if (type.equals("left1")) {
+            return LEFT_PATTERN1;
+        } else if (type.equals("left2")) {
+            return LEFT_PATTERN2;
+        } else if (type.equals("right1")) {
+            return RIGHT_PATTERN1;
+        } else if (type.equals("right2")) {
+            return RIGHT_PATTERN2;
+        } else if (type.equals("accelerate1")) {
+            return ACCELERATE_PATTERN1;
+        } else if (type.equals("accelerate2")) {
+            return ACCELERATE_PATTERN2;
+        } else if (type.equals("error1")) {
+            return ERROR_PATTERN1;
+        } else if (type.equals("error2")) {
+            return ERROR_PATTERN2;
+        } else if (type.equals("closer1")) {
+            return CLOSER_PATTERN1;
+        } else if (type.equals("closer2")) {
+            return CLOSER_PATTERN2;
         } else {
-            return ACCELERATE_PATTERN;
+            return ACCELERATE_PATTERN1;
         }
     }
 
