@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,10 +53,15 @@ public class Instructions extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+
         switch (v.getId()) {
             case R.id.hapticIntro1:
+                ft.replace(R.id.container, InstructionsIntro.newInstance(1)).commit();
                 break;
             case R.id.hapticIntro2:
+                ft.replace(R.id.container, InstructionsIntro.newInstance(2)).commit();
                 break;
             case R.id.hapticTest1:
                 break;
