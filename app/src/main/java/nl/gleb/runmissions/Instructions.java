@@ -64,8 +64,10 @@ public class Instructions extends Fragment implements View.OnClickListener {
                 ft.replace(R.id.container, InstructionsIntro.newInstance(2)).commit();
                 break;
             case R.id.hapticTest1:
+                ft.replace(R.id.container, InstructionsTest.newInstance(1)).commit();
                 break;
             case R.id.hapticTest2:
+                ft.replace(R.id.container, InstructionsTest.newInstance(2)).commit();
                 break;
         }
     }
