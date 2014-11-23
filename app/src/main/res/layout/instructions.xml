@@ -11,7 +11,7 @@
         android:layout_marginTop="25dp"
         android:gravity="center"
         android:padding="5dp"
-        android:text="@string/haptic_test_title"
+        android:text="@string/haptic_lobby_title"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#333333" />
 
@@ -22,40 +22,76 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/hapticButtonLeft"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:gravity="left"
-            android:text="@string/haptic_button_left" />
+            android:padding="5dp"
+            android:text="@string/haptic_condition_1"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#333333" />
 
-        <Button
-            android:id="@+id/hapticButtonRight"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="@string/haptic_button_right" />
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-        <Button
-            android:id="@+id/hapticButtonAccelerate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="@string/haptic_button_accelerate" />
+            <Button
+                android:id="@+id/hapticIntro1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/haptic_intro" />
 
-        <Button
-            android:id="@+id/hapticButtonError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="@string/haptic_button_error" />
+            <Button
+                android:id="@+id/hapticTest1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/haptic_test" />
 
-        <Button
-            android:id="@+id/hapticButtonCloser"
+
+        </LinearLayout>
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:gravity="left"
-            android:text="@string/haptic_button_closer" />
+            android:padding="5dp"
+            android:text="@string/haptic_condition_2"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#333333" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/hapticIntro2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/haptic_intro" />
+
+            <Button
+                android:id="@+id/hapticTest2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/haptic_test" />
+
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
