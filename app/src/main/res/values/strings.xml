@@ -69,6 +69,11 @@
     <string name="start_mission_button">START!</string>
 
     <!-- Haptic test buttons -->
+    <string name="haptic_lobby_title">Choose one of the two conditions.</string>
+    <string name="haptic_condition_1">Condition 1</string>
+    <string name="haptic_condition_2">Condition 2</string>
+    <string name="haptic_intro">Intro</string>
+    <string name="haptic_test">Test</string>
     <string name="haptic_test_title">Tap on the buttons below to familiarize with haptic signals</string>
     <string name="haptic_button_left">Left ( - . )</string>
     <string name="haptic_button_right">Right ( . - )</string>
