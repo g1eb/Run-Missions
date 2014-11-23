@@ -74,6 +74,7 @@
     <string name="haptic_condition_2">Condition 2</string>
     <string name="haptic_intro">Intro</string>
     <string name="haptic_test">Test</string>
+    <string name="start_haptic_test">Start Test</string>
     <string name="haptic_test_title">Tap on the buttons below to familiarize with haptic signals</string>
     <string name="haptic_button_left">Left ( - . )</string>
     <string name="haptic_button_right">Right ( . - )</string>
