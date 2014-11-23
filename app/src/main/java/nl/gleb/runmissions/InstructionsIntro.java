@@ -17,9 +17,11 @@ import android.widget.Button;
 public class InstructionsIntro extends Fragment implements View.OnClickListener {
 
     Comm comm;
+    private static int condition;
     private Button leftBtn, rightBtn, accelerateBtn, errorBtn, closerBtn;
 
-    public static InstructionsIntro newInstance() {
+    public static InstructionsIntro newInstance(Integer c) {
+        condition = c;
         return new InstructionsIntro();
     }
 
