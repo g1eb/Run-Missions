@@ -3,12 +3,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_weight="0.2"
         android:gravity="center"
         android:padding="5dp"
         android:text="@string/haptic_test_title"
@@ -17,8 +19,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_weight="0.7"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -57,6 +60,20 @@
             android:gravity="left"
             android:text="@string/haptic_button_closer" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/hapticButtonBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/haptic_intro_back" />
     </LinearLayout>
 
 </LinearLayout>
