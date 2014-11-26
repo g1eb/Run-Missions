@@ -103,7 +103,7 @@ public class InstructionsTest extends Fragment {
                 }
 
                 Log.e("I", "set selected: " + trials.toString());
-                comm.setSelectedHapticTest(trials.toString());
+                comm.setSelectedHapticTest("C" + condition + "; " + trials.toString());
 
                 handler = new Handler();
                 runnable = new Runnable() {
