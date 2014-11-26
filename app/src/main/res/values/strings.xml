@@ -56,13 +56,13 @@
     <string name="desc_mission_placeholder">Now, this is the story all about how my life got flipped-turned upside down, and I\'d like to take a minute, just sit right there I\'ll tell you how I became the prince of a town called Bel Air</string>
     <string-array name="mission_titles">
         <item>To the rescue!</item>
-        <item>Catastrophy</item>
+        <item>Catastrophe</item>
         <item>Heist</item>
     </string-array>
     <string-array name="mission_descriptions">
-        <item>Now, this is the story all about how my life got flipped-turned upside down, and I\'d like to take a minute, just sit right there I\'ll tell you how I became the prince of a town called Bel Air</item>
-        <item>Now, this is the story all about how my life got flipped-turned upside down, and I\'d like to take a minute, just sit right there I\'ll tell you how I became the prince of a town called Bel Air</item>
-        <item>Now, this is the story all about how my life got flipped-turned upside down, and I\'d like to take a minute, just sit right there I\'ll tell you how I became the prince of a town called Bel Air</item>
+        <item>Alarm! Sergeant, this mission is THE most important mission of your career. Your chief in command is found trapped in a tree, you must rush to save Sir Whiskers this instant. Good luck!</item>
+        <item>Save the exceed nation in Edolas and return back safely! May the odds be ever in your favour.</item>
+        <item>Rough it up before you take it slow and to rock it like a rodeo. This mission is going to be a bumpy ride.</item>
     </string-array>
 
     <!-- Mission -->
