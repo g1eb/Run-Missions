@@ -78,11 +78,16 @@
     <string name="haptic_intro_back">Back to the lobby</string>
     <string name="start_haptic_test">Start Test</string>
     <string name="haptic_test_title">Tap on the buttons below to familiarize with haptic signals</string>
-    <string name="haptic_button_left">Left ( - . )</string>
-    <string name="haptic_button_right">Right ( . - )</string>
-    <string name="haptic_button_accelerate">Sprint ( . . . )</string>
-    <string name="haptic_button_error">Wrong Direction ( - . - . - . - . - .)</string>
-    <string name="haptic_button_closer">Getting Closer( . . ...--- )</string>
+    <string name="haptic_button_left1">Left ( - . )</string>
+    <string name="haptic_button_right1">Right ( . - )</string>
+    <string name="haptic_button_accelerate1">Sprint ( . . . )</string>
+    <string name="haptic_button_error1">Wrong Direction ( - . - . - . - . - .)</string>
+    <string name="haptic_button_closer1">Getting Closer( . . ...--- )</string>
+    <string name="haptic_button_left2">Left ( . )</string>
+    <string name="haptic_button_right2">Right ( . . )</string>
+    <string name="haptic_button_accelerate2">Sprint ( . . . )</string>
+    <string name="haptic_button_error2">Wrong Direction ( . . . . )</string>
+    <string name="haptic_button_closer2">Getting Closer( . . . . . )</string>
 
     <!--Settings-->
     <string name="label_distance">Preferred distance (km)</string>

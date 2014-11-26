@@ -2,6 +2,7 @@ package nl.gleb.runmissions;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
@@ -42,20 +43,32 @@ public class InstructionsIntro extends Fragment implements View.OnClickListener 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        Resources res = getResources();
+
         leftBtn = (Button) getActivity().findViewById(R.id.hapticButtonLeft);
         leftBtn.setOnClickListener(this);
+        int resLeftBtn = res.getIdentifier("haptic_button_left"+condition, "string", getActivity().getPackageName());
+        leftBtn.setText(getString(resLeftBtn));
 
         rightBtn = (Button) getActivity().findViewById(R.id.hapticButtonRight);
         rightBtn.setOnClickListener(this);
+        int resRightBtn = res.getIdentifier("haptic_button_right"+condition, "string", getActivity().getPackageName());
+        rightBtn.setText(getString(resRightBtn));
 
         accelerateBtn = (Button) getActivity().findViewById(R.id.hapticButtonAccelerate);
         accelerateBtn.setOnClickListener(this);
+        int resSprintBtn = res.getIdentifier("haptic_button_accelerate"+condition, "string", getActivity().getPackageName());
+        accelerateBtn.setText(getString(resSprintBtn));
 
         errorBtn = (Button) getActivity().findViewById(R.id.hapticButtonError);
         errorBtn.setOnClickListener(this);
+        int resErrorBtn = res.getIdentifier("haptic_button_error"+condition, "string", getActivity().getPackageName());
+        errorBtn.setText(getString(resErrorBtn));
 
         closerBtn = (Button) getActivity().findViewById(R.id.hapticButtonCloser);
         closerBtn.setOnClickListener(this);
+        int resCloserBtn = res.getIdentifier("haptic_button_closer"+condition, "string", getActivity().getPackageName());
+        closerBtn.setText(getString(resCloserBtn));
 
         backBtn = (Button) getActivity().findViewById(R.id.hapticButtonBack);
         backBtn.setOnClickListener(this);
