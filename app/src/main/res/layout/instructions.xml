@@ -89,7 +89,6 @@
                 android:gravity="center"
                 android:text="@string/haptic_test" />
 
-
         </LinearLayout>
 
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ public class InstructionsIntro extends Fragment implements View.OnClickListener 
 
     Comm comm;
     private static int condition;
-    private Button leftBtn, rightBtn, accelerateBtn, errorBtn, closerBtn;
+    private Button leftBtn, rightBtn, accelerateBtn, errorBtn, closerBtn, backBtn;
 
     public static InstructionsIntro newInstance(Integer c) {
         condition = c;
@@ -55,10 +56,15 @@ public class InstructionsIntro extends Fragment implements View.OnClickListener 
 
         closerBtn = (Button) getActivity().findViewById(R.id.hapticButtonCloser);
         closerBtn.setOnClickListener(this);
+
+        backBtn = (Button) getActivity().findViewById(R.id.hapticButtonBack);
+        backBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
         Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         switch (v.getId()) {
@@ -76,6 +82,9 @@ public class InstructionsIntro extends Fragment implements View.OnClickListener 
                 break;
             case R.id.hapticButtonCloser:
                 vibrator.vibrate(comm.getPattern("closer" + condition), -1);
+                break;
+            case R.id.hapticButtonBack:
+                ft.replace(R.id.container, Instructions.newInstance()).commit();
                 break;
         }
     }
