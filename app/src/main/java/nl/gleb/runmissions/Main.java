@@ -63,15 +63,15 @@ public class Main extends ActionBarActivity
      * Haptic feedback patterns (2 different sets)
      */
     static final long[] LEFT_PATTERN1 = {0, 300, 150, 100};
-    static final long[] LEFT_PATTERN2 = {0, 300, 150, 100};
+    static final long[] LEFT_PATTERN2 = {0, 100};
     static final long[] RIGHT_PATTERN1 = {0, 100, 150, 300};
-    static final long[] RIGHT_PATTERN2 = {0, 100, 150, 300};
+    static final long[] RIGHT_PATTERN2 = {0, 100, 150, 100};
     static final long[] ACCELERATE_PATTERN1 = {0, 100, 100, 100, 100, 100};
     static final long[] ACCELERATE_PATTERN2 = {0, 100, 100, 100, 100, 100};
     static final long[] ERROR_PATTERN1 = {0, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300};
-    static final long[] ERROR_PATTERN2 = {0, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300};
+    static final long[] ERROR_PATTERN2 = {0, 100, 150, 100, 150, 100, 150, 100};
     static final long[] CLOSER_PATTERN1 = {0, 100, 1000, 100, 900, 150, 800, 150, 700, 200, 600, 200, 500, 250, 400, 250, 300, 300, 200, 300, 100, 3000};
-    static final long[] CLOSER_PATTERN2 = {0, 100, 1000, 100, 900, 150, 800, 150, 700, 200, 600, 200, 500, 250, 400, 250, 300, 300, 200, 300, 100, 3000};
+    static final long[] CLOSER_PATTERN2 = {0, 100, 150, 100, 150, 100, 150, 100, 150, 100};
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
