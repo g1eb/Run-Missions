@@ -19,7 +19,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Random;
 
 /**
  * Created by Gleb on 23/11/14.
@@ -80,7 +79,7 @@ public class InstructionsTest extends Fragment {
                 Integer numTrials = getNumTrials(condition);
                 Log.e("I", "num trials from prefs: " + numTrials);
 
-                if ( numTrials % NUM_TRIALS_PER_SET != 0 ) {
+                if (numTrials % NUM_TRIALS_PER_SET != 0) {
                     Log.e("I", "somebody did not finish a test set, update numTrials");
                     numTrials = numTrials - (numTrials % NUM_TRIALS_PER_SET);
 
@@ -127,19 +126,19 @@ public class InstructionsTest extends Fragment {
                         Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                         switch (trial) {
                             case 1:
-                                vibrator.vibrate(comm.getPattern("left"+condition), -1);
+                                vibrator.vibrate(comm.getPattern("left" + condition), -1);
                                 break;
                             case 2:
-                                vibrator.vibrate(comm.getPattern("right"+condition), -1);
+                                vibrator.vibrate(comm.getPattern("right" + condition), -1);
                                 break;
                             case 3:
-                                vibrator.vibrate(comm.getPattern("accelerate"+condition), -1);
+                                vibrator.vibrate(comm.getPattern("accelerate" + condition), -1);
                                 break;
                             case 4:
-                                vibrator.vibrate(comm.getPattern("error"+condition), -1);
+                                vibrator.vibrate(comm.getPattern("error" + condition), -1);
                                 break;
                             case 5:
-                                vibrator.vibrate(comm.getPattern("closer"+condition), -1);
+                                vibrator.vibrate(comm.getPattern("closer" + condition), -1);
                                 break;
                         }
 
