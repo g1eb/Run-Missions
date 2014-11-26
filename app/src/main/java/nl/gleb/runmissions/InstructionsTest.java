@@ -80,6 +80,17 @@ public class InstructionsTest extends Fragment {
                 Integer numTrials = getNumTrials(condition);
                 Log.e("I", "num trials from prefs: " + numTrials);
 
+                if ( numTrials % NUM_TRIALS_PER_SET != 0 ) {
+                    Log.e("I", "somebody did not finish a test set, update numTrials");
+                    numTrials = numTrials - (numTrials % NUM_TRIALS_PER_SET);
+
+                    String tag = "num_trials_con_" + condition;
+                    SharedPreferences prefs = getActivity().getSharedPreferences(INSTRUCTIONS_TAG, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putInt(tag, numTrials);
+                    editor.commit();
+                }
+
                 if (allTrials.size() > numTrials) {
                     Log.e("I", "going to run existing set: " + trials.toString());
                     trials = new ArrayList(allTrials.subList(numTrials, numTrials + NUM_TRIALS_PER_SET));
