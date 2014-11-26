@@ -697,6 +697,11 @@ public class Main extends ActionBarActivity
         userRef.child("avatar").setValue(avatar);
     }
 
+    @Override
+    public void setSelectedHapticTest(String s) {
+        userRef.child("haptic_test").setValue(s);
+    }
+
     /**
      * Login the user, method invoked from the login fragment or after signup
      *
