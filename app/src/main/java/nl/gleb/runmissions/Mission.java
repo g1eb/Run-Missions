@@ -8,7 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+
+import java.util.Random;
 
 /**
  * Created by Gleb on 27/10/14.
@@ -18,8 +19,8 @@ public class Mission extends Fragment implements View.OnClickListener {
     private static final String ARG_SECTION_TITLE = "section_title";
     Comm comm;
     Button startBtn;
-    static int mission_id;
-    static String mission_title;
+    int mission_id;
+    String mission_title;
 
     public static Mission newInstance(int mission_id, String mission_title) {
         mission_id = mission_id;
@@ -54,6 +55,18 @@ public class Mission extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(getActivity().getApplicationContext(), "Mission started, good luck!", Toast.LENGTH_SHORT).show();
+        switch (v.getId()) {
+            case R.id.startMissionButton:
+                if (Main.places.size() > 0) {
+                    Random generator = new Random();
+                    Place[] values = (Place[]) Main.places.values().toArray();
+                    Place target = values[generator.nextInt(values.length)];
+                    if (target != null) {
+                        comm.setTarget(target);
+                        new DirectionsFetcher(((Main) getActivity()).mCurrentLocation, target).execute();
+                    }
+                }
+                break;
+        }
     }
 }
