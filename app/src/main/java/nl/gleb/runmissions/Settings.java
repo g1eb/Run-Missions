@@ -81,6 +81,7 @@ public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListene
                 prefs.edit().putInt("distance", progress).apply();
                 selectedDistance.setText(String.valueOf(progress));
                 Main.distance = progress;
+                Main.places.clear();
                 break;
             case R.id.seekbarSprints:
                 prefs.edit().putInt("sprints", progress).apply();
