@@ -461,13 +461,13 @@ public class Main extends ActionBarActivity
             Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
             if (step.html_instructions.toLowerCase().contains("left")) {
-                vibrator.vibrate(getPattern("left1"), -1);
+                vibrator.vibrate(getPattern("left"), -1);
             } else if (step.html_instructions.toLowerCase().contains("right")) {
-                vibrator.vibrate(getPattern("right1"), -1);
+                vibrator.vibrate(getPattern("right"), -1);
             } else if (step.html_instructions.toLowerCase().contains("head")) {
-                vibrator.vibrate(getPattern("accelerate1"), -1);
-            } else if (step.html_instructions.toLowerCase().contains("Continue")) {
-                vibrator.vibrate(getPattern("closer1"), -1);
+                vibrator.vibrate(getPattern("accelerate"), -1);
+            } else if (step.html_instructions.toLowerCase().contains("continue")) {
+                vibrator.vibrate(getPattern("closer"), -1);
             }
 
             feedbackCounter = feedbackRate;
@@ -656,28 +656,18 @@ public class Main extends ActionBarActivity
 
     @Override
     public long[] getPattern(String type) {
-        if (type.equals("left1")) {
-            return LEFT_PATTERN1;
-        } else if (type.equals("left2")) {
-            return LEFT_PATTERN2;
-        } else if (type.equals("right1")) {
-            return RIGHT_PATTERN1;
-        } else if (type.equals("right2")) {
-            return RIGHT_PATTERN2;
-        } else if (type.equals("accelerate1")) {
-            return ACCELERATE_PATTERN1;
-        } else if (type.equals("accelerate2")) {
-            return ACCELERATE_PATTERN2;
-        } else if (type.equals("error1")) {
-            return ERROR_PATTERN1;
-        } else if (type.equals("error2")) {
-            return ERROR_PATTERN2;
-        } else if (type.equals("closer1")) {
-            return CLOSER_PATTERN1;
-        } else if (type.equals("closer2")) {
-            return CLOSER_PATTERN2;
+        if (type.equals("left")) {
+            return LEFT_PATTERN;
+        } else if (type.equals("right")) {
+            return RIGHT_PATTERN;
+        } else if (type.equals("accelerate")) {
+            return ACCELERATE_PATTERN;
+        } else if (type.equals("error")) {
+            return ERROR_PATTERN;
+        } else if (type.equals("closer")) {
+            return CLOSER_PATTERN;
         } else {
-            return ACCELERATE_PATTERN1;
+            return ACCELERATE_PATTERN;
         }
     }
 
