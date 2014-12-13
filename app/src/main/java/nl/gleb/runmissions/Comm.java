@@ -20,6 +20,4 @@ public interface Comm {
     void setTarget(Place target);
 
     void updateUserAvatar(String avatar);
-
-    void setSelectedHapticTest(String s);
 }
