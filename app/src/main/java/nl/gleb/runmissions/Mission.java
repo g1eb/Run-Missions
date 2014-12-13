@@ -68,8 +68,8 @@ public class Mission extends Fragment implements View.OnClickListener {
             case R.id.startMissionButton:
                 if (Main.places.size() > 0) {
                     Random generator = new Random();
-                    Place[] values = (Place[]) Main.places.values().toArray();
-                    Place target = values[generator.nextInt(values.length)];
+                    Object[] values = Main.places.values().toArray();
+                    Place target = (Place) values[generator.nextInt(values.length)];
                     if (target != null) {
                         comm.setTarget(target);
                         new DirectionsFetcher(((Main) getActivity()).mCurrentLocation, target).execute();
