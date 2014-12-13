@@ -436,18 +436,19 @@ public class Main extends ActionBarActivity
         }
 
         if (!steps.isEmpty() && target != null) {
-            for (int i = 0; i < steps.size(); i++) {
-                double dist = distance(location.getLatitude(), location.getLongitude(), steps.get(i).start_location.lat, steps.get(i).start_location.lng);
-                if (dist <= FEEDBACK_RANGE && (i == steps.size() - 1)) {
-                    Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                    vibrator.vibrate(getPattern("closer"), -1);
-                } else if (dist <= FEEDBACK_RANGE) {
-                    handleFeedback(steps.get(i));
-                }
-            }
             double dist = distance(location.getLatitude(), location.getLongitude(), target.geometry.location.lat, target.geometry.location.lng);
             if (dist <= FINISH_RANGE) {
                 handleFinish(target);
+            } else {
+                for (int i = 0; i < steps.size(); i++) {
+                    dist = distance(location.getLatitude(), location.getLongitude(), steps.get(i).start_location.lat, steps.get(i).start_location.lng);
+                    if (dist <= FEEDBACK_RANGE && (i == steps.size() - 1)) {
+                        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibrator.vibrate(getPattern("closer"), -1);
+                    } else if (dist <= FEEDBACK_RANGE) {
+                        handleFeedback(steps.get(i));
+                    }
+                }
             }
         }
     }
