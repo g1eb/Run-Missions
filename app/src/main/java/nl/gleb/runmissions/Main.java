@@ -493,6 +493,10 @@ public class Main extends ActionBarActivity
         // Update new exp value to firebase
         userRef.child("exp").setValue(exp);
 
+        // Set userRef target to null
+        target = null;
+        userRef.child("target").setValue("");
+
         int level = (int) (Math.sqrt(100 * (2 * exp + 25)) + 50) / 100;
         if (level > user.getLevel()) {
             // Update new level value to firebase
