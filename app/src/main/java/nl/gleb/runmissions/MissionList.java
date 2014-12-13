@@ -1,7 +1,6 @@
 package nl.gleb.runmissions;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -63,7 +61,7 @@ public class MissionList extends Fragment implements AdapterView.OnItemClickList
         TextView title = (TextView) view.findViewById(R.id.missionListItemTitle);
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.replace(R.id.container, Mission.newInstance((String) title.getText())).commit();
+        ft.replace(R.id.container, Mission.newInstance((int) id, (String) title.getText())).commit();
     }
 }
 

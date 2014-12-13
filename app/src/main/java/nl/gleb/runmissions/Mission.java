@@ -18,13 +18,16 @@ public class Mission extends Fragment implements View.OnClickListener {
     private static final String ARG_SECTION_TITLE = "section_title";
     Comm comm;
     Button startBtn;
+    static int mission_id;
     static String mission_title;
 
-    public static Mission newInstance(String mission) {
-        mission_title = mission;
+    public static Mission newInstance(int mission_id, String mission_title) {
+        mission_id = mission_id;
+        mission_title = mission_title;
+
         Mission fragment = new Mission();
         Bundle args = new Bundle();
-        args.putString(ARG_SECTION_TITLE, mission);
+        args.putString(ARG_SECTION_TITLE, mission_title);
         fragment.setArguments(args);
         return fragment;
     }
