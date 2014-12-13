@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.7"
+        android:layout_weight="0.8"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -29,46 +29,37 @@
             android:id="@+id/hapticButtonLeft"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/haptic_button_left"
             android:gravity="left" />
 
         <Button
             android:id="@+id/hapticButtonRight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/haptic_button_right"
             android:gravity="left" />
 
         <Button
             android:id="@+id/hapticButtonAccelerate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/haptic_button_accelerate"
             android:gravity="left" />
 
         <Button
             android:id="@+id/hapticButtonError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/haptic_button_error"
             android:gravity="left" />
 
         <Button
             android:id="@+id/hapticButtonCloser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/haptic_button_closer"
             android:gravity="left" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.1"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/hapticButtonBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="@string/haptic_intro_back" />
     </LinearLayout>
 
 </LinearLayout>
