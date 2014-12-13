@@ -440,14 +440,29 @@ public class Main extends ActionBarActivity
             if (dist <= FINISH_RANGE) {
                 handleFinish(target);
             } else {
+                // Temporary vars for the current step
+                DirectionsStep step = null;
+                double shortest = Integer.MAX_VALUE;
+
+                // Iterate over the steps in current route
                 for (int i = 0; i < steps.size(); i++) {
+                    // Calculate distance to the start of the step in this iteration
                     dist = distance(location.getLatitude(), location.getLongitude(), steps.get(i).start_location.lat, steps.get(i).start_location.lng);
+
+                    // If it's the last step in the route provide the getting closer haptic feedback
                     if (dist <= FEEDBACK_RANGE && (i == steps.size() - 1)) {
                         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibrator.vibrate(getPattern("closer"), -1);
                     } else if (dist <= FEEDBACK_RANGE) {
-                        handleFeedback(steps.get(i));
+                        if ( dist < shortest ) {
+                            step = steps.get(i);
+                            shortest = dist;
+                        }
                     }
+                }
+
+                if ( step != null ){
+                    handleFeedback(step);
                 }
             }
         }
