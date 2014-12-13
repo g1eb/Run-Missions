@@ -78,9 +78,6 @@ public class Instructions extends Fragment implements View.OnClickListener {
             case R.id.hapticButtonCloser:
                 vibrator.vibrate(comm.getPattern("closer"), -1);
                 break;
-            case R.id.hapticButtonBack:
-                ft.replace(R.id.container, Instructions.newInstance()).commit();
-                break;
         }
     }
 }
