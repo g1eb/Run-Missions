@@ -95,7 +95,7 @@ public class Settings extends Fragment implements SeekBar.OnSeekBarChangeListene
                 }
                 prefs.edit().putInt("feedbackRate", progress).apply();
                 selectedFeedbackRate.setText(String.valueOf(progress * 10));
-                Main.feedbackRate = progress * 10;
+                Main.feedbackRate = progress;
                 break;
         }
     }
