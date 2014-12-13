@@ -18,7 +18,7 @@ import android.widget.Button;
 public class Instructions extends Fragment implements View.OnClickListener {
 
     Comm comm;
-    private Button leftBtn, rightBtn, accelerateBtn, errorBtn, closerBtn;
+    private Button leftBtn, rightBtn, sprintBtn, errorBtn, closerBtn;
 
     public static Instructions newInstance() {
         return new Instructions();
@@ -46,8 +46,8 @@ public class Instructions extends Fragment implements View.OnClickListener {
         rightBtn = (Button) getActivity().findViewById(R.id.hapticButtonRight);
         rightBtn.setOnClickListener(this);
 
-        accelerateBtn = (Button) getActivity().findViewById(R.id.hapticButtonAccelerate);
-        accelerateBtn.setOnClickListener(this);
+        sprintBtn = (Button) getActivity().findViewById(R.id.hapticButtonSprint);
+        sprintBtn.setOnClickListener(this);
 
         errorBtn = (Button) getActivity().findViewById(R.id.hapticButtonError);
         errorBtn.setOnClickListener(this);
@@ -69,8 +69,8 @@ public class Instructions extends Fragment implements View.OnClickListener {
             case R.id.hapticButtonRight:
                 vibrator.vibrate(comm.getPattern("right"), -1);
                 break;
-            case R.id.hapticButtonAccelerate:
-                vibrator.vibrate(comm.getPattern("accelerate"), -1);
+            case R.id.hapticButtonSprint:
+                vibrator.vibrate(comm.getPattern("sprint"), -1);
                 break;
             case R.id.hapticButtonError:
                 vibrator.vibrate(comm.getPattern("error"), -1);

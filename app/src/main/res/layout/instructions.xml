@@ -40,10 +40,10 @@
             android:gravity="left" />
 
         <Button
-            android:id="@+id/hapticButtonAccelerate"
+            android:id="@+id/hapticButtonSprint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/haptic_button_accelerate"
+            android:text="@string/haptic_button_sprint"
             android:gravity="left" />
 
         <Button
