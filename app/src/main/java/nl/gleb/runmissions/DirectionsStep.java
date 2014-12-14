@@ -17,4 +17,7 @@ public class DirectionsStep {
 
     @Key("html_instructions")
     public String html_instructions;
+
+    @Key("maneuver")
+    public String maneuver;
 }
