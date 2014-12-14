@@ -456,14 +456,14 @@ public class Main extends ActionBarActivity
                         vibrator.vibrate(getPattern("closer"), -1);
                         last_step_done = true;
                     } else if (dist <= FEEDBACK_RANGE) {
-                        if ( dist < shortest ) {
+                        if (dist < shortest) {
                             step = steps.get(i);
                             shortest = dist;
                         }
                     }
                 }
 
-                if ( step != null ){
+                if (step != null) {
                     handleFeedback(step);
                     last_step_done = false;
                 }
