@@ -487,7 +487,7 @@ public class Main extends ActionBarActivity
             } else if (step.html_instructions.toLowerCase().contains("right")) {
                 vibrator.vibrate(getPattern("right"), -1);
             } else if (step.html_instructions.toLowerCase().contains("continue")) {
-                vibrator.vibrate(getPattern("accelerate"), -1);
+                vibrator.vibrate(getPattern("sprint"), -1);
             }
 
             feedbackCounter = feedbackRate;
