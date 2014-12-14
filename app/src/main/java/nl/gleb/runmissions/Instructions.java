@@ -58,8 +58,6 @@ public class Instructions extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
         Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         switch (v.getId()) {
