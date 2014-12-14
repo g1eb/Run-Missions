@@ -801,6 +801,20 @@ public class Main extends ActionBarActivity
     }
 
     /**
+     * Helper function to check if an array is sorted
+     * @param data
+     * @return
+     */
+    public static final boolean isSorted(final int[] data) {
+        for(int i = 1; i < data.length; i++) {
+            if(data[i-1] > data[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Helper method to calculate distance between two GPS points (given lat/lng)
      *
      * @return distance in meters
