@@ -105,6 +105,7 @@ public class Main extends ActionBarActivity
     // Checkpoints
     Place target;
     List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
+    List<Double> distances = new ArrayList<Double>();
     Boolean last_step_done = false;
 
     // Chat
@@ -469,7 +470,16 @@ public class Main extends ActionBarActivity
 
                     // Reset the last_step flag if user is not close to the target
                     last_step_done = false;
+
+                    // Reset distance to closest step
+                    distances.clear();
                 }
+
+                if ( distances.size() > 5 && isSorted(distances) ) {
+                    Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(getPattern("error"), -1);
+                }
+                distances.add(shortest);
             }
         }
     }
