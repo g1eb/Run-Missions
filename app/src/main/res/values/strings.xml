@@ -67,6 +67,7 @@
 
     <!-- Mission -->
     <string name="start_mission_button">START!</string>
+    <string name="mission_timer_format">%s</string>
 
     <!-- Haptic test buttons -->
     <string name="haptic_test_title">Tap on the buttons below to familiarize with haptic signals</string>

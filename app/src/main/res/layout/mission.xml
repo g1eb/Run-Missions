@@ -22,7 +22,20 @@
             android:layout_gravity="center"
             android:minHeight="75dp"
             android:minWidth="200dp"
+            android:visibility="visible"
             android:text="@string/start_mission_button" />
+
+        <Chronometer android:id="@+id/mission_timer"
+            android:format="@string/mission_timer_format"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:visibility="gone"
+            android:minHeight="75dp"
+            android:minWidth="200dp"
+            />
     </LinearLayout>
 
     <LinearLayout
