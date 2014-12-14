@@ -1,8 +1,10 @@
 package nl.gleb.runmissions;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -74,6 +76,8 @@ public class Mission extends Fragment implements View.OnClickListener {
                         comm.setTarget(target);
                         new DirectionsFetcher(((Main) getActivity()).mCurrentLocation, target).execute();
                     }
+                    Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(comm.getPattern("sprint"), -1);
                 }
                 break;
         }
