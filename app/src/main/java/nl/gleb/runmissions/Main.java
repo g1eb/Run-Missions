@@ -104,6 +104,7 @@ public class Main extends ActionBarActivity
 
     // Checkpoints
     Place target;
+    static String mission;
     List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
     List<Double> distances = new ArrayList<Double>();
     Boolean last_step_done = false;
@@ -537,6 +538,11 @@ public class Main extends ActionBarActivity
 
             // Show level up dialog
             showLevelUpDialog(level);
+        }
+
+        Mission missionFragment = (Mission) getSupportFragmentManager().findFragmentByTag(mission);
+        if (missionFragment != null) {
+            missionFragment.stopTimer();
         }
     }
 
