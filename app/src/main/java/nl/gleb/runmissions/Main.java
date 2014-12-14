@@ -801,13 +801,13 @@ public class Main extends ActionBarActivity
     }
 
     /**
-     * Helper function to check if an array is sorted
+     * Helper function to check if a list of doubles is sorted
      * @param data
      * @return
      */
-    public static final boolean isSorted(final int[] data) {
-        for(int i = 1; i < data.length; i++) {
-            if(data[i-1] > data[i]) {
+    public static final boolean isSorted(final List<Double> data) {
+        for(int i = 1; i < data.size(); i++) {
+            if(data.get(i-1) > data.get(i)) {
                 return false;
             }
         }
