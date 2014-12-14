@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -24,6 +26,7 @@ public class Mission extends Fragment implements View.OnClickListener {
     Comm comm;
     Button startBtn;
     TextView missionDesc;
+    Chronometer timer;
     static int mission_id;
     static String mission_title;
 
@@ -62,6 +65,19 @@ public class Mission extends Fragment implements View.OnClickListener {
 
         startBtn = (Button) getActivity().findViewById(R.id.startMissionButton);
         startBtn.setOnClickListener(this);
+
+        timer = (Chronometer) getActivity().findViewById(R.id.mission_timer);
+        timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                CharSequence text = chronometer.getText();
+                if (text.length() == 5) {
+                    chronometer.setText("00:" + text);
+                } else if (text.length() == 7) {
+                    chronometer.setText("0" + text);
+                }
+            }
+        });
     }
 
     @Override
