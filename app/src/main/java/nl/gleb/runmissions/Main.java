@@ -463,8 +463,11 @@ public class Main extends ActionBarActivity
                     }
                 }
 
+                // If user is close to the current step provide user with appropriate haptic feedback
                 if (step != null) {
                     handleFeedback(step);
+
+                    // Reset the last_step flag if user is not close to the target
                     last_step_done = false;
                 }
             }
