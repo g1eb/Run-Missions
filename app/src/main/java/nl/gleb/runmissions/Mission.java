@@ -87,15 +87,32 @@ public class Mission extends Fragment implements View.OnClickListener {
                 if (Main.places.size() > 0) {
                     Random generator = new Random();
                     Object[] values = Main.places.values().toArray();
+                    Main.mission = mission_title;
                     Place target = (Place) values[generator.nextInt(values.length)];
                     if (target != null) {
                         comm.setTarget(target);
                         new DirectionsFetcher(((Main) getActivity()).mCurrentLocation, target).execute();
                     }
-                    Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                    vibrator.vibrate(comm.getPattern("sprint"), -1);
+                    initializeMission();
                 }
                 break;
         }
+    }
+
+    private void initializeMission() {
+        missionDesc.setVisibility(View.GONE);
+        startBtn.setVisibility(View.GONE);
+
+        Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(comm.getPattern("sprint"), -1);
+
+        timer.setBase(SystemClock.elapsedRealtime());
+        timer.setText("00:00:00");
+        timer.setVisibility(View.VISIBLE);
+        timer.start();
+    }
+
+    public void stopTimer() {
+        timer.stop();
     }
 }
