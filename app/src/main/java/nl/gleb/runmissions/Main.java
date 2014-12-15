@@ -55,8 +55,8 @@ public class Main extends ActionBarActivity
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
     private static final long UPDATE_INTERVAL = 10000;
     private static final long FASTEST_INTERVAL = 5000;
-    private static final int FEEDBACK_RANGE = 25;
-    private static final int FINISH_RANGE = 25;
+    private static final int FEEDBACK_RANGE = 50;
+    private static final int FINISH_RANGE = 50;
     static final String SETTINGS_TAG = "SETTINGS";
 
     /**
