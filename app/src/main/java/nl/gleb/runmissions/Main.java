@@ -104,7 +104,7 @@ public class Main extends ActionBarActivity
 
     // Checkpoints
     Place target;
-    String path;
+    String path = "";
     DirectionsStep currentStep;
     List<Double> distancesToCurrent = new ArrayList<Double>();
     static String mission;
