@@ -444,10 +444,13 @@ public class Main extends ActionBarActivity
             userRef.child("path").setValue(path);
         }
 
-        if (currentStep != null && distanceFromPrevious >= 5) {
+        // In steps of 3 meters and more check if user is going away from the current step
+        if (currentStep != null && distanceFromPrevious >= 3) {
 
             double d = distance(location.getLatitude(), location.getLongitude(), currentStep.start_location.lat, currentStep.start_location.lng);
             distancesToCurrent.add(d);
+
+            // After ~15 meters in the wrong direction provide error signal
             if (distancesToCurrent.size() >= 5 && isSorted(distancesToCurrent)) {
                 Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(getPattern("error"), -1);
