@@ -55,14 +55,12 @@
     <string name="title_mission_placeholder">Mission</string>
     <string name="desc_mission_placeholder">Now, this is the story all about how my life got flipped-turned upside down, and I\'d like to take a minute, just sit right there I\'ll tell you how I became the prince of a town called Bel Air</string>
     <string-array name="mission_titles">
-        <item>To the rescue!</item>
         <item>Catastrophe</item>
-        <item>Heist</item>
+        <item>Revolution</item>
     </string-array>
     <string-array name="mission_descriptions">
-        <item>Alarm! Sergeant, this mission is THE most important mission of your career. Your chief in command is found trapped in a tree, you must rush to save Sir Whiskers this instant. Good luck!</item>
-        <item>Save the exceed nation in Edolas and return back safely! May the odds be ever in your favour.</item>
-        <item>Rough it up before you take it slow and to rock it like a rodeo. This mission is going to be a bumpy ride.</item>
+        <item>Mr. Parker and his friend Coco are trapped in a tree, a real catastrophe! Save the world as we know it from it\'s inevitable doom by rescuing two ambassadors of the Felinae race. Your device will provide the directions. Good luck!</item>
+        <item>Join forces to overthrow the radical God-King of Earthsea. It is time to rise against the system, time for self-righteousness to rule. Run to the castle to take the law into your own hands. Your device will provide the directions. Good luck!</item>
     </string-array>
 
     <!-- Mission -->
