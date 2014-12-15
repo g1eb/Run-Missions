@@ -104,9 +104,11 @@ public class Main extends ActionBarActivity
 
     // Checkpoints
     Place target;
+    String path;
+    DirectionsStep currentStep;
+    List<Double> distancesToCurrent = new ArrayList<Double>();
     static String mission;
     List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
-    List<Double> distances = new ArrayList<Double>();
     Boolean last_step_done = false;
 
     // Chat
@@ -432,10 +434,25 @@ public class Main extends ActionBarActivity
         mPreviousLocation = mCurrentLocation;
         mCurrentLocation = location;
 
+        path += location.getLatitude() + ", " + location.getLongitude() + " ";
+
+        double distanceFromPrevious = distance(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude(), mPreviousLocation.getLatitude(), mPreviousLocation.getLongitude());
         if (user != null) {
             user.setLocation(location);
             userRef.child("lat").setValue(location.getLatitude());
             userRef.child("lng").setValue(location.getLongitude());
+            usersRef.child("path").setValue(path);
+        }
+
+        if (currentStep != null && distanceFromPrevious >= 5) {
+
+            double d = distance(location.getLatitude(), location.getLongitude(), currentStep.start_location.lat, currentStep.start_location.lng);
+            distancesToCurrent.add(d);
+            if (distancesToCurrent.size() >= 5 && isSorted(distancesToCurrent)) {
+                Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(getPattern("error"), -1);
+                distancesToCurrent.clear();
+            }
         }
 
         if (!steps.isEmpty() && target != null) {
@@ -468,20 +485,14 @@ public class Main extends ActionBarActivity
                 // If user is close to the current step provide user with appropriate haptic feedback
                 if (step != null) {
                     handleFeedback(step);
+                    currentStep = step;
 
                     // Reset the last_step flag if user is not close to the target
                     last_step_done = false;
 
                     // Reset distance to closest step
-                    distances.clear();
+                    distancesToCurrent.clear();
                 }
-
-                if ( distances.size() > 5 && isSorted(distances) ) {
-                    Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                    vibrator.vibrate(getPattern("error"), -1);
-                    distances.clear();
-                }
-                distances.add(shortest);
             }
         }
     }
@@ -819,12 +830,13 @@ public class Main extends ActionBarActivity
 
     /**
      * Helper function to check if a list of doubles is sorted
+     *
      * @param data
      * @return
      */
     public static final boolean isSorted(final List<Double> data) {
-        for(int i = 1; i < data.size(); i++) {
-            if(data.get(i-1) > data.get(i)) {
+        for (int i = 1; i < data.size(); i++) {
+            if (data.get(i - 1) > data.get(i)) {
                 return false;
             }
         }
