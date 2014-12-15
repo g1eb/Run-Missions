@@ -479,6 +479,7 @@ public class Main extends ActionBarActivity
                 if ( distances.size() > 5 && isSorted(distances) ) {
                     Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibrator.vibrate(getPattern("error"), -1);
+                    distances.clear();
                 }
                 distances.add(shortest);
             }
