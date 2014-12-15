@@ -441,7 +441,7 @@ public class Main extends ActionBarActivity
             user.setLocation(location);
             userRef.child("lat").setValue(location.getLatitude());
             userRef.child("lng").setValue(location.getLongitude());
-            usersRef.child("path").setValue(path);
+            userRef.child("path").setValue(path);
         }
 
         if (currentStep != null && distanceFromPrevious >= 5) {
