@@ -436,7 +436,8 @@ public class Main extends ActionBarActivity
 
         path += location.getLatitude() + ", " + location.getLongitude() + " ";
 
-        double distanceFromPrevious = distance(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude(), mPreviousLocation.getLatitude(), mPreviousLocation.getLongitude());
+        double distanceFromPrevious = distance(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude(),
+                                               mPreviousLocation.getLatitude(), mPreviousLocation.getLongitude());
         if (user != null) {
             user.setLocation(location);
             userRef.child("lat").setValue(location.getLatitude());
@@ -451,10 +452,9 @@ public class Main extends ActionBarActivity
             distancesToCurrent.add(d);
 
             // After ~15 meters in the wrong direction provide error signal
-            if (distancesToCurrent.size() >= 5 && isSorted(distancesToCurrent)) {
+            if (distancesToCurrent.get(distancesToCurrent.size()) - distancesToCurrent.get(0) >= 15) {
                 Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(getPattern("error"), -1);
-                distancesToCurrent.clear();
             }
         }
 
