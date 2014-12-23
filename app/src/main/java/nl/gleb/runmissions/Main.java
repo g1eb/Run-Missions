@@ -481,7 +481,6 @@ public class Main extends ActionBarActivity
                 if (step != null) {
                     // Reset distance to closest step
                     if (step != currentStep) {
-                        Toast.makeText(getApplicationContext(), "next step reached", Toast.LENGTH_LONG).show();
                         distancesToCurrent.clear();
                     }
 
