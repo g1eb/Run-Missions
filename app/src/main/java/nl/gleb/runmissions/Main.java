@@ -57,7 +57,6 @@ public class Main extends ActionBarActivity
     private static final long FASTEST_INTERVAL = 3000;
     private static final int FEEDBACK_RANGE = 25;
     private static final int FINISH_RANGE = 25;
-    private static final int MOVEMENT_THRESHOLD = 2; //meters
     static final String SETTINGS_TAG = "SETTINGS";
 
     /**
@@ -434,19 +433,14 @@ public class Main extends ActionBarActivity
         mPreviousLocation = mCurrentLocation;
         mCurrentLocation = location;
 
-
-        double distanceFromPrevious = distance(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude(),
-                mPreviousLocation.getLatitude(), mPreviousLocation.getLongitude());
+        if (user != null) {
+            user.setLocation(location);
+            userRef.child("lat").setValue(location.getLatitude());
+            userRef.child("lng").setValue(location.getLongitude());
+        }
 
         // In steps of 3 meters and more check if user is going away from the current step
-        if (currentStep != null && distanceFromPrevious >= MOVEMENT_THRESHOLD) {
-
-            if (user != null) {
-                user.setLocation(location);
-                userRef.child("lat").setValue(location.getLatitude());
-                userRef.child("lng").setValue(location.getLongitude());
-            }
-
+        if (currentStep != null) {
             double d = distance(location.getLatitude(), location.getLongitude(), currentStep.start_location.lat, currentStep.start_location.lng);
             distancesToCurrent.add(d);
 
@@ -456,45 +450,45 @@ public class Main extends ActionBarActivity
                 distancesToCurrent.clear();
                 new DirectionsFetcher(mCurrentLocation, target).execute();
             }
+        }
 
-            if (!steps.isEmpty() && target != null) {
-                double dist = distance(location.getLatitude(), location.getLongitude(), target.geometry.location.lat, target.geometry.location.lng);
-                if (dist <= FINISH_RANGE) {
-                    handleFinish(target);
-                } else {
-                    // Temporary vars for the current step
-                    DirectionsStep step = null;
-                    int shortest = Integer.MAX_VALUE;
+        if (!steps.isEmpty() && target != null) {
+            double dist = distance(location.getLatitude(), location.getLongitude(), target.geometry.location.lat, target.geometry.location.lng);
+            if (dist <= FINISH_RANGE) {
+                handleFinish(target);
+            } else {
+                // Temporary vars for the current step
+                DirectionsStep step = null;
+                int shortest = Integer.MAX_VALUE;
 
-                    // Iterate over the steps in current route
-                    for (int i = 0; i < steps.size(); i++) {
-                        // Calculate distance to the start of the step in this iteration
-                        dist = distance(location.getLatitude(), location.getLongitude(), steps.get(i).start_location.lat, steps.get(i).start_location.lng);
+                // Iterate over the steps in current route
+                for (int i = 0; i < steps.size(); i++) {
+                    // Calculate distance to the start of the step in this iteration
+                    dist = distance(location.getLatitude(), location.getLongitude(), steps.get(i).start_location.lat, steps.get(i).start_location.lng);
 
-                        // If it's the last step in the route provide the getting closer haptic feedback
-                        if (dist <= FEEDBACK_RANGE && (i == steps.size() - 1) && !last_step_done) {
-                            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                            vibrator.vibrate(getPattern("closer"), -1);
-                            last_step_done = true;
-                        } else if (dist <= FEEDBACK_RANGE) {
-                            if (dist < shortest) {
-                                step = steps.get(i);
-                                shortest = (int) dist;
-                            }
+                    // If it's the last step in the route provide the getting closer haptic feedback
+                    if (dist <= FEEDBACK_RANGE && (i == steps.size() - 1) && !last_step_done) {
+                        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibrator.vibrate(getPattern("closer"), -1);
+                        last_step_done = true;
+                    } else if (dist <= FEEDBACK_RANGE) {
+                        if (dist < shortest) {
+                            step = steps.get(i);
+                            shortest = (int) dist;
                         }
                     }
+                }
 
-                    // If user is close to the current step provide user with appropriate haptic feedback
-                    if (step != null) {
-                        handleFeedback(step);
-                        currentStep = step;
+                // If user is close to the current step provide user with appropriate haptic feedback
+                if (step != null) {
+                    handleFeedback(step);
+                    currentStep = step;
 
-                        // Reset the last_step flag if user is not close to the target
-                        last_step_done = false;
+                    // Reset the last_step flag if user is not close to the target
+                    last_step_done = false;
 
-                        // Reset distance to closest step
-                        distancesToCurrent.clear();
-                    }
+                    // Reset distance to closest step
+                    distancesToCurrent.clear();
                 }
             }
         }
