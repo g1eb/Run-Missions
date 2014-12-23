@@ -108,7 +108,6 @@ public class Main extends ActionBarActivity
     List<Double> distancesToCurrent = new ArrayList<Double>();
     static String mission;
     List<DirectionsStep> steps = new ArrayList<DirectionsStep>();
-    Boolean last_step_done = false;
 
     // Chat
     private ChatListAdapter chatListAdapter;
@@ -467,10 +466,9 @@ public class Main extends ActionBarActivity
                     dist = distance(location.getLatitude(), location.getLongitude(), steps.get(i).start_location.lat, steps.get(i).start_location.lng);
 
                     // If it's the last step in the route provide the getting closer haptic feedback
-                    if (dist <= FEEDBACK_RANGE && (i == steps.size() - 1) && !last_step_done) {
+                    if (dist <= FEEDBACK_RANGE && (i == steps.size() - 1)) {
                         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibrator.vibrate(getPattern("closer"), -1);
-                        last_step_done = true;
                     } else if (dist <= FEEDBACK_RANGE) {
                         if (dist < shortest) {
                             step = steps.get(i);
@@ -483,9 +481,6 @@ public class Main extends ActionBarActivity
                 if (step != null) {
                     handleFeedback(step);
                     currentStep = step;
-
-                    // Reset the last_step flag if user is not close to the target
-                    last_step_done = false;
 
                     // Reset distance to closest step
                     distancesToCurrent.clear();
