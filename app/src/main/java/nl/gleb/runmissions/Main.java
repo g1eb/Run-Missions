@@ -64,7 +64,7 @@ public class Main extends ActionBarActivity
      */
     static final long[] LEFT_PATTERN = {0, 500};
     static final long[] RIGHT_PATTERN = {0, 500, 500, 500};
-    static final long[] SPRINT_PATTERN = {0, 500, 500, 500, 500, 500};
+    static final long[] SPRINT_PATTERN = {0, 500, 400, 500, 400, 500};
     static final long[] ERROR_PATTERN = {0, 500, 250, 250, 500, 500, 250, 250, 500, 500, 250, 250, 500};
     static final long[] CLOSER_PATTERN = {0, 100, 800, 100, 700, 150, 600, 150, 500, 200, 400, 250, 300, 350, 200, 500, 100, 800};
 
