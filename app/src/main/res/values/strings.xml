@@ -43,6 +43,7 @@
     <string name="player_level">Lvl</string>
     <string name="player_exp">Exp</string>
     <string name="player_missions">Missions</string>
+    <string name="player_target">Target</string>
     <string name="text_color">#333333</string>
     <string name="level_up_dialog_title">Congratulations!!@#$!</string>
     <string name="level_up_dialog_message">You achieved level</string>

@@ -18,7 +18,7 @@ public class Profile extends Fragment implements ViewPager.OnPageChangeListener 
     Comm comm;
     AvatarAdapter adapter;
 
-    TextView level, exp, missions, username;
+    TextView level, exp, missions, target, username;
     ViewPager viewPager;
 
     public static Profile newInstance() {
@@ -44,6 +44,7 @@ public class Profile extends Fragment implements ViewPager.OnPageChangeListener 
         level = (TextView) getActivity().findViewById(R.id.level);
         exp = (TextView) getActivity().findViewById(R.id.exp);
         missions = (TextView) getActivity().findViewById(R.id.missions);
+        target = (TextView) getActivity().findViewById(R.id.target);
         username = (TextView) getActivity().findViewById(R.id.username);
 
         adapter = new AvatarAdapter(getActivity().getApplicationContext());
@@ -60,6 +61,7 @@ public class Profile extends Fragment implements ViewPager.OnPageChangeListener 
             exp.setText("Exp " + user.getExp());
             missions.setText("Missions " + user.getMissions());
             username.setText(user.getUsername());
+            target.setText(user.getTarget().split("\\sL\\(")[0]);
 
             int resID = getResources().getIdentifier(user.getAvatar(), "drawable", getActivity().getPackageName());
             viewPager.setCurrentItem(adapter.getAvatarPosition(resID), true);
