@@ -61,7 +61,9 @@ public class Profile extends Fragment implements ViewPager.OnPageChangeListener 
             exp.setText("Exp " + user.getExp());
             missions.setText("Missions " + user.getMissions());
             username.setText(user.getUsername());
-            target.setText(user.getTarget().split("\\sL\\(")[0]);
+            String t = user.getTarget();
+            if ( t.equals("") ) t = "---";
+            target.setText(t);
 
             int resID = getResources().getIdentifier(user.getAvatar(), "drawable", getActivity().getPackageName());
             viewPager.setCurrentItem(adapter.getAvatarPosition(resID), true);

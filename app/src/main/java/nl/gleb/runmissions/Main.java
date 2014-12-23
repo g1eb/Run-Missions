@@ -734,7 +734,8 @@ public class Main extends ActionBarActivity
     @Override
     public void setTarget(Place target) {
         this.target = target;
-        userRef.child("target").setValue(target.name + " C(" + target.geometry.location.lat + ", " + target.geometry.location.lng + ")");
+        userRef.child("target").setValue(target.name);
+        userRef.child("targetLocation").setValue("" + target.geometry.location.lat + ", " + target.geometry.location.lng);
         feedbackCounter = 0;
     }
 
