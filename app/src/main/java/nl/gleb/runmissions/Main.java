@@ -452,7 +452,7 @@ public class Main extends ActionBarActivity
             distancesToCurrent.add(d);
 
             // After ~15 meters in the wrong direction provide error signal
-            if (distancesToCurrent.get(distancesToCurrent.size()) - distancesToCurrent.get(0) >= 15) {
+            if (distancesToCurrent.get(distancesToCurrent.size()-1) - distancesToCurrent.get(0) >= 15) {
                 Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(getPattern("error"), -1);
             }
