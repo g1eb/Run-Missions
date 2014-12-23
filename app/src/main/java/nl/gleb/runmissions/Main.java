@@ -467,7 +467,7 @@ public class Main extends ActionBarActivity
             } else {
                 // Temporary vars for the current step
                 DirectionsStep step = null;
-                double shortest = Integer.MAX_VALUE;
+                int shortest = Integer.MAX_VALUE;
 
                 // Iterate over the steps in current route
                 for (int i = 0; i < steps.size(); i++) {
@@ -482,7 +482,7 @@ public class Main extends ActionBarActivity
                     } else if (dist <= FEEDBACK_RANGE) {
                         if (dist < shortest) {
                             step = steps.get(i);
-                            shortest = dist;
+                            shortest = (int) dist;
                         }
                     }
                 }
