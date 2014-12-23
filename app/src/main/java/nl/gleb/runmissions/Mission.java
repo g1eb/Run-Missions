@@ -90,7 +90,7 @@ public class Mission extends Fragment implements View.OnClickListener {
                     Object[] values = Main.places.values().toArray();
                     Main.mission = mission_title;
                     Location current = ((Main) getActivity()).mCurrentLocation;
-                    Location tLocation = new Location("asdf");
+                    Location tLocation = new Location("targetLocation");
                     Place target;
                     do {
                         target = (Place) values[generator.nextInt(values.length)];
