@@ -217,12 +217,17 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
 
     public static void addPolyLine(List<LatLng> points) {
         if (map != null) {
+            if ( route != null ) {
+                route.remove();
+            }
+
             routeOptions = new PolylineOptions()
                     .visible(true)
                     .color(new Color().parseColor("#c21d2b"))
                     .width(15)
                     .zIndex(30);
             routeOptions.addAll(points);
+
             route = map.addPolyline(routeOptions);
         }
     }
