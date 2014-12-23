@@ -442,7 +442,8 @@ public class Main extends ActionBarActivity
             double d = distance(location.getLatitude(), location.getLongitude(), currentStep.start_location.lat, currentStep.start_location.lng);
             distancesToCurrent.add(d);
 
-            if (distancesToCurrent.get(distancesToCurrent.size() - 1) - distancesToCurrent.get(0) > FEEDBACK_RANGE * 2) {
+            if (distancesToCurrent.get(distancesToCurrent.size() - 1) - distancesToCurrent.get(0) > FEEDBACK_RANGE * 2 &&
+                    distance(location.getLatitude(), location.getLongitude(), currentStep.end_location.lat, currentStep.end_location.lng) > currentStep.distance.value ) {
                 Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(getPattern("error"), -1);
                 distancesToCurrent.clear();
