@@ -266,8 +266,9 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
                 .position(location)
                 .anchor((float) 0.5, (float) 1.0)
                 .icon(BitmapDescriptorFactory.fromBitmap(avatar))
-                .title(user.getUsername())
-                .snippet(user.getTarget()));
+                .title(user.getUsername()));
+        String t = user.getTarget();
+        if ( !t.equals("") ) marker.setSnippet(t);
         usersMarkers.put(user.getUsername(), marker);
         return marker;
     }
