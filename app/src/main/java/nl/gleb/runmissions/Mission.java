@@ -96,7 +96,7 @@ public class Mission extends Fragment implements View.OnClickListener {
                         target = (Place) values[generator.nextInt(values.length)];
                         tLocation.setLatitude(target.geometry.location.lat);
                         tLocation.setLongitude(target.geometry.location.lng);
-                    } while (current.distanceTo(tLocation) >= 1000);
+                    } while (current.distanceTo(tLocation) >= Main.distance * 1000);
                     if (target != null) {
                         comm.setTarget(target);
                         new DirectionsFetcher(((Main) getActivity()).mCurrentLocation, target).execute();
