@@ -3,6 +3,7 @@ package nl.gleb.runmissions;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.os.Vibrator;
@@ -88,7 +89,14 @@ public class Mission extends Fragment implements View.OnClickListener {
                     Random generator = new Random();
                     Object[] values = Main.places.values().toArray();
                     Main.mission = mission_title;
-                    Place target = (Place) values[generator.nextInt(values.length)];
+                    Location current = ((Main) getActivity()).mCurrentLocation;
+                    Location tLocation = new Location("asdf");
+                    Place target;
+                    do {
+                        target = (Place) values[generator.nextInt(values.length)];
+                        tLocation.setLatitude(target.geometry.location.lat);
+                        tLocation.setLongitude(target.geometry.location.lng);
+                    } while (current.distanceTo(tLocation) >= 1000);
                     if (target != null) {
                         comm.setTarget(target);
                         new DirectionsFetcher(((Main) getActivity()).mCurrentLocation, target).execute();
