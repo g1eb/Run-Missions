@@ -455,6 +455,8 @@ public class Main extends ActionBarActivity
             if (distancesToCurrent.get(distancesToCurrent.size()-1) - distancesToCurrent.get(0) >= 15) {
                 Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(getPattern("error"), -1);
+                distancesToCurrent.clear();
+                new DirectionsFetcher(mCurrentLocation, target).execute();
             }
         }
 
