@@ -479,11 +479,14 @@ public class Main extends ActionBarActivity
 
                 // If user is close to the current step provide user with appropriate haptic feedback
                 if (step != null) {
+                    // Reset distance to closest step
+                    if (step != currentStep) {
+                        Toast.makeText(getApplicationContext(), "next step reached", Toast.LENGTH_LONG).show();
+                        distancesToCurrent.clear();
+                    }
+
                     handleFeedback(step);
                     currentStep = step;
-
-                    // Reset distance to closest step
-                    distancesToCurrent.clear();
                 }
             }
         }
