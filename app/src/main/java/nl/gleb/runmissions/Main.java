@@ -438,7 +438,6 @@ public class Main extends ActionBarActivity
             userRef.child("lng").setValue(location.getLongitude());
         }
 
-        // In steps of 3 meters and more check if user is going away from the current step
         if (currentStep != null) {
             double d = distance(location.getLatitude(), location.getLongitude(), currentStep.start_location.lat, currentStep.start_location.lng);
             distancesToCurrent.add(d);
