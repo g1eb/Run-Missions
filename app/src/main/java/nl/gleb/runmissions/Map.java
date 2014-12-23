@@ -1,6 +1,7 @@
 package nl.gleb.runmissions;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +11,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.os.Vibrator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
@@ -147,6 +149,8 @@ public class Map extends SupportMapFragment implements GoogleMap.OnMapLoadedCall
 
                 Place target = placesMarkers.get(marker.getId());
                 if (target != null) {
+                    Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(((Main) getActivity()).SPRINT_PATTERN, -1);
                     comm.setTarget(target);
                     new DirectionsFetcher(((Main) getActivity()).mCurrentLocation, target).execute();
                 }
