@@ -68,6 +68,17 @@ public class Main extends ActionBarActivity
     static final long[] ERROR_PATTERN = {0, 500, 250, 250, 500, 500, 250, 250, 500, 500, 250, 250, 500};
     static final long[] CLOSER_PATTERN = {0, 100, 800, 100, 700, 150, 600, 150, 500, 200, 400, 250, 300, 350, 200, 500, 100, 800};
 
+    static final long[] LEFT_PATTERN1 = {0, 500, 200, 200};
+    static final long[] LEFT_PATTERN2 = {0, 200};
+    static final long[] RIGHT_PATTERN1 = {0, 200, 200, 500};
+    static final long[] RIGHT_PATTERN2 = {0, 200, 200, 200};
+    static final long[] SPRINT_PATTERN1 = {0, 200, 200, 200, 200, 200};
+    static final long[] SPRINT_PATTERN2 = {0, 200, 200, 200, 200, 200};
+    static final long[] ERROR_PATTERN1 = {0, 300, 150, 200, 300, 300, 150, 200, 300, 300, 150, 200, 300};
+    static final long[] ERROR_PATTERN2 = {0, 200, 200, 200, 200, 200, 200, 200};
+    static final long[] CLOSER_PATTERN1 = {0, 100, 800, 100, 700, 150, 600, 150, 500, 200, 400, 250, 300, 350, 200, 500, 100, 800};
+    static final long[] CLOSER_PATTERN2 = {0, 200, 200, 200, 200, 200, 200, 200, 200, 200};
+
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -493,7 +504,7 @@ public class Main extends ActionBarActivity
     }
 
     /**
-     * Provide haptic feedback for the current state based on the html instructions
+     * Provide haptic feedback for the current state based on the html instructions_intro
      *
      * @param step current route step
      */
@@ -709,14 +720,34 @@ public class Main extends ActionBarActivity
     public long[] getPattern(String type) {
         if (type.equals("left")) {
             return LEFT_PATTERN;
+        } else if (type.equals("left1")) {
+            return LEFT_PATTERN1;
+        } else if (type.equals("left2")) {
+            return LEFT_PATTERN2;
         } else if (type.equals("right")) {
             return RIGHT_PATTERN;
+        } else if (type.equals("right1")) {
+            return RIGHT_PATTERN1;
+        } else if (type.equals("right2")) {
+            return RIGHT_PATTERN2;
         } else if (type.equals("sprint")) {
             return SPRINT_PATTERN;
+        } else if (type.equals("sprint1")) {
+            return SPRINT_PATTERN1;
+        } else if (type.equals("sprint2")) {
+            return SPRINT_PATTERN2;
         } else if (type.equals("error")) {
             return ERROR_PATTERN;
+        } else if (type.equals("error1")) {
+            return ERROR_PATTERN1;
+        } else if (type.equals("error2")) {
+            return ERROR_PATTERN2;
         } else if (type.equals("closer")) {
             return CLOSER_PATTERN;
+        } else if (type.equals("closer1")) {
+            return CLOSER_PATTERN1;
+        } else if (type.equals("closer2")) {
+            return CLOSER_PATTERN2;
         } else {
             return SPRINT_PATTERN;
         }
