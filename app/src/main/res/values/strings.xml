@@ -72,6 +72,8 @@
     <string name="haptic_lobby_title">Choose one of the two conditions.</string>
     <string name="haptic_condition_1">Condition 1</string>
     <string name="haptic_condition_2">Condition 2</string>
+    <string name="haptic_condition_final">Final Set</string>
+    <string name="haptic_set_final">Click here</string>
     <string name="haptic_intro">Intro</string>
     <string name="haptic_test">Test</string>
     <string name="haptic_test_thanks">Thank you for participating!</string>
@@ -88,11 +90,11 @@
     <string name="haptic_button_sprint2">Sprint ( . . . )</string>
     <string name="haptic_button_error2">Wrong Direction ( . . . . )</string>
     <string name="haptic_button_closer2">Getting Closer( . . . . . )</string>
-    <string name="haptic_button_left">Left [ . ]</string>
-    <string name="haptic_button_right">Right [ . . ]</string>
-    <string name="haptic_button_sprint">Sprint [ . . . ]</string>
-    <string name="haptic_button_error">Wrong Direction [ - . - . - . ]</string>
-    <string name="haptic_button_closer">Getting Closer [ . . ...--- ]</string>
+    <string name="haptic_button_left0">Left [ . ]</string>
+    <string name="haptic_button_right0">Right [ . . ]</string>
+    <string name="haptic_button_sprint0">Sprint [ . . . ]</string>
+    <string name="haptic_button_error0">Wrong Direction [ - . - . - . ]</string>
+    <string name="haptic_button_closer0">Getting Closer [ . . ...--- ]</string>
 
     <!--Settings-->
     <string name="label_distance">Preferred distance (km)</string>

@@ -29,35 +29,30 @@
             android:id="@+id/hapticButtonLeft"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/haptic_button_left"
             android:gravity="left" />
 
         <Button
             android:id="@+id/hapticButtonRight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/haptic_button_right"
             android:gravity="left" />
 
         <Button
             android:id="@+id/hapticButtonSprint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/haptic_button_sprint"
             android:gravity="left" />
 
         <Button
             android:id="@+id/hapticButtonError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/haptic_button_error"
             android:gravity="left" />
 
         <Button
             android:id="@+id/hapticButtonCloser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/haptic_button_closer"
             android:gravity="left" />
 
     </LinearLayout>

@@ -64,6 +64,7 @@ public class InstructionsIntro extends Fragment implements View.OnClickListener 
         errorBtn.setOnClickListener(this);
         int resErrorBtn = res.getIdentifier("haptic_button_error"+condition, "string", getActivity().getPackageName());
         errorBtn.setText(getString(resErrorBtn));
+        if ( condition == 0 ) errorBtn.setVisibility(View.GONE);
 
         closerBtn = (Button) getActivity().findViewById(R.id.hapticButtonCloser);
         closerBtn.setOnClickListener(this);

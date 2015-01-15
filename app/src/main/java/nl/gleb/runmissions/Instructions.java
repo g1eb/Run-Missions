@@ -16,7 +16,7 @@ import android.widget.Button;
 public class Instructions extends Fragment implements View.OnClickListener {
 
     Comm comm;
-    private Button hapticIntro1, hapticIntro2, hapticTest1, hapticTest2;
+    private Button hapticIntro1, hapticIntro2, hapticTest1, hapticTest2, hapticTestFinal;
 
     public static Instructions newInstance() {
         return new Instructions();
@@ -49,6 +49,9 @@ public class Instructions extends Fragment implements View.OnClickListener {
 
         hapticTest2 = (Button) getActivity().findViewById(R.id.hapticTest2);
         hapticTest2.setOnClickListener(this);
+
+        hapticTestFinal = (Button) getActivity().findViewById(R.id.hapticTestFinal);
+        hapticTestFinal.setOnClickListener(this);
     }
 
     @Override
@@ -68,6 +71,9 @@ public class Instructions extends Fragment implements View.OnClickListener {
                 break;
             case R.id.hapticTest2:
                 ft.replace(R.id.container, InstructionsTest.newInstance(2)).commit();
+                break;
+            case R.id.hapticTestFinal:
+                ft.replace(R.id.container, InstructionsIntro.newInstance(0)).commit();
                 break;
         }
     }

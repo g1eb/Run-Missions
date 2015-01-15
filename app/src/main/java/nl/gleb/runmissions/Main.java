@@ -718,31 +718,31 @@ public class Main extends ActionBarActivity
 
     @Override
     public long[] getPattern(String type) {
-        if (type.equals("left")) {
+        if (type.equals("left0")) {
             return LEFT_PATTERN;
         } else if (type.equals("left1")) {
             return LEFT_PATTERN1;
         } else if (type.equals("left2")) {
             return LEFT_PATTERN2;
-        } else if (type.equals("right")) {
+        } else if (type.equals("right0")) {
             return RIGHT_PATTERN;
         } else if (type.equals("right1")) {
             return RIGHT_PATTERN1;
         } else if (type.equals("right2")) {
             return RIGHT_PATTERN2;
-        } else if (type.equals("sprint")) {
+        } else if (type.equals("sprint0")) {
             return SPRINT_PATTERN;
         } else if (type.equals("sprint1")) {
             return SPRINT_PATTERN1;
         } else if (type.equals("sprint2")) {
             return SPRINT_PATTERN2;
-        } else if (type.equals("error")) {
+        } else if (type.equals("error0")) {
             return ERROR_PATTERN;
         } else if (type.equals("error1")) {
             return ERROR_PATTERN1;
         } else if (type.equals("error2")) {
             return ERROR_PATTERN2;
-        } else if (type.equals("closer")) {
+        } else if (type.equals("closer0")) {
             return CLOSER_PATTERN;
         } else if (type.equals("closer1")) {
             return CLOSER_PATTERN1;
