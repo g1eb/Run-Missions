@@ -432,7 +432,7 @@ public class Main extends ActionBarActivity
         mPreviousLocation = mCurrentLocation;
         mCurrentLocation = location;
 
-        if (user != null) {
+        if (user != null && userRef != null) {
             user.setLocation(location);
             userRef.child("lat").setValue(location.getLatitude());
             userRef.child("lng").setValue(location.getLongitude());
@@ -680,7 +680,7 @@ public class Main extends ActionBarActivity
     }
 
     public void updatePlaces(final PlacesList placesList, final GenericUrl url) {
-        if (Map.map != null) {
+        if (Map.map != null ) {
             for (Place place : placesList.results) {
                 if (!places.containsKey(place.id)) {
                     places.put(place.id, place);
